@@ -1,0 +1,29 @@
+<div class="backdrop-wrapper">
+  <img src="{{backdropUrl}}" alt="{{movie?.title}}" class="backdrop-img" srcset="{{backdropSrcset}}"><!-- TODO: fix image srcset sizing -->
+  <div class="header">
+    <h1 class="title">{{movie?.title}}</h1>
+    <div class="header-details">
+      <p class="release-year">{{movie?.release_date?.getFullYear()}}</p>
+      <p class="runtime">{{movie?.runtime}} min</p>
+    </div>
+  </div>
+</div>
+<img src="{{posterUrl}}" alt="{{movie?.title}}" srcset="{{posterSrcset}}" class="poster-img"><!-- TODO: fix image srcset sizing -->
+<div class="details-wrapper">
+  <div class="titles-wrapper">
+    <ng-template ngFor let-title [ngForOf]="movie?.alternative_titles">
+      <app-tag [content]="title.title"/>
+    </ng-template>
+  </div>
+  <div class="genres-wrapper">
+    <ng-template ngFor let-genre [ngForOf]="movie?.genres">
+      <app-tag [content]="genre.name"/>
+    </ng-template>
+  </div>
+  <div class="tags-wrapper">
+    <ng-template ngFor let-tag [ngForOf]="movie?.tags">
+      <app-tag [content]="tag.name"/>
+    </ng-template>
+  </div>
+  <p class="overview">{{movie?.overview}}</p>
+</div>
