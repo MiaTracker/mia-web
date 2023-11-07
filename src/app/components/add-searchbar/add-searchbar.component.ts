@@ -28,6 +28,7 @@ export class AddSearchbarComponent {
       this.open = true;
       this.searchbarInput.nativeElement.focus();
     } else if(this.enteredText) {
+      this.loading = true;
       this.onAction.emit({ value: this.enteredText });
     } else {
       this.searchbarInput.nativeElement.focus();

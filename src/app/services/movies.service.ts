@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
@@ -21,5 +21,7 @@ export class MoviesService {
     return this.httpService.get<MovieDetails>(`${AppConstants.ApiUrl}/movies/${id}`, { headers: AppConstants.ApiHeaders }).pipe(map(data => MovieDetails.deserialize(data)));
   }
 
-
+  public createMovie(id: number): Observable<Object> {
+    return this.httpService.post(`${AppConstants.ApiUrl}/media?tmdb_id=${id}&type=movie`, null, { headers: AppConstants.ApiHeaders });
+  }
 }
