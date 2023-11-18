@@ -27,3 +27,8 @@
   </div>
   <p class="overview">{{movie?.overview}}</p>
 </div>
+<div class="logs-wrapper">
+  <ng-template ngFor let-log [ngForOf]="movie?.logs">
+    <app-log [log]="log" [editable]="editable"/>
+  </ng-template>
+</div>

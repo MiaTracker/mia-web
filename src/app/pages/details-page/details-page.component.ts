@@ -16,6 +16,8 @@ export class DetailsPageComponent {
   protected backdropSrcset: string[] = [];
   protected backdropUrl: string | undefined = undefined;
 
+  protected editable: boolean = false;
+
   @Input()
   set id(movie_id: number) {
     this.moviesService.getDetails(movie_id).subscribe(m => {

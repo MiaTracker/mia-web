@@ -18,6 +18,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FormsModule} from "@angular/forms";
 import { AddSearchbarComponent } from './components/add-searchbar/add-searchbar.component';
+import { LogComponent } from './components/log/log.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddSearchbarComponent } from './components/add-searchbar/add-searchbar.
     IndexPosterComponent,
     DetailsPageComponent,
     TagComponent,
-    AddSearchbarComponent
+    AddSearchbarComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,

@@ -8,4 +8,6 @@ import {Component, Input} from '@angular/core';
 export class TagComponent {
   @Input()
   public content: string | undefined
+  @Input()
+  public enabled: boolean = false
 }
