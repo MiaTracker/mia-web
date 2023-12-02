@@ -24,18 +24,18 @@ export class DetailsPageComponent {
       if(m.poster_path) {
         for (const size of AppConstants.ImagesConfiguration.poster_sizes) {
           if (!size.startsWith("w")) continue;
-          this.posterSrcset.push(`${AppConstants.ImagesConfiguration.base_url + size + m.poster_path} ${size.substring(1)}w`);
+          this.posterSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + m.poster_path} ${size.substring(1)}w`);
         }
-        this.posterUrl = AppConstants.ImagesConfiguration.base_url + AppConstants.ImagesConfiguration.poster_sizes[AppConstants.ImagesConfiguration.poster_sizes.length - 1] + m.poster_path;
+        this.posterUrl = AppConstants.ImagesConfiguration.secure_base_url + AppConstants.ImagesConfiguration.poster_sizes[AppConstants.ImagesConfiguration.poster_sizes.length - 1] + m.poster_path;
       } else {
         this.posterUrl = AppConstants.UndefinedImageUrl;
       }
       if(m.backdrop_path) {
         for (const size of AppConstants.ImagesConfiguration.backdrop_sizes) {
           if (!size.startsWith("w")) continue;
-          this.backdropSrcset.push(`${AppConstants.ImagesConfiguration.base_url + size + m.backdrop_path} ${size.substring(1)}w`);
+          this.backdropSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + m.backdrop_path} ${size.substring(1)}w`);
         }
-        this.backdropUrl = AppConstants.ImagesConfiguration.base_url + AppConstants.ImagesConfiguration.backdrop_sizes[AppConstants.ImagesConfiguration.backdrop_sizes.length - 1] + m.backdrop_path;
+        this.backdropUrl = AppConstants.ImagesConfiguration.secure_base_url + AppConstants.ImagesConfiguration.backdrop_sizes[AppConstants.ImagesConfiguration.backdrop_sizes.length - 1] + m.backdrop_path;
       } else {
         this.backdropUrl = AppConstants.UndefinedImageUrl;
       }

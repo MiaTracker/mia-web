@@ -15,7 +15,7 @@ export class IndexPosterComponent implements OnInit{
   ngOnInit(): void {
     for (const size of AppConstants.ImagesConfiguration.poster_sizes) {
       if (!size.startsWith("w")) continue;
-      this.posterSrcset.push(`${AppConstants.ImagesConfiguration.base_url + size + this.index.poster_path} ${size.substring(1)}w`);
+      this.posterSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + this.index.poster_path} ${size.substring(1)}w`);
     }
   }
 }

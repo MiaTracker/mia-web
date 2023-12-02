@@ -1,7 +1,11 @@
 <div class="log">
-  <p>{{log.rating}}</p>
-  <p>{{log.completed}}</p>
-  <p>{{log.comment}}</p>
+  <div>
+    <div class="stars">
+      <mat-icon class="star" *ngFor="let _ of [].constructor(log.rating)">star</mat-icon>
+    </div>
+    <p>{{log.completed}}</p>
+    <p>{{log.comment}}</p>
+  </div>
   <p>{{formatDate(log.date, 'M/d/yyyy', 'en-US')}}</p>
   <mat-icon fontIcon="close" class="log-x" [class.log-x-editable]="editable"></mat-icon>
 </div>
