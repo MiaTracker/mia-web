@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MediaIndex} from "../../models/media-index.model";
-import {AppConstants} from "../../constants/app.constants";
+import {AppConfig} from "../../config/app.config";
 
 @Component({
   selector: 'app-index-poster',
@@ -9,13 +9,14 @@ import {AppConstants} from "../../constants/app.constants";
 })
 export class IndexPosterComponent implements OnInit{
   @Input() index!: MediaIndex;
-  protected readonly AppConstants = AppConstants;
   protected posterSrcset: string[] = [];
 
   ngOnInit(): void {
-    for (const size of AppConstants.ImagesConfiguration.poster_sizes) {
+    for (const size of AppConfig.const.imagesConfiguration.poster_sizes) {
       if (!size.startsWith("w")) continue;
-      this.posterSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + this.index.poster_path} ${size.substring(1)}w`);
+      this.posterSrcset.push(`${AppConfig.const.imagesConfiguration.secure_base_url + size + this.index.poster_path} ${size.substring(1)}w`);
     }
   }
+
+  protected readonly AppConfig = AppConfig;
 }

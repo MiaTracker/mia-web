@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MovieDetails} from "../../models/movie-details";
 import {MoviesService} from "../../services/movies.service";
-import {AppConstants} from "../../constants/app.constants";
+import {AppConfig} from "../../config/app.config";
 
 @Component({
   selector: 'app-details-page',
@@ -22,22 +22,22 @@ export class DetailsPageComponent {
   set id(movie_id: number) {
     this.moviesService.getDetails(movie_id).subscribe(m => {
       if(m.poster_path) {
-        for (const size of AppConstants.ImagesConfiguration.poster_sizes) {
+        for (const size of AppConfig.const.imagesConfiguration.poster_sizes) {
           if (!size.startsWith("w")) continue;
-          this.posterSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + m.poster_path} ${size.substring(1)}w`);
+          this.posterSrcset.push(`${AppConfig.const.imagesConfiguration.secure_base_url + size + m.poster_path} ${size.substring(1)}w`);
         }
-        this.posterUrl = AppConstants.ImagesConfiguration.secure_base_url + AppConstants.ImagesConfiguration.poster_sizes[AppConstants.ImagesConfiguration.poster_sizes.length - 1] + m.poster_path;
+        this.posterUrl = AppConfig.const.imagesConfiguration.secure_base_url + AppConfig.const.imagesConfiguration.poster_sizes[AppConfig.const.imagesConfiguration.poster_sizes.length - 1] + m.poster_path;
       } else {
-        this.posterUrl = AppConstants.UndefinedImageUrl;
+        this.posterUrl = AppConfig.env.undefinedImageUrl;
       }
       if(m.backdrop_path) {
-        for (const size of AppConstants.ImagesConfiguration.backdrop_sizes) {
+        for (const size of AppConfig.const.imagesConfiguration.backdrop_sizes) {
           if (!size.startsWith("w")) continue;
-          this.backdropSrcset.push(`${AppConstants.ImagesConfiguration.secure_base_url + size + m.backdrop_path} ${size.substring(1)}w`);
+          this.backdropSrcset.push(`${AppConfig.const.imagesConfiguration.secure_base_url + size + m.backdrop_path} ${size.substring(1)}w`);
         }
-        this.backdropUrl = AppConstants.ImagesConfiguration.secure_base_url + AppConstants.ImagesConfiguration.backdrop_sizes[AppConstants.ImagesConfiguration.backdrop_sizes.length - 1] + m.backdrop_path;
+        this.backdropUrl = AppConfig.const.imagesConfiguration.secure_base_url + AppConfig.const.imagesConfiguration.backdrop_sizes[AppConfig.const.imagesConfiguration.backdrop_sizes.length - 1] + m.backdrop_path;
       } else {
-        this.backdropUrl = AppConstants.UndefinedImageUrl;
+        this.backdropUrl = AppConfig.env.undefinedImageUrl;
       }
       this.movie = m;
     });
@@ -45,6 +45,4 @@ export class DetailsPageComponent {
 
   constructor(private moviesService: MoviesService) {
   }
-
-  protected readonly AppConstants = AppConstants;
 }

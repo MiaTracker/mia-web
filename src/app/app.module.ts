@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FormsModule} from "@angular/forms";
 import { AddSearchbarComponent } from './components/add-searchbar/add-searchbar.component';
 import { LogComponent } from './components/log/log.component';
+import {AppConfig} from "./config/app.config";
+
+export function initialize(appConfig: AppConfig) {
+  return () => appConfig.load()
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +49,15 @@ import { LogComponent } from './components/log/log.component';
     MatProgressSpinnerModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AppConfig,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initialize,
+      deps: [AppConfig],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
