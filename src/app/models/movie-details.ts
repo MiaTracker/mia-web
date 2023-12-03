@@ -25,18 +25,18 @@ export class MovieDetails implements Deserializable {
   public logs!: Log[];
 
   deserialize(input: any): this {
-    return Object.assign(this, input);
+    Object.assign(this, input);
+    this.release_date = new Date(input.release_date);
+    this.alternative_titles = input.alternative_titles.map((x: any) => AlternativeTitle.deserialize(x));
+    this.original_language = Language.deserialize(input.original_language);
+    this.genres = input.genres.map((x: any) => Genre.deserialize(x));
+    this.tags = input.tags.map((x: any) => Tag.deserialize(x));
+    this.sources = input.sources.map((x: any) => Source.deserialize(x));
+    this.logs = input.logs.map((x: any) => Log.deserialize(x));
+    return this;
   }
 
   public static deserialize(input: any): MovieDetails {
-    let movie = new MovieDetails().deserialize(input);
-    movie.release_date = new Date(input.release_date);
-    movie.alternative_titles = input.alternative_titles.map((x: any) => AlternativeTitle.deserialize(x));
-    movie.original_language = Language.deserialize(input.original_language);
-    movie.genres = input.genres.map((x: any) => Genre.deserialize(x));
-    movie.tags = input.tags.map((x: any) => Tag.deserialize(x));
-    movie.sources = input.sources.map((x: any) => Source.deserialize(x));
-    movie.logs = input.logs.map((x: any) => Log.deserialize(x));
-    return movie;
+    return new MovieDetails().deserialize(input);
   }
 }

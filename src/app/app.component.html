@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="navbar" *ngIf="!isLoginPage">
   <button mat-icon-button (click)="back()" *ngIf="!isBasePath" class="back-btn">
     <mat-icon>arrow_back</mat-icon>
   </button>

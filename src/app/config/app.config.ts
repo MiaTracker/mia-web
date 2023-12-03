@@ -15,7 +15,7 @@ export class AppConfig {
 
   load(): Promise<void>  {
     AppConfig.const = new AppConstants();
-    AppConfig.run = new AppRuntime();
+    AppConfig.run = AppRuntime.load();
     return new Promise((resolve, reject) => {
       this.http.get(AppConfig.const.configFile).subscribe(
           {

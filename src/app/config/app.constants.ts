@@ -5,7 +5,6 @@ export class AppConstants {
   public readonly configFile = 'assets/config.json';
   public readonly apiHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNWFlNWVmYy1jNjdjLTQ4MmUtYmVlNy1lOTdmMjlhMzQwNzAiLCJpYXQiOjE3MDE1MjgzMDMsImV4cCI6MTcwNjcxMjMwM30.LLKTzPGHtcsAI-HuMyjPhMicUoYUEpiNyG2_aoI16rU"
   });
   public readonly imagesConfiguration = new ImagesConfiguration(
     "http://image.tmdb.org/t/p/",

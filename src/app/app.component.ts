@@ -11,11 +11,14 @@ import {Signals} from "./infrastructure/signals";
 })
 export class AppComponent {
   isBasePath: boolean = false;
+  isLoginPage: boolean = true;
   searchbarReset = new Signal<() => void>();
 
   constructor(private location: Location, private service: MoviesService) {
+    this.setIsLoginPage();
     this.setIsBasePath();
     location.onUrlChange(() => this.setIsBasePath());
+    location.onUrlChange(() => this.setIsLoginPage());
   }
 
   back(): void {
@@ -24,6 +27,10 @@ export class AppComponent {
 
   setIsBasePath(): void {
     this.isBasePath = this.location.isCurrentPathEqualTo("/");
+  }
+
+  setIsLoginPage(): void {
+    this.isLoginPage = this.location.isCurrentPathEqualTo("/login")
   }
 
   addMedia(event: any): void {

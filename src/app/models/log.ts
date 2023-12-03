@@ -8,12 +8,12 @@ export class Log implements Deserializable {
   public comment!: string | null;
 
   deserialize(input: any): this {
-    return Object.assign(input);
+    Object.assign(input);
+    this.date = new Date(input.date)
+    return this;
   }
 
   public static deserialize(input: any): Log {
-    let log = new Log().deserialize(input);
-    log.date = new Date(input.date)
-    return log;
+    return new Log().deserialize(input);
   }
 }

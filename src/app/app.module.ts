@@ -16,10 +16,12 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AddSearchbarComponent } from './components/add-searchbar/add-searchbar.component';
 import { LogComponent } from './components/log/log.component';
 import {AppConfig} from "./config/app.config";
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -33,22 +35,25 @@ export function initialize(appConfig: AppConfig) {
     DetailsPageComponent,
     TagComponent,
     AddSearchbarComponent,
-    LogComponent
+    LogComponent,
+    LoginPageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgOptimizedImage,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgOptimizedImage,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
+    ],
   providers: [
     AppConfig,
     {

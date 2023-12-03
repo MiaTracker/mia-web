@@ -4,6 +4,9 @@ export class AlternativeTitle implements Deserializable {
   public id!: number;
   public title!: string;
 
+  public constructor() {
+  }
+
   deserialize(input: any): this {
     return Object.assign(this, input);
   }
