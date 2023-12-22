@@ -7,7 +7,7 @@ import { IndexPosterComponent } from "./components/index-poster/index-poster.com
 import { IndexPageComponent } from "./pages/index-page/index-page.component";
 import {NgOptimizedImage} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
-import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { MovieDetailsPageComponent } from './pages/movie-details-page/movie-details-page.component';
 import { TagComponent } from './components/tag/tag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
@@ -22,6 +22,9 @@ import { LogComponent } from './components/log/log.component';
 import {AppConfig} from "./config/app.config";
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { BackdropComponent } from './components/backdrop/backdrop.component';
+import { DetailsPosterComponent } from './components/details-poster/details-poster.component';
+import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-details-page.component";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -32,11 +35,14 @@ export function initialize(appConfig: AppConfig) {
     AppComponent,
     IndexPageComponent,
     IndexPosterComponent,
-    DetailsPageComponent,
+    MovieDetailsPageComponent,
+    SeriesDetailsPageComponent,
     TagComponent,
     AddSearchbarComponent,
     LogComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    BackdropComponent,
+    DetailsPosterComponent
   ],
     imports: [
         BrowserModule,

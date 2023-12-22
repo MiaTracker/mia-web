@@ -1,14 +1,8 @@
-<div class="backdrop-wrapper">
-  <img src="{{backdropUrl}}" alt="{{movie?.title}}" class="backdrop-img" srcset="{{backdropSrcset}}"><!-- TODO: fix image srcset sizing -->
-  <div class="header">
-    <h1 class="title">{{movie?.title}}</h1>
-    <div class="header-details">
-      <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
-      <div class="runtime">{{movie?.runtime}} min&ZeroWidthSpace;</div>
-    </div>
-  </div>
-</div>
-<img src="{{posterUrl}}" alt="{{movie?.title}}" srcset="{{posterSrcset}}" class="poster-img"><!-- TODO: fix image srcset sizing -->
+<app-backdrop [title]="movie?.title" [backdrop_path]="movie?.backdrop_path">
+  <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
+  <div class="runtime">{{movie?.runtime}} min&ZeroWidthSpace;</div>
+</app-backdrop>
+<app-details-poster [poster_path]="movie?.poster_path"></app-details-poster>
 <div class="details-wrapper">
   <div class="titles-wrapper">
     <ng-template ngFor let-title [ngForOf]="movie?.alternative_titles">

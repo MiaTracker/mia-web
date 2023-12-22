@@ -1,21 +1,23 @@
-import {Deserializable} from "../interfaces/deserializable.interface";
 import {AlternativeTitle} from "./alternative-title";
 import {Language} from "./language";
 import {Genre} from "./genre";
 import {Tag} from "./tag";
 import {Source} from "./source";
 import {Log} from "./log";
+import {Deserializable} from "../interfaces/deserializable.interface";
 
-export class MovieDetails implements Deserializable {
+export class SeriesDetails implements Deserializable {
   public id!: number;
-  public poster_path!: string | null;
-  public backdrop_path!: string | null;
+  public poster_path!: string;
+  public backdrop_path!: string;
   public stars!: number | null;
   public title!: string;
   public alternative_titles!: AlternativeTitle[];
-  public release_date!: Date;
-  public runtime!: number | null;
+  public first_air_date!: Date | null;
+  public number_of_episodes!: number | null;
+  public number_of_seasons!: number | null;
   public status!: string;
+  public type!: string | null;
   public overview!: string | null;
   public tmdb_vote_average!: number | null;
   public original_language!: Language | null;
@@ -26,7 +28,7 @@ export class MovieDetails implements Deserializable {
 
   deserialize(input: any): this {
     Object.assign(this, input);
-    this.release_date = new Date(input.release_date);
+    this.first_air_date = new Date(input.first_air_date);
     this.alternative_titles = input.alternative_titles.map((x: any) => AlternativeTitle.deserialize(x));
     this.original_language = Language.deserialize(input.original_language);
     this.genres = input.genres.map((x: any) => Genre.deserialize(x));

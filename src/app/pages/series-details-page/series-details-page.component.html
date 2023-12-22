@@ -1,0 +1,29 @@
+<app-backdrop [title]="series?.title" [backdrop_path]="series?.backdrop_path">
+  <div class="release-year">{{series?.first_air_date?.getFullYear()}}&ZeroWidthSpace;</div>
+  <div class="runtime">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
+  <div class="runtime">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
+</app-backdrop>
+<app-details-poster [poster_path]="series?.poster_path"></app-details-poster>
+<div class="details-wrapper">
+  <div class="titles-wrapper">
+    <ng-template ngFor let-title [ngForOf]="series?.alternative_titles">
+      <app-tag [content]="title.title"/>
+    </ng-template>
+  </div>
+  <div class="genres-wrapper">
+    <ng-template ngFor let-genre [ngForOf]="series?.genres">
+      <app-tag [content]="genre.name"/>
+    </ng-template>
+  </div>
+  <div class="tags-wrapper">
+    <ng-template ngFor let-tag [ngForOf]="series?.tags">
+      <app-tag [content]="tag.name"/>
+    </ng-template>
+  </div>
+  <p class="overview">{{series?.overview}}</p>
+</div>
+<div class="logs-wrapper">
+  <ng-template ngFor let-log [ngForOf]="series?.logs">
+    <app-log [log]="log" [editable]="editable"/>
+  </ng-template>
+</div>
