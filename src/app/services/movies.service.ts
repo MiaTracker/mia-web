@@ -20,6 +20,6 @@ export class MoviesService {
   }
 
   public createMovie(id: number): Observable<Object> {
-    return this.httpService.post('/media', { tmdb_id: id, type: 'movie' }, null);
+    return this.httpService.post('/movies', { tmdb_id: id }, null);
   }
 }
