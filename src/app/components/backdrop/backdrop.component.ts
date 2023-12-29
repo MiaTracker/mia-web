@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {AppConfig} from "../../config/app.config";
 
 @Component({
@@ -6,10 +6,11 @@ import {AppConfig} from "../../config/app.config";
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.sass']
 })
-export class BackdropComponent implements OnInit {
+export class BackdropComponent {
   private _backdrop_path: string | null = null;
 
   @Input()
+  @Output()
   public title: string | null | undefined;
 
   @Input()
@@ -24,9 +25,6 @@ export class BackdropComponent implements OnInit {
 
   public backdrop_url: string = "";
   public backdrop_srcset: string[] = [];
-
-  public ngOnInit() {
-  }
 
   public recalculateUrls(): void {
     if(this.backdrop_path) {

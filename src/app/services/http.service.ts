@@ -43,6 +43,13 @@ export class HttpService {
       }));
   }
 
+  public delete(url: string): Observable<Object> {
+    return this.client.delete(AppConfig.env.api.url + url, { headers: this.headers() }).pipe(catchError((err, _) => {
+      if(err.status == 401) this.router.navigateByUrl('/login');
+      throw err;
+    }));
+  }
+
   private paramsString(params: any | null): string {
     if(params == null) return "";
     let str = "?";

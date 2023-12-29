@@ -22,4 +22,12 @@ export class MoviesService {
   public createMovie(id: number): Observable<Object> {
     return this.httpService.post('/movies', { tmdb_id: id }, null);
   }
+
+  public createTag(name: string, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/tags`, null, { name: name });
+  }
+
+  public deleteTag(tag_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/tags/${tag_id}`);
+  }
 }

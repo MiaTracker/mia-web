@@ -8,17 +8,47 @@ import {MoviesService} from "../../services/movies.service";
   styleUrls: ['./movie-details-page.component.sass']
 })
 export class MovieDetailsPageComponent {
+  private _movie_id: number | undefined;
+
   public movie: MovieDetails | undefined = undefined;
 
   protected editable: boolean = false;
 
   @Input()
+  get id(): number | undefined {
+    return this._movie_id;
+  }
+
   set id(movie_id: number) {
-    this.moviesService.getDetails(movie_id).subscribe(m => {
-      this.movie = m;
-    });
+    this._movie_id = movie_id;
+    this.getMovie();
   }
 
   constructor(private moviesService: MoviesService) {
+  }
+
+  protected cancel(): void {
+    this.getMovie();
+    this.editable = false;
+  }
+
+  protected save(): void {
+    console.log(this.movie?.title);
+  }
+
+  private getMovie() {
+    if(this.id) {
+      this.moviesService.getDetails(this.id).subscribe(m => {
+        this.movie = m;
+      });
+    }
+  }
+
+  protected createTag(event: any): void {
+    this.moviesService.createTag(event.name, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
+
+  protected deleteTag(event: any): void {
+    this.moviesService.deleteTag(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
   }
 }

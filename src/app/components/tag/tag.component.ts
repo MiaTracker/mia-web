@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-tag',
@@ -7,7 +7,14 @@ import {Component, Input} from '@angular/core';
 })
 export class TagComponent {
   @Input()
-  public content: string | undefined
+  public content: string | undefined;
   @Input()
-  public enabled: boolean = false
+  public editable: boolean = false;
+
+  @Output()
+  public delete = new EventEmitter();
+
+  protected onDeleteClicked(): void {
+    this.delete.emit();
+  }
 }

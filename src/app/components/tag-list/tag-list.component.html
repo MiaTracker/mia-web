@@ -1,0 +1,14 @@
+<div class="container">
+  <ng-template ngFor let-tag [ngForOf]="tags">
+    <app-tag [content]="tag[property]" [editable]="editable" class="tag" (delete)="onDeleteTag(tag)"/>
+  </ng-template>
+  <div class="add-btn" *ngIf="editable">
+    <div class="add-btn-input-container" [class.add-btn-input-visible]="adding">
+      <span contenteditable="true" class="add-btn-input" #addBtnInput (blur)="onAddBtnInputFocusLost()"></span>
+      <mat-icon fontIcon="close" class="tag-x" (mousedown)="addBtnInput.innerHTML = ''"></mat-icon>
+    </div>
+    <button aria-label="Add" class="add-btn-plus" (mousedown)="onAddBtnPlusClicked()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

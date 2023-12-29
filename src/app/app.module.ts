@@ -25,6 +25,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { BackdropComponent } from './components/backdrop/backdrop.component';
 import { DetailsPosterComponent } from './components/details-poster/details-poster.component';
 import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-details-page.component";
+import { TagListComponent } from './components/tag-list/tag-list.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -42,7 +43,8 @@ export function initialize(appConfig: AppConfig) {
     LogComponent,
     LoginPageComponent,
     BackdropComponent,
-    DetailsPosterComponent
+    DetailsPosterComponent,
+    TagListComponent
   ],
     imports: [
         BrowserModule,
