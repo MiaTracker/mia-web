@@ -1,6 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {MovieDetails} from "../../models/movie-details";
 import {MoviesService} from "../../services/movies.service";
+import {Location} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/confirmation-dialog.component";
 
 @Component({
   selector: 'app-movie-details-page',
@@ -12,7 +15,7 @@ export class MovieDetailsPageComponent {
 
   public movie: MovieDetails | undefined = undefined;
 
-  protected editable: boolean = false;
+  protected editable: boolean = true;
 
   @Input()
   get id(): number | undefined {
@@ -24,16 +27,7 @@ export class MovieDetailsPageComponent {
     this.getMovie();
   }
 
-  constructor(private moviesService: MoviesService) {
-  }
-
-  protected cancel(): void {
-    this.getMovie();
-    this.editable = false;
-  }
-
-  protected save(): void {
-    console.log(this.movie?.title);
+  constructor(private moviesService: MoviesService, private location: Location, private dialog: MatDialog) {
   }
 
   private getMovie() {
@@ -42,6 +36,17 @@ export class MovieDetailsPageComponent {
         this.movie = m;
       });
     }
+  }
+
+  protected deleteMovie(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: { prompt: `Do you really want do delete "${this.movie?.title}"?` }, restoreFocus: false });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && this.id) {
+        this.moviesService.deleteMovie(this.id).subscribe(_ => {
+          this.location.back();
+        })
+      }
+    });
   }
 
   protected createTag(event: any): void {

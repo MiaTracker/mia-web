@@ -26,6 +26,9 @@ import { BackdropComponent } from './components/backdrop/backdrop.component';
 import { DetailsPosterComponent } from './components/details-poster/details-poster.component';
 import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-details-page.component";
 import { TagListComponent } from './components/tag-list/tag-list.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { ConfirmationDialogComponent } from './dialogs/delete-confirmation/confirmation-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -44,7 +47,8 @@ export function initialize(appConfig: AppConfig) {
     LoginPageComponent,
     BackdropComponent,
     DetailsPosterComponent,
-    TagListComponent
+    TagListComponent,
+    ConfirmationDialogComponent
   ],
     imports: [
         BrowserModule,
@@ -60,7 +64,9 @@ export function initialize(appConfig: AppConfig) {
         MatProgressSpinnerModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatMenuModule,
+        MatDialogModule
     ],
   providers: [
     AppConfig,

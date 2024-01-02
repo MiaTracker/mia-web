@@ -1,14 +1,18 @@
 <div class="container">
-  <div class="fabs">
-    <button *ngIf="!editable" mat-fab color="primary" aria-label="Edit" class="edit-fab" (click)="editable = true">
-      <mat-icon>edit</mat-icon>
+  <div class="menu">
+    <button mat-fab color="primary" aria-label="Menu" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button *ngIf="editable" mat-fab color="primary" aria-label="Cancel" class="edit-fab" (click)="cancel()">
-      <mat-icon>cancel</mat-icon>
-    </button>
-    <button *ngIf="editable" mat-fab color="primary" aria-label="Save" class="edit-fab" (click)="save()">
-      <mat-icon>save</mat-icon>
-    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item (click)="deleteMovie()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </div>
   <app-backdrop [title]="movie?.title" [backdrop_path]="movie?.backdrop_path">
     <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
