@@ -51,4 +51,12 @@ export class MovieDetailsPageComponent {
   protected deleteTag(event: any): void {
     this.moviesService.deleteTag(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
   }
+
+  protected createGenre(event: any): void {
+    this.moviesService.createGenre(event.name, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
+
+  protected deleteGenre(event: any): void {
+    this.moviesService.deleteGenre(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
 }

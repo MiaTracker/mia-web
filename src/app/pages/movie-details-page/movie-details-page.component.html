@@ -17,7 +17,7 @@
   <app-details-poster [poster_path]="movie?.poster_path"></app-details-poster>
   <div class="details-wrapper">
     <app-tag-list [property]="'title'" [tags]="movie?.alternative_titles" [editable]="editable"/>
-    <app-tag-list [property]="'name'" [tags]="movie?.genres" [editable]="editable"/>
+    <app-tag-list [property]="'name'" [tags]="movie?.genres" [editable]="editable" (addTag)="createGenre($event)" (deleteTag)="deleteGenre($event)"/>
     <app-tag-list [property]="'name'" [tags]="movie?.tags" [editable]="editable" (addTag)="createTag($event)" (deleteTag)="deleteTag($event)"/>
     <p class="overview">{{movie?.overview}}</p>
   </div>

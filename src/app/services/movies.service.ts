@@ -30,4 +30,12 @@ export class MoviesService {
   public deleteTag(tag_id: number, movie_id: number): Observable<Object> {
     return this.httpService.delete(`/movies/${movie_id}/tags/${tag_id}`);
   }
+
+  public createGenre(name: string, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/genres`, null, { name: name });
+  }
+
+  public deleteGenre(tag_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/genres/${tag_id}`);
+  }
 }
