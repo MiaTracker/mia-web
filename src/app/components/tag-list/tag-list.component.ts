@@ -19,11 +19,17 @@ export class TagListComponent {
     return this._editable;
   }
 
+  @Input()
+  public primaryAction: boolean = false;
+
   @Output()
   public addTag = new EventEmitter();
 
   @Output()
   public deleteTag = new EventEmitter();
+
+  @Output()
+  public setPrimary = new EventEmitter();
 
   public set editable(val: boolean) {
     this.adding = false;
@@ -50,5 +56,9 @@ export class TagListComponent {
 
   protected onDeleteTag(tag: any): void {
     this.deleteTag.emit({ tag: tag });
+  }
+
+  protected onTagSetPrimary(tag: any): void {
+    this.setPrimary.emit({ tag: tag });
   }
 }

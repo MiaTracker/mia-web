@@ -1,4 +1,5 @@
 <div class="tag">
   <p class="tag-content">{{content}}</p>
-  <mat-icon fontIcon="close" class="tag-x" [class.tag-x-editable]="editable" (click)="onDeleteClicked()"></mat-icon>
+  <mat-icon fontIcon="close" class="tag-action" [class.tag-action-editable]="editable" (click)="onDeleteClicked()"></mat-icon>
+  <mat-icon fontIcon="check_circle" class="tag-action" [class.tag-action-editable]="editable" (click)="onPrimaryClicked()" *ngIf="primaryAction"></mat-icon>
 </div>

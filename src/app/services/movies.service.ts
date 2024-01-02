@@ -35,7 +35,19 @@ export class MoviesService {
     return this.httpService.post(`/movies/${movie_id}/genres`, null, { name: name });
   }
 
-  public deleteGenre(tag_id: number, movie_id: number): Observable<Object> {
-    return this.httpService.delete(`/movies/${movie_id}/genres/${tag_id}`);
+  public deleteGenre(genre_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/genres/${genre_id}`);
+  }
+
+  public createTitle(name: string, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/titles`, null, { name: name });
+  }
+
+  public setPrimaryTitle(title_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/titles/${title_id}/primary`);
+  }
+
+  public deleteTitle(title_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/titles/${title_id}`);
   }
 }

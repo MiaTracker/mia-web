@@ -59,4 +59,16 @@ export class MovieDetailsPageComponent {
   protected deleteGenre(event: any): void {
     this.moviesService.deleteGenre(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
   }
+
+  protected createTitle(event: any): void {
+    this.moviesService.createTitle(event.name, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
+
+  protected setPrimaryTitle(event: any): void {
+    this.moviesService.setPrimaryTitle(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
+
+  protected deleteTitle(event: any): void {
+    this.moviesService.deleteTitle(event.tag.id, this._movie_id ?? 0).subscribe(_ => this.getMovie());
+  }
 }

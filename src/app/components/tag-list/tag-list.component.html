@@ -1,6 +1,6 @@
 <div class="container">
   <ng-template ngFor let-tag [ngForOf]="tags">
-    <app-tag [content]="tag[property]" [editable]="editable" class="tag" (delete)="onDeleteTag(tag)"/>
+    <app-tag [content]="tag[property]" [editable]="editable" class="tag" (delete)="onDeleteTag(tag)" (setPrimary)="onTagSetPrimary(tag)" [primaryAction]="primaryAction"/>
   </ng-template>
   <div class="add-btn" *ngIf="editable">
     <div class="add-btn-input-container" [class.add-btn-input-visible]="adding">
