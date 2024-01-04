@@ -34,9 +34,12 @@ export class AppComponent {
   addMedia(event: any): void {
     let id = Number.parseInt(event.value);
     if(this.location.isCurrentPathEqualTo("/movies")) {
-      this.moviesService.createMovie(id).subscribe(() => {
-        this.searchbarReset.emit();
-        Signals.MovieIndexUpdated.emit();
+      this.moviesService.createMovie(id).subscribe({
+        complete: () => {
+          this.searchbarReset.emit();
+          Signals.MovieIndexUpdated.emit();
+        },
+        error: () => { this.searchbarReset.emit(); }
       });
     } else if(this.location.isCurrentPathEqualTo("/series")) {
       this.seriesService.createSeries(id).subscribe(() => {
