@@ -26,7 +26,9 @@ export class AppComponent {
   }
 
   setLocationBasedState(): void {
-    this.isBasePath = this.location.isCurrentPathEqualTo("/");
+    this.isBasePath = this.location.isCurrentPathEqualTo("/")
+      || this.location.isCurrentPathEqualTo("/movies")
+      || this.location.isCurrentPathEqualTo("/series");
     this.isLoginPage = this.location.isCurrentPathEqualTo("/login")
     this.searchbarVisible = this.location.isCurrentPathEqualTo("/movies")  || this.location.isCurrentPathEqualTo("/series");
   }
@@ -48,4 +50,6 @@ export class AppComponent {
       });
     }
   }
+
+  protected readonly console = console;
 }

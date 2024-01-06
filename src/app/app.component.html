@@ -1,7 +1,32 @@
-<mat-toolbar color="primary" class="navbar" *ngIf="!isLoginPage">
-  <button mat-icon-button (click)="back()" *ngIf="!isBasePath" class="back-btn">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <app-add-searchbar class="searchbar" *ngIf="searchbarVisible" (onAction)="addMedia($event)" [reset]="searchbarReset"></app-add-searchbar>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <mat-toolbar color="primary" class="navbar" *ngIf="!isLoginPage">
+    <button mat-icon-button (click)="back()" *ngIf="!isBasePath" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-icon-button (click)="drawer.toggle()" *ngIf="isBasePath" class="back-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-add-searchbar class="searchbar" *ngIf="searchbarVisible" (onAction)="addMedia($event)" [reset]="searchbarReset"></app-add-searchbar>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav">
+    <mat-sidenav #drawer mode="over" [autoFocus]="false">
+      <mat-nav-list role="navigation" class="nav-list">
+        <a mat-list-item routerLink="/movies" routerLinkActive="nav-list-link-active">
+          <span class="nav-list-item">
+            <mat-icon class="nav-list-icon">movie</mat-icon>
+            <span>Movies</span>
+          </span>
+        </a>
+        <a mat-list-item routerLink="/series" routerLinkActive="nav-list-link-active">
+          <span class="nav-list-item">
+            <mat-icon class="nav-list-icon">tv</mat-icon>
+            <span>Series</span>
+          </span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

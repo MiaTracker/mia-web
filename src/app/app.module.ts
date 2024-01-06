@@ -29,6 +29,8 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { ConfirmationDialogComponent } from './dialogs/delete-confirmation/confirmation-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -50,24 +52,26 @@ export function initialize(appConfig: AppConfig) {
     TagListComponent,
     ConfirmationDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgOptimizedImage,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSnackBarModule,
-        MatMenuModule,
-        MatDialogModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgOptimizedImage,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule
+  ],
   providers: [
     AppConfig,
     {
