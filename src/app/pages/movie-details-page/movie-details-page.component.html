@@ -15,6 +15,7 @@
     </mat-menu>
   </div>
   <app-backdrop [title]="movie?.title" [backdrop_path]="movie?.backdrop_path">
+    <div class="status">{{movie?.status}}</div>
     <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
     <div class="runtime">{{movie?.runtime}} min&ZeroWidthSpace;</div>
   </app-backdrop>

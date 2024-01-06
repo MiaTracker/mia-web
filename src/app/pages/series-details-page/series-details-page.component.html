@@ -15,9 +15,10 @@
     </mat-menu>
   </div>
   <app-backdrop [title]="series?.title" [backdrop_path]="series?.backdrop_path">
+    <div class="status">{{series?.status}}</div>
     <div class="release-year">{{series?.first_air_date?.getFullYear()}}&ZeroWidthSpace;</div>
-    <div class="runtime">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
-    <div class="runtime">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
+    <div class="number_of_seasons">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
+    <div class="number_of_episodes">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
   </app-backdrop>
   <app-details-poster [poster_path]="series?.poster_path"></app-details-poster>
   <div class="details-wrapper">
