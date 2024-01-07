@@ -3,6 +3,7 @@ import {HttpService} from "./http.service";
 import {Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {SeriesDetails} from "../models/series-details";
+import {MovieMetadata} from "../models/movie-metadata";
 
 @Injectable({
   providedIn: 'root'
@@ -23,35 +24,43 @@ export class SeriesService {
     return this.httpService.post('/series', { tmdb_id: id }, null);
   }
 
+  public getMetadata(id: number): Observable<MovieMetadata> {
+    return this.httpService.getObj(MovieMetadata, `/series/${id}/metadata`);
+  }
+
+  public updateMetadata(metadata: MovieMetadata): Observable<Object> {
+    return this.httpService.patch(`/series/${metadata.id}/metadata`, null, metadata);
+  }
+
   public deleteSeries(id: number): Observable<Object> {
     return this.httpService.delete(`/series/${id}`);
   }
 
-  public createTag(name: string, movie_id: number): Observable<Object> {
-    return this.httpService.post(`/series/${movie_id}/tags`, null, { name: name });
+  public createTag(name: string, series_id: number): Observable<Object> {
+    return this.httpService.post(`/series/${series_id}/tags`, null, { name: name });
   }
 
-  public deleteTag(tag_id: number, movie_id: number): Observable<Object> {
-    return this.httpService.delete(`/series/${movie_id}/tags/${tag_id}`);
+  public deleteTag(tag_id: number, series_id: number): Observable<Object> {
+    return this.httpService.delete(`/series/${series_id}/tags/${tag_id}`);
   }
 
-  public createGenre(name: string, movie_id: number): Observable<Object> {
-    return this.httpService.post(`/series/${movie_id}/genres`, null, { name: name });
+  public createGenre(name: string, series_id: number): Observable<Object> {
+    return this.httpService.post(`/series/${series_id}/genres`, null, { name: name });
   }
 
-  public deleteGenre(genre_id: number, movie_id: number): Observable<Object> {
-    return this.httpService.delete(`/series/${movie_id}/genres/${genre_id}`);
+  public deleteGenre(genre_id: number, series_id: number): Observable<Object> {
+    return this.httpService.delete(`/series/${series_id}/genres/${genre_id}`);
   }
 
-  public createTitle(name: string, movie_id: number): Observable<Object> {
-    return this.httpService.post(`/series/${movie_id}/titles`, null, { name: name });
+  public createTitle(name: string, series_id: number): Observable<Object> {
+    return this.httpService.post(`/series/${series_id}/titles`, null, { name: name });
   }
 
-  public setPrimaryTitle(title_id: number, movie_id: number): Observable<Object> {
-    return this.httpService.post(`/series/${movie_id}/titles/${title_id}/primary`);
+  public setPrimaryTitle(title_id: number, series_id: number): Observable<Object> {
+    return this.httpService.post(`/series/${series_id}/titles/${title_id}/primary`);
   }
 
-  public deleteTitle(title_id: number, movie_id: number): Observable<Object> {
-    return this.httpService.delete(`/series/${movie_id}/titles/${title_id}`);
+  public deleteTitle(title_id: number, series_id: number): Observable<Object> {
+    return this.httpService.delete(`/series/${series_id}/titles/${title_id}`);
   }
 }

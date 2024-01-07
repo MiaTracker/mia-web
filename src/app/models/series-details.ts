@@ -16,7 +16,7 @@ export class SeriesDetails implements Deserializable {
   public first_air_date!: Date | null;
   public number_of_episodes!: number | null;
   public number_of_seasons!: number | null;
-  public status!: string;
+  public status!: string | null;
   public type!: string | null;
   public overview!: string | null;
   public tmdb_vote_average!: number | null;

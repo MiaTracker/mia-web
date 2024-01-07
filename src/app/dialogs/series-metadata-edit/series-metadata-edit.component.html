@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Metadata</h1>
+  <form class="form" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Overview</mat-label>
+      <textarea matInput formControlName="overview"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>First air date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="first_air_date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="status">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type">
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Original language</mat-label>
+      <input matInput formControlName="original_language">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Poster path</mat-label>
+      <input matInput formControlName="poster_path">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Backdrop path</mat-label>
+      <input matInput formControlName="backdrop_path">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Homepage</mat-label>
+      <input matInput formControlName="homepage">
+    </mat-form-field>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>TMDB id</mat-label>
+        <input matInput formControlName="tmdb_id">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>IMDB id</mat-label>
+        <input matInput formControlName="imdb_id">
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>TMDB vote average</mat-label>
+      <input matInput formControlName="tmdb_vote_average">
+    </mat-form-field>
+    <div mat-dialog-actions align="end">
+      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+</div>

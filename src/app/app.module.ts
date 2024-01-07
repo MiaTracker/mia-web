@@ -31,6 +31,10 @@ import { ConfirmationDialogComponent } from './dialogs/delete-confirmation/confi
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import { MovieMetadataEditComponent } from './dialogs/movie-metadata-edit/movie-metadata-edit.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatLuxonDateModule} from "@angular/material-luxon-adapter";
+import { SeriesMetadataEditComponent } from './dialogs/series-metadata-edit/series-metadata-edit.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -50,7 +54,9 @@ export function initialize(appConfig: AppConfig) {
     BackdropComponent,
     DetailsPosterComponent,
     TagListComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MovieMetadataEditComponent,
+    SeriesMetadataEditComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,9 @@ export function initialize(appConfig: AppConfig) {
     MatMenuModule,
     MatDialogModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatLuxonDateModule
   ],
   providers: [
     AppConfig,

@@ -4,6 +4,7 @@ import {MoviesService} from "../../services/movies.service";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/confirmation-dialog.component";
+import {MovieMetadataEditComponent} from "../../dialogs/movie-metadata-edit/movie-metadata-edit.component";
 
 @Component({
   selector: 'app-movie-details-page',
@@ -35,6 +36,23 @@ export class MovieDetailsPageComponent {
       this.moviesService.getDetails(this.id).subscribe(m => {
         this.movie = m;
       });
+    }
+  }
+
+  protected editMetadata(): void {
+    if(this.id) {
+      this.moviesService.getMetadata(this.id).subscribe({
+        next: (data) => {
+          let dialogRef = this.dialog.open(MovieMetadataEditComponent, { data: data, restoreFocus: false, autoFocus: "false" });
+          dialogRef.afterClosed().subscribe(result => {
+            if(result && this.id) {
+              this.moviesService.updateMetadata(result).subscribe({
+                complete: () => { this.getMovie() }
+              });
+            }
+          });
+        }
+      })
     }
   }
 

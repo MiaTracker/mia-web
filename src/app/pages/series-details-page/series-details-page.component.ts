@@ -4,6 +4,7 @@ import {SeriesService} from "../../services/series.service";
 import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/confirmation-dialog.component";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
+import {SeriesMetadataEditComponent} from "../../dialogs/series-metadata-edit/series-metadata-edit.component";
 
 @Component({
   selector: 'app-series-movie-details-page',
@@ -35,6 +36,23 @@ export class SeriesDetailsPageComponent {
       this.seriesService.getDetails(this.id).subscribe(s => {
         this.series = s;
       });
+    }
+  }
+
+  protected editMetadata(): void {
+    if(this.id) {
+      this.seriesService.getMetadata(this.id).subscribe({
+        next: (data) => {
+          let dialogRef = this.dialog.open(SeriesMetadataEditComponent, { data: data, restoreFocus: false, autoFocus: "false" });
+          dialogRef.afterClosed().subscribe(result => {
+            if(result && this.id) {
+              this.seriesService.updateMetadata(result).subscribe({
+                complete: () => { this.getSeries() }
+              });
+            }
+          });
+        }
+      })
     }
   }
 

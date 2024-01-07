@@ -13,9 +13,9 @@ export class MovieDetails implements Deserializable {
   public stars!: number | null;
   public title!: string;
   public alternative_titles!: AlternativeTitle[];
-  public release_date!: Date;
+  public release_date!: Date | null;
   public runtime!: number | null;
-  public status!: string;
+  public status!: string | null;
   public overview!: string | null;
   public tmdb_vote_average!: number | null;
   public original_language!: Language | null;

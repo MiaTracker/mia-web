@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {MovieDetails} from "../models/movie-details";
 import {HttpService} from "./http.service";
+import {MovieMetadata} from "../models/movie-metadata";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,14 @@ export class MoviesService {
 
   public createMovie(id: number): Observable<Object> {
     return this.httpService.post('/movies', { tmdb_id: id }, null);
+  }
+
+  public getMetadata(id: number): Observable<MovieMetadata> {
+    return this.httpService.getObj(MovieMetadata, `/movies/${id}/metadata`);
+  }
+
+  public updateMetadata(metadata: MovieMetadata): Observable<Object> {
+    return this.httpService.patch(`/movies/${metadata.id}/metadata`, null, metadata);
   }
 
   public deleteMovie(id: number): Observable<Object> {

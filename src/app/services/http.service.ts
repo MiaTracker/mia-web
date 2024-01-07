@@ -44,6 +44,13 @@ export class HttpService {
       }));
   }
 
+  public patch(url: string, params: Object | null = null, body: any = null): Observable<Object> {
+    return this.client.patch(AppConfig.env.api.url + url + this.paramsString(params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
+      this.handleErrors(err);
+      throw err;
+    }))
+  }
+
   public delete(url: string): Observable<Object> {
     return this.client.delete(AppConfig.env.api.url + url, { headers: this.headers() }).pipe(catchError((err, _) => {
       this.handleErrors(err);
