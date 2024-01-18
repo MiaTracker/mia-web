@@ -35,6 +35,9 @@ import { MovieMetadataEditComponent } from './dialogs/movie-metadata-edit/movie-
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatLuxonDateModule} from "@angular/material-luxon-adapter";
 import { SeriesMetadataEditComponent } from './dialogs/series-metadata-edit/series-metadata-edit.component';
+import { SourceEditComponent } from './dialogs/source-edit/source-edit.component';
+import {MatSelectModule} from "@angular/material/select";
+import { MediaDetailsComponent } from './components/media-details/media-details.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -56,7 +59,9 @@ export function initialize(appConfig: AppConfig) {
     TagListComponent,
     ConfirmationDialogComponent,
     MovieMetadataEditComponent,
-    SeriesMetadataEditComponent
+    SeriesMetadataEditComponent,
+    SourceEditComponent,
+    MediaDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,8 @@ export function initialize(appConfig: AppConfig) {
     MatSidenavModule,
     MatListModule,
     MatDatepickerModule,
-    MatLuxonDateModule
+    MatLuxonDateModule,
+    MatSelectModule
   ],
   providers: [
     AppConfig,

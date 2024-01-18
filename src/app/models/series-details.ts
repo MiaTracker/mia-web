@@ -5,8 +5,9 @@ import {Tag} from "./tag";
 import {Source} from "./source";
 import {Log} from "./log";
 import {Deserializable} from "../interfaces/deserializable.interface";
+import {IMediaDetails} from "../interfaces/imedia-details";
 
-export class SeriesDetails implements Deserializable {
+export class SeriesDetails implements Deserializable, IMediaDetails {
   public id!: number;
   public poster_path!: string;
   public backdrop_path!: string;

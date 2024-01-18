@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Source</h1>
+  <form class="form" [formGroup]="form">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">{{type.viewValue}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url">
+    </mat-form-field>
+    <div mat-dialog-actions align="end">
+      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="details-wrapper">
+  <app-tag-list *ngIf="(media?.alternative_titles?.length ?? 0) != 0 || editable" [property]="'title'" [tags]="media?.alternative_titles" [editable]="editable" (addTag)="createTitle($event)" (deleteTag)="deleteTitle($event)" (setPrimary)="setPrimaryTitle($event)" [primaryAction]="true"/>
+  <app-tag-list *ngIf="(media?.genres?.length ?? 0) != 0 || editable" [property]="'name'" [tags]="media?.genres" [editable]="editable" (addTag)="createGenre($event)" (deleteTag)="deleteGenre($event)"/>
+  <app-tag-list *ngIf="(media?.tags?.length ?? 0) != 0 || editable" [property]="'name'" [tags]="media?.tags" [editable]="editable" (addTag)="createTag($event)" (deleteTag)="deleteTag($event)"/>
+  <p class="overview">{{media?.overview}}</p>
+  <div class="sources">
+    <div class="title">
+      <h3>Sources:</h3>
+      <button mat-raised-button color="primary" (click)="addSource()">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+      </button>
+    </div>
+    <div class="source" *ngFor="let source of media?.sources ?? []">
+      <span>{{source.name}}</span>
+      <span>{{SourceType.toDisplay(source.type)}}</span>
+      <span class="source-url">{{source.url}}</span>
+      <div class="actions">
+        <mat-icon fontIcon="link" class="action" (click)="openSourceLink(source)" *ngIf="source.url"></mat-icon>
+        <mat-icon fontIcon="edit" class="action" (click)="editSource(source)"></mat-icon>
+        <mat-icon fontIcon="close" class="action" (click)="deleteSource(source)"></mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

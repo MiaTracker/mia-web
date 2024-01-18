@@ -21,12 +21,7 @@
     <div class="number_of_episodes">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
   </app-backdrop>
   <app-details-poster [poster_path]="series?.poster_path"></app-details-poster>
-  <div class="details-wrapper">
-    <app-tag-list *ngIf="(series?.alternative_titles?.length ?? 0) != 0 || editable" [property]="'title'" [tags]="series?.alternative_titles" [editable]="editable" (addTag)="createTitle($event)" (deleteTag)="deleteTitle($event)" (setPrimary)="setPrimaryTitle($event)" [primaryAction]="true"/>
-    <app-tag-list *ngIf="(series?.genres?.length ?? 0) != 0 || editable" [property]="'name'" [tags]="series?.genres" [editable]="editable" (addTag)="createGenre($event)" (deleteTag)="deleteGenre($event)"/>
-    <app-tag-list *ngIf="(series?.tags?.length ?? 0) != 0 || editable" [property]="'name'" [tags]="series?.tags" [editable]="editable" (addTag)="createTag($event)" (deleteTag)="deleteTag($event)"/>
-    <p class="overview">{{series?.overview}}</p>
-  </div>
+  <app-media-details [service]="seriesService" [media]="series" [editable]="editable" (refresh)="getSeries()"></app-media-details>
   <div class="logs-wrapper">
     <ng-template ngFor let-log [ngForOf]="series?.logs">
       <app-log [log]="log" [editable]="editable"/>

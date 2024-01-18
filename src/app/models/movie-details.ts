@@ -5,8 +5,9 @@ import {Genre} from "./genre";
 import {Tag} from "./tag";
 import {Source} from "./source";
 import {Log} from "./log";
+import {IMediaDetails} from "../interfaces/imedia-details";
 
-export class MovieDetails implements Deserializable {
+export class MovieDetails implements Deserializable, IMediaDetails {
   public id!: number;
   public poster_path!: string | null;
   public backdrop_path!: string | null;

@@ -4,11 +4,13 @@ import {MediaIndex} from "../models/media-index.model";
 import {MovieDetails} from "../models/movie-details";
 import {HttpService} from "./http.service";
 import {MovieMetadata} from "../models/movie-metadata";
+import {Source, SourceCreate} from "../models/source";
+import {IMediaService} from "../interfaces/imedia-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {
+export class MoviesService implements IMediaService{
 
   constructor(private httpService: HttpService) { }
 
@@ -62,5 +64,17 @@ export class MoviesService {
 
   public deleteTitle(title_id: number, movie_id: number): Observable<Object> {
     return this.httpService.delete(`/movies/${movie_id}/titles/${title_id}`);
+  }
+
+  public createSource(source: SourceCreate, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/sources`, null, source);
+  }
+
+  public updateSource(source: Source, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/sources/${source.id}`, null, source);
+  }
+
+  public deleteSource(source_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/sources/${source_id}`);
   }
 }

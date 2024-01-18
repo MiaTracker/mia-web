@@ -28,10 +28,10 @@ export class SeriesDetailsPageComponent {
     this.getSeries();
   }
 
-  constructor(private seriesService: SeriesService, private location: Location, private dialog: MatDialog) {
+  constructor(protected seriesService: SeriesService, private location: Location, private dialog: MatDialog) {
   }
 
-  private getSeries() {
+  protected getSeries() {
     if(this.id) {
       this.seriesService.getDetails(this.id).subscribe(s => {
         this.series = s;

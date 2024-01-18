@@ -1,6 +1,6 @@
 export enum SourceType {
   Torrent = "torrent",
-  Web= "web",
+  Web = "web",
   Jellyfin = "jellyfin"
 }
 
@@ -12,6 +12,14 @@ export namespace SourceType {
       case "jellyfin": return SourceType.Jellyfin;
       default:
         throw new Error(`Invalid SourceType string: ${input}`);
+    }
+  }
+
+  export function toDisplay(type: SourceType): string {
+    switch (type) {
+      case SourceType.Torrent: return "Torrent";
+      case SourceType.Web: return "Web";
+      case SourceType.Jellyfin: return "Jellyfin";
     }
   }
 }

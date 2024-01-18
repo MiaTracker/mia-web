@@ -17,3 +17,9 @@ export class Source implements Deserializable{
     return new Source().deserialize(input);
   }
 }
+
+export class SourceCreate {
+  public name!: string;
+  public url!: string;
+  public type!: SourceType;
+}
