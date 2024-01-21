@@ -1,0 +1,32 @@
+<div class="logs">
+  <div class="title">
+    <h3>Logs:</h3>
+    <button mat-raised-button color="primary" (click)="addLog()">
+      <mat-icon>add</mat-icon>
+      <span>Add</span>
+    </button>
+  </div>
+  <table class="logs-table">
+    <tr>
+      <th>Rating</th>
+      <th>Source</th>
+      <th>Completed</th>
+      <th class="comment-column">Comment</th>
+      <th>Date</th>
+    </tr>
+    <tr class="log" *ngFor="let log of logs">
+      <td class="stars">
+        <mat-icon class="star">star</mat-icon>
+        <div>{{log.rating}}</div>
+      </td>
+      <td>{{log.source}}</td>
+      <td>{{log.completed}}</td>
+      <td class="comment-column">{{log.comment}}</td>
+      <td>{{log.date.toLocaleDateString()}}</td>
+      <td class="actions">
+        <mat-icon fontIcon="edit" class="action" (click)="editLog(log)"></mat-icon>
+        <mat-icon fontIcon="close" class="action" (click)="deleteLog(log)"></mat-icon>
+      </td>
+    </tr>
+  </table>
+</div>

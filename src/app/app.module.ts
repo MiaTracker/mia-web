@@ -38,6 +38,9 @@ import { SeriesMetadataEditComponent } from './dialogs/series-metadata-edit/seri
 import { SourceEditComponent } from './dialogs/source-edit/source-edit.component';
 import {MatSelectModule} from "@angular/material/select";
 import { MediaDetailsComponent } from './components/media-details/media-details.component';
+import { LogsComponent } from './components/logs/logs.component';
+import { LogEditComponent } from './dialogs/log-edit/log-edit.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -61,7 +64,9 @@ export function initialize(appConfig: AppConfig) {
     MovieMetadataEditComponent,
     SeriesMetadataEditComponent,
     SourceEditComponent,
-    MediaDetailsComponent
+    MediaDetailsComponent,
+    LogsComponent,
+    LogEditComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,8 @@ export function initialize(appConfig: AppConfig) {
     MatListModule,
     MatDatepickerModule,
     MatLuxonDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [
     AppConfig,

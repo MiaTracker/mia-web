@@ -60,7 +60,7 @@ export class MediaDetailsComponent {
   }
 
   protected addSource(): void {
-    let dialogRef = this.dialog.open(SourceEditComponent, { data: undefined, autoFocus: "false" });
+    let dialogRef = this.dialog.open(SourceEditComponent, { data: undefined });
     dialogRef.afterClosed().subscribe(result => {
       if(result && this.media) {
         this.service.createSource(result, this.media?.id ?? 0).subscribe({
@@ -78,7 +78,7 @@ export class MediaDetailsComponent {
           complete: () => { this.refresh.emit() }
         })
       }
-    })
+    });
   }
 
   protected deleteSource(source: Source): void {

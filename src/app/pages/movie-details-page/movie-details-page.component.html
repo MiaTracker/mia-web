@@ -21,9 +21,5 @@
   </app-backdrop>
   <app-details-poster [poster_path]="movie?.poster_path"></app-details-poster>
   <app-media-details [service]="moviesService" [media]="movie" [editable]="editable" (refresh)="getMovie()"></app-media-details>
-  <div class="logs-wrapper">
-    <ng-template ngFor let-log [ngForOf]="movie?.logs">
-      <app-log [log]="log" [editable]="editable"/>
-    </ng-template>
-  </div>
+  <app-logs [service]="moviesService" [media_id]="movie?.id ?? 0" [logs]="movie?.logs ?? []" [sources]="movie?.sources ?? []" (refresh)="getMovie()"></app-logs>
 </div>

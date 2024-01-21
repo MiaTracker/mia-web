@@ -22,9 +22,5 @@
   </app-backdrop>
   <app-details-poster [poster_path]="series?.poster_path"></app-details-poster>
   <app-media-details [service]="seriesService" [media]="series" [editable]="editable" (refresh)="getSeries()"></app-media-details>
-  <div class="logs-wrapper">
-    <ng-template ngFor let-log [ngForOf]="series?.logs">
-      <app-log [log]="log" [editable]="editable"/>
-    </ng-template>
-  </div>
+  <app-logs [service]="seriesService" [media_id]="series?.id ?? 0" [logs]="series?.logs ?? []" [sources]="series?.sources ?? []" (refresh)="getSeries()"></app-logs>
 </div>

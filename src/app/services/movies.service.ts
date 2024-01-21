@@ -6,6 +6,7 @@ import {HttpService} from "./http.service";
 import {MovieMetadata} from "../models/movie-metadata";
 import {Source, SourceCreate} from "../models/source";
 import {IMediaService} from "../interfaces/imedia-service";
+import {Log, LogCreate} from "../models/log";
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,17 @@ export class MoviesService implements IMediaService{
 
   public deleteSource(source_id: number, movie_id: number): Observable<Object> {
     return this.httpService.delete(`/movies/${movie_id}/sources/${source_id}`);
+  }
+
+  public createLog(log: LogCreate, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/logs`, null, log);
+  }
+
+  public updateLog(log: Log, movie_id: number): Observable<Object> {
+    return this.httpService.post(`/movies/${movie_id}/logs/${log.id}`, null, log);
+  }
+
+  public deleteLog(log_id: number, movie_id: number): Observable<Object> {
+    return this.httpService.delete(`/movies/${movie_id}/logs/${log_id}`);
   }
 }

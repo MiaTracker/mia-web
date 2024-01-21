@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Source</h1>
+  <form class="form" [formGroup]="form">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Rating</mat-label>
+        <input matInput type="number" formControlName="rating">
+        <span matTextSuffix>/ 10</span>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Source</mat-label>
+        <mat-select formControlName="source">
+          <mat-option *ngFor="let source of data?.sources" [value]="source.name">{{source.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox color="primary" formControlName="completed">Completed</mat-checkbox>
+    </div>
+    <mat-form-field>
+      <mat-label>Comment</mat-label>
+      <textarea matInput formControlName="comment"></textarea>
+    </mat-form-field>
+    <div mat-dialog-actions align="end">
+      <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+</div>
