@@ -4,7 +4,7 @@ export class Log implements Deserializable {
   public id!: number;
   public date!: Date;
   public source!: string;
-  public rating!: number | null;
+  public stars!: number | null;
   public completed!: boolean;
   public comment!: string | null;
 
@@ -22,7 +22,7 @@ export class Log implements Deserializable {
 export class LogCreate {
   public date!: Date;
   public source!: string;
-  public rating!: number | null;
+  public stars!: number | null;
   public completed!: boolean;
   public comment!: string | null;
 }

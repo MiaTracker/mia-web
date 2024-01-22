@@ -8,7 +8,7 @@
   </div>
   <table class="logs-table">
     <tr>
-      <th>Rating</th>
+      <th>Stars</th>
       <th>Source</th>
       <th>Completed</th>
       <th class="comment-column">Comment</th>
@@ -17,7 +17,7 @@
     <tr class="log" *ngFor="let log of logs">
       <td class="stars">
         <mat-icon class="star">star</mat-icon>
-        <div>{{log.rating}}</div>
+        <div>{{log.stars}}</div>
       </td>
       <td>{{log.source}}</td>
       <td>{{log.completed}}</td>

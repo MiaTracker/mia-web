@@ -16,7 +16,7 @@ export class LogEditComponent {
     this.form = new FormGroup({
       date: new FormControl<Date | null>(data.log?.date ?? null, Validators.required),
       source: new FormControl<string | null>(data.sources.find((x) => x.name == data.log?.source)?.name ?? null, Validators.required),
-      rating: new FormControl<number | null>(data.log?.rating ?? null, [Validators.min(0), Validators.max(10)]),
+      stars: new FormControl<number | null>(data.log?.stars ?? null, [Validators.min(0), Validators.max(10)]),
       completed: new FormControl<boolean>(data.log?.completed ?? true, Validators.required),
       comment: new FormControl<string | null>(data.log?.comment ?? null)
     });
