@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {Location} from "@angular/common";
-import {Signal} from "typed-signals";
 import {MoviesService} from "./services/movies.service";
 import {Signals} from "./infrastructure/signals";
 import {SeriesService} from "./services/series.service";
@@ -13,7 +12,7 @@ import {SeriesService} from "./services/series.service";
 export class AppComponent {
   isBasePath: boolean = false;
   isLoginPage: boolean = true;
-  searchbarReset = new Signal<() => void>();
+  searchbarReset = new EventEmitter<void>();
   searchbarVisible: boolean = true;
 
   constructor(private location: Location, private moviesService: MoviesService, private seriesService: SeriesService) {
@@ -50,6 +49,4 @@ export class AppComponent {
       });
     }
   }
-
-  protected readonly console = console;
 }

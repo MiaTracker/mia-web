@@ -1,5 +1,5 @@
-import {Signal} from "typed-signals";
+import {EventEmitter} from "@angular/core";
 
 export class Signals {
-  public static MovieIndexUpdated = new Signal<() => void>();
+  public static MovieIndexUpdated = new EventEmitter<void>();
 }

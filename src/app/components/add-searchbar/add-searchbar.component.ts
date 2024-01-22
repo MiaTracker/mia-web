@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {Signal, SignalConnection} from "typed-signals";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-add-searchbar',
@@ -7,12 +7,12 @@ import {Signal, SignalConnection} from "typed-signals";
   styleUrls: ['./add-searchbar.component.sass']
 })
 export class AddSearchbarComponent {
-  connection: SignalConnection | undefined;
+  subscription: Subscription | undefined;
 
   @Input()
-  set reset(val: Signal<() => void>) {
-    this.connection?.disconnect();
-    this.connection = val.connect(() => this.onReset());
+  set reset(val: EventEmitter<void>) {
+    this.subscription?.unsubscribe();
+    this.subscription = val.subscribe(() => this.onReset());
   }
 
   @Output() onAction = new EventEmitter();
