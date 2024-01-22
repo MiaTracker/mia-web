@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MediaIndex} from "../../models/media-index.model";
 import {MoviesService} from "../../services/movies.service";
 import {Signals} from "../../infrastructure/signals";
-import {SignalConnection} from "typed-signals";
 import {SeriesService} from "../../services/series.service";
 import {Location} from "@angular/common";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-index-page',
@@ -13,18 +13,18 @@ import {Location} from "@angular/common";
 })
 export class IndexPageComponent implements OnInit, OnDestroy {
   public index: MediaIndex[] = [];
-  public refreshConnection: SignalConnection | undefined;
+  public refreshConnection: Subscription | undefined;
 
   constructor(private moviesService: MoviesService, private seriesService: SeriesService, private location: Location) {
   }
 
   ngOnInit(): void {
-    this.refreshConnection = Signals.MovieIndexUpdated.connect(() => this.getMedia());
+    this.refreshConnection = Signals.MovieIndexUpdated.subscribe(() => this.getMedia());
     this.getMedia();
   }
 
   ngOnDestroy() {
-    this.refreshConnection?.disconnect();
+    this.refreshConnection?.unsubscribe();
   }
 
   getMedia() {
