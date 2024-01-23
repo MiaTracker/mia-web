@@ -23,3 +23,32 @@
 .poster:hover
   .title
     display: block
+
+  .stars
+    display: flex
+
+.indicator
+  position: absolute
+  z-index: 2
+  padding: 0.5rem
+
+.type-ind
+  top: 0
+  left: 0
+  color: white
+
+.stars
+  top: 0
+  left: 0
+  width: calc(100% - 1rem)
+  color: white
+  justify-content: flex-end
+  background-color: #00000088
+  flex-direction: row
+  align-items: center
+  gap: 0.2rem
+  z-index: 1
+  display: none
+
+.star
+  color: yellow

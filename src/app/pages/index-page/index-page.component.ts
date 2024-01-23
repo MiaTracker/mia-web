@@ -16,12 +16,14 @@ import {MediaService} from "../../services/media.service";
 export class IndexPageComponent implements OnInit, OnDestroy {
   public index: MediaIndex[] = [];
   public refreshConnection: Subscription | undefined;
+  protected isMixed: boolean = false;
   private searchSubscription: Subscription | undefined;
 
   constructor(private mediaService: MediaService, private moviesService: MoviesService, private seriesService: SeriesService, private location: Location) {
   }
 
   ngOnInit(): void {
+    this.isMixed = this.location.isCurrentPathEqualTo("/media");
     this.refreshConnection = Signals.MovieIndexUpdated.subscribe(() => this.getMedia());
     this.searchSubscription = Signals.Search.subscribe(() => this.getMedia());
     this.getMedia();

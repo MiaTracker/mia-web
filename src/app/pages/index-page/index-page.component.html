@@ -1,7 +1,7 @@
 <div id="page">
   <ng-template ngFor let-idx [ngForOf]="index" [ngForTrackBy]="track">
     <a routerLink="/{{idx.type}}/{{idx.id}}">
-      <app-index-poster [index]="idx" class="poster"/>
+      <app-index-poster [index]="idx" [showType]="isMixed" class="poster"/>
     </a>
   </ng-template>
 </div>

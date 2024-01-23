@@ -1,4 +1,7 @@
 <div class="container">
   <input type="text" class="searchbar" [formControl]="control" (input)="onInput()">
-  <mat-icon class="search-icon">search</mat-icon>
+  <mat-icon class="search-icon" *ngIf="!control.value">search</mat-icon>
+  <button mat-icon-button aria-label="Clear" (click)="execReset()" *ngIf="control.value">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>

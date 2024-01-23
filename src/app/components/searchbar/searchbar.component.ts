@@ -25,6 +25,11 @@ export class SearchbarComponent {
     this.search.emit(this.control.value);
   }
 
+  protected execReset(): void {
+    this.control.reset();
+    this.onInput();
+  }
+
   private onReset(): void {
     this.control.reset();
   }

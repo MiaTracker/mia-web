@@ -26,7 +26,7 @@ export class SourceEditComponent {
     this.form = new FormGroup({
       name: new FormControl(source?.name, Validators.required),
       type: new FormControl<Type | null>(this.types.find(x => x.value == source?.type) ?? null, Validators.required),
-      url: new FormControl(source?.url)
+      url: new FormControl(source?.url, Validators.required)
     });
   }
 
