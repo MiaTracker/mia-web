@@ -6,12 +6,18 @@
     <button mat-icon-button (click)="drawer.toggle()" *ngIf="isBasePath" class="back-btn">
       <mat-icon>menu</mat-icon>
     </button>
-    <app-searchbar class="searchbar" [class.hidden]="!searchbarVisible" (search)="search($event)" [reset]="searchbarReset"></app-searchbar>
-    <app-add-searchbar class="add-searchbar" *ngIf="searchbarVisible" (onAction)="addMedia($event)" [reset]="addSearchbarReset"></app-add-searchbar>
+    <app-searchbar class="searchbar" [class.hidden]="!isBasePath" (search)="search($event)" [reset]="searchbarReset"></app-searchbar>
+    <app-add-searchbar class="add-searchbar" *ngIf="addSearchbarVisible" (onAction)="addMedia($event)" [reset]="addSearchbarReset"></app-add-searchbar>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav">
     <mat-sidenav #drawer mode="over" [autoFocus]="false">
       <mat-nav-list role="navigation" class="nav-list">
+        <a mat-list-item routerLink="/media" routerLinkActive="nav-list-link-active" (click)="resetSearchbar()">
+          <span class="nav-list-item">
+            <mat-icon class="nav-list-icon">play_arrow</mat-icon>
+            <span>All</span>
+          </span>
+        </a>
         <a mat-list-item routerLink="/movies" routerLinkActive="nav-list-link-active" (click)="resetSearchbar()">
           <span class="nav-list-item">
             <mat-icon class="nav-list-icon">movie</mat-icon>

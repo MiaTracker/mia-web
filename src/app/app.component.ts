@@ -15,7 +15,7 @@ export class AppComponent {
   isLoginPage: boolean = true;
   searchbarReset = new EventEmitter<void>();
   addSearchbarReset = new EventEmitter<void>();
-  searchbarVisible: boolean = true;
+  addSearchbarVisible: boolean = true;
 
   constructor(private location: Location, private moviesService: MoviesService, private seriesService: SeriesService) {
     this.setLocationBasedState();
@@ -27,11 +27,11 @@ export class AppComponent {
   }
 
   setLocationBasedState(): void {
-    this.isBasePath = this.location.isCurrentPathEqualTo("/")
+    this.isBasePath = this.location.isCurrentPathEqualTo("/media")
       || this.location.isCurrentPathEqualTo("/movies")
       || this.location.isCurrentPathEqualTo("/series");
     this.isLoginPage = this.location.isCurrentPathEqualTo("/login")
-    this.searchbarVisible = this.location.isCurrentPathEqualTo("/movies")  || this.location.isCurrentPathEqualTo("/series");
+    this.addSearchbarVisible = this.location.isCurrentPathEqualTo("/movies")  || this.location.isCurrentPathEqualTo("/series");
   }
 
   addMedia(event: any): void {

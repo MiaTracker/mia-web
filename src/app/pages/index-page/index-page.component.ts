@@ -6,6 +6,7 @@ import {SeriesService} from "../../services/series.service";
 import {Location} from "@angular/common";
 import {Subscription} from "rxjs";
 import {Globals} from "../../infrastructure/globals";
+import {MediaService} from "../../services/media.service";
 
 @Component({
   selector: 'app-index-page',
@@ -17,7 +18,7 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   public refreshConnection: Subscription | undefined;
   private searchSubscription: Subscription | undefined;
 
-  constructor(private moviesService: MoviesService, private seriesService: SeriesService, private location: Location) {
+  constructor(private mediaService: MediaService, private moviesService: MoviesService, private seriesService: SeriesService, private location: Location) {
   }
 
   ngOnInit(): void {
@@ -33,12 +34,16 @@ export class IndexPageComponent implements OnInit, OnDestroy {
 
   getMedia() {
     if(Globals.SearchQuery) {
-      if(this.location.isCurrentPathEqualTo("/movies"))
+      if(this.location.isCurrentPathEqualTo("/media"))
+        this.mediaService.search(Globals.SearchQuery).subscribe(media => this.setMedia(media));
+      else if(this.location.isCurrentPathEqualTo("/movies"))
         this.moviesService.search(Globals.SearchQuery).subscribe(media => this.setMedia(media));
       else if(this.location.isCurrentPathEqualTo("/series"))
         this.seriesService.search(Globals.SearchQuery).subscribe(media => this.setMedia(media));
     } else {
-      if(this.location.isCurrentPathEqualTo("/movies"))
+      if(this.location.isCurrentPathEqualTo("/media"))
+        this.mediaService.getMedia().subscribe(media => this.setMedia(media));
+      else if(this.location.isCurrentPathEqualTo("/movies"))
         this.moviesService.getMovies().subscribe(media => this.setMedia(media));
       else if(this.location.isCurrentPathEqualTo("/series"))
         this.seriesService.getSeries().subscribe(media => this.setMedia(media));
