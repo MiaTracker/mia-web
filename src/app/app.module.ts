@@ -44,6 +44,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { UsersComponent } from './pages/settings/users/users.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
+import {MatTableModule} from "@angular/material/table";
+import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -72,7 +74,8 @@ export function initialize(appConfig: AppConfig) {
     SearchbarComponent,
     SettingsComponent,
     UsersComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ export function initialize(appConfig: AppConfig) {
     MatDatepickerModule,
     MatLuxonDateModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [
     AppConfig,

@@ -5,6 +5,7 @@ import {IUserLogin} from "../interfaces/iuser-login.model";
 import {HttpService} from "./http.service";
 import {UserToken} from "../models/user-token";
 import {UserProfile} from "../models/user-profile";
+import {UserRegistration} from "../models/user-registration";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,13 @@ export class UsersService {
 
   public profile(): Observable<UserProfile> {
     return this.httpService.getObj(UserProfile, '/users/profile');
+  }
+
+  public index(): Observable<UserProfile[]> {
+    return this.httpService.getArr(UserProfile, '/users');
+  }
+
+  public register(registration: UserRegistration): Observable<Object> {
+    return this.httpService.post('/users/register', null, registration);
   }
 }

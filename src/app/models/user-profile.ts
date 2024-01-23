@@ -1,7 +1,7 @@
 import {Deserializable} from "../interfaces/deserializable.interface";
 
 export class UserProfile implements Deserializable {
-
+  public uuid!: string;
   public username!: string;
   public email!: string;
   public admin!: boolean
