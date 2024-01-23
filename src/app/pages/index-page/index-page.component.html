@@ -1,7 +1,22 @@
 <div id="page">
-  <ng-template ngFor let-idx [ngForOf]="index" [ngForTrackBy]="track">
-    <a routerLink="/{{idx.type}}/{{idx.id}}">
-      <app-index-poster [index]="idx" [showType]="isMixed" class="poster"/>
-    </a>
-  </ng-template>
+  <div class="internal">
+    <div class="list">
+      <ng-template ngFor let-idx [ngForOf]="index" [ngForTrackBy]="track">
+        <a routerLink="/{{idx.type}}/{{idx.id}}">
+          <app-index-poster [index]="idx" [showType]="isMixed" class="poster"/>
+        </a>
+      </ng-template>
+    </div>
+  </div>
+  <div class="external" *ngIf="external.length != 0">
+    <mat-divider class="divider" *ngIf="index.length != 0"></mat-divider>
+    <h2 class="title">External</h2>
+    <div class="list">
+      <ng-template ngFor let-idx [ngForOf]="external" [ngForTrackBy]="trackExternal">
+        <a>
+          <app-index-poster [index]="idx" [showType]="isMixed" (createExternal)="createExternal($event)" class="poster"/>
+        </a>
+      </ng-template>
+    </div>
+  </div>
 </div>

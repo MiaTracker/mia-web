@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {MovieDetails} from "../models/movie-details";
 import {HttpService} from "./http.service";
@@ -7,6 +7,7 @@ import {MovieMetadata} from "../models/movie-metadata";
 import {Source, SourceCreate} from "../models/source";
 import {IMediaService} from "../interfaces/imedia-service";
 import {Log, LogCreate} from "../models/log";
+import {SearchResults} from "../models/search-results";
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,16 @@ export class MoviesService implements IMediaService{
     return this.httpService.getArr(MediaIndex,'/movies');
   }
 
-  public search(query: string): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex, '/movies/search', { query: query });
+  public search(query: string): Observable<SearchResults> {
+    return this.httpService.getObj(SearchResults, '/movies/search', { query: query });
   }
 
   public getDetails(id: number): Observable<MovieDetails> {
     return this.httpService.getObj(MovieDetails, `/movies/${id}`);
   }
 
-  public createMovie(id: number): Observable<Object> {
-    return this.httpService.post('/movies', { tmdb_id: id }, null);
+  public createMovie(id: number): Observable<number> {
+    return this.httpService.post('/movies', { tmdb_id: id }, null).pipe(map(x => x as number));
   }
 
   public getMetadata(id: number): Observable<MovieMetadata> {

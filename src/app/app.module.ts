@@ -17,7 +17,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AddSearchbarComponent } from './components/add-searchbar/add-searchbar.component';
 import { LogComponent } from './components/log/log.component';
 import {AppConfig} from "./config/app.config";
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -55,7 +54,6 @@ export function initialize(appConfig: AppConfig) {
     MovieDetailsPageComponent,
     SeriesDetailsPageComponent,
     TagComponent,
-    AddSearchbarComponent,
     LogComponent,
     LoginPageComponent,
     BackdropComponent,

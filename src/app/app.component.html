@@ -7,7 +7,6 @@
       <mat-icon>menu</mat-icon>
     </button>
     <app-searchbar class="searchbar" [class.hidden]="!isBasePath" (search)="search($event)" [reset]="searchbarReset"></app-searchbar>
-    <app-add-searchbar class="add-searchbar" *ngIf="addSearchbarVisible" (onAction)="addMedia($event)" [reset]="addSearchbarReset"></app-add-searchbar>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav">
     <mat-sidenav #drawer mode="over" [autoFocus]="false">

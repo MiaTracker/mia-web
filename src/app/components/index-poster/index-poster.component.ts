@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MediaIndex} from "../../models/media-index.model";
 import {AppConfig} from "../../config/app.config";
 import {MediaType} from "../../enums/media-type.enum";
+import {ExternalIndex} from "../../models/external-index";
 
 @Component({
   selector: 'app-index-poster',
@@ -9,10 +10,24 @@ import {MediaType} from "../../enums/media-type.enum";
   styleUrls: ['./index-poster.component.sass']
 })
 export class IndexPosterComponent implements OnInit{
-  @Input({required: true}) index!: MediaIndex;
+  private _index!: MediaIndex | ExternalIndex;
+
+  @Input({required: true})
+  public get index(): MediaIndex | ExternalIndex {
+    return this._index;
+  }
+  public set index(index: MediaIndex | ExternalIndex) {
+    this._index = index;
+    this.internal = index instanceof MediaIndex ? index as MediaIndex : null;
+  }
+
   @Input({required: true}) showType!: boolean;
 
+  @Output()
+  public createExternal = new EventEmitter<ExternalIndex>();
+
   protected posterSrcset: string[] = [];
+  protected internal: MediaIndex | null = null;
 
   ngOnInit(): void {
     for (const size of AppConfig.const.imagesConfiguration.poster_sizes) {
@@ -23,4 +38,9 @@ export class IndexPosterComponent implements OnInit{
 
   protected readonly AppConfig = AppConfig;
   protected readonly MediaType = MediaType;
+
+  protected create() {
+    if(this.index instanceof ExternalIndex)
+      this.createExternal.emit(this.index);
+  }
 }

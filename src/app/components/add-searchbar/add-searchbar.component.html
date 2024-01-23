@@ -1,7 +1,0 @@
-<div class="searchbar" [class.searchbar-unfocused]="!open" [class.searchbar-focused]="open">
-  <input #searchbarInput type="text" placeholder="TMDB Id" [(ngModel)]="enteredText" (focusout)="searchbarFocusOut()" [disabled]="loading">
-  <button mat-icon-button (click)="addBtnClicked()" (focusin)="searchbarBtnFocusIn()" (focusout)="searchbarBtnFocusOut()" *ngIf="!loading">
-    <mat-icon>add</mat-icon>
-  </button>
-  <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
-</div>

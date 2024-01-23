@@ -2,8 +2,12 @@
   <img src="{{AppConfig.env.undefinedImageUrl}}" alt="{{index.title}}" class="poster-img" srcset="{{posterSrcset}}"><!-- TODO: fix image srcset sizing -->
   <p class="title">{{index.title}}</p>
   <mat-icon class="indicator type-ind" *ngIf="showType">{{index.type == MediaType.Movie ? 'movie' : 'tv'}}</mat-icon>
-  <div class="indicator stars" *ngIf="index.stars">
+  <div class="indicator stars" *ngIf="internal?.stars">
     <mat-icon class="star">star</mat-icon>
-    <div>{{index.stars}}</div>
+    <div>{{internal?.stars}}</div>
   </div>
+  <mat-icon class="indicator external" *ngIf="!internal">add_link</mat-icon>
+  <button mat-fab class="add-external-btn" (click)="create()" *ngIf="!internal">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
