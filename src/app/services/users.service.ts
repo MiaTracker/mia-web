@@ -4,6 +4,7 @@ import {AppConfig} from "../config/app.config";
 import {IUserLogin} from "../interfaces/iuser-login.model";
 import {HttpService} from "./http.service";
 import {UserToken} from "../models/user-token";
+import {UserProfile} from "../models/user-profile";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class UsersService {
       AppConfig.run.token = data.token;
       AppConfig.run.token_expiry = data.expiry_date;
     }));
+  }
+
+  public profile(): Observable<UserProfile> {
+    return this.httpService.getObj(UserProfile, '/users/profile');
   }
 }

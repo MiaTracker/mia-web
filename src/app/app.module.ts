@@ -41,6 +41,9 @@ import { LogsComponent } from './components/logs/logs.component';
 import { LogEditComponent } from './dialogs/log-edit/log-edit.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { UsersComponent } from './pages/settings/users/users.component';
+import { ProfileComponent } from './pages/settings/profile/profile.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -66,7 +69,10 @@ export function initialize(appConfig: AppConfig) {
     MediaDetailsComponent,
     LogsComponent,
     LogEditComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    SettingsComponent,
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

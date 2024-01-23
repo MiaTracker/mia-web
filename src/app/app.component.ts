@@ -10,6 +10,8 @@ import {Globals} from "./infrastructure/globals";
 })
 export class AppComponent {
   isBasePath: boolean = false;
+  isBaseMediaPath: boolean = false;
+  isSettingsPath: boolean = false;
   isLoginPage: boolean = true;
   searchbarReset = new EventEmitter<void>();
 
@@ -23,9 +25,11 @@ export class AppComponent {
   }
 
   setLocationBasedState(): void {
-    this.isBasePath = this.location.isCurrentPathEqualTo("/media")
+    this.isBaseMediaPath = this.location.isCurrentPathEqualTo("/media")
       || this.location.isCurrentPathEqualTo("/movies")
       || this.location.isCurrentPathEqualTo("/series");
+    this.isBasePath = this.isBaseMediaPath || this.location.isCurrentPathEqualTo("/settings");
+    this.isSettingsPath = this.location.path().startsWith("/settings/");
     this.isLoginPage = this.location.isCurrentPathEqualTo("/login")
   }
 
