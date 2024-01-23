@@ -3,6 +3,7 @@ import {Location} from "@angular/common";
 import {MoviesService} from "./services/movies.service";
 import {Signals} from "./infrastructure/signals";
 import {SeriesService} from "./services/series.service";
+import {Globals} from "./infrastructure/globals";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
   isBasePath: boolean = false;
   isLoginPage: boolean = true;
   searchbarReset = new EventEmitter<void>();
+  addSearchbarReset = new EventEmitter<void>();
   searchbarVisible: boolean = true;
 
   constructor(private location: Location, private moviesService: MoviesService, private seriesService: SeriesService) {
@@ -37,16 +39,26 @@ export class AppComponent {
     if(this.location.isCurrentPathEqualTo("/movies")) {
       this.moviesService.createMovie(id).subscribe({
         complete: () => {
-          this.searchbarReset.emit();
+          this.addSearchbarReset.emit();
           Signals.MovieIndexUpdated.emit();
         },
-        error: () => { this.searchbarReset.emit(); }
+        error: () => { this.addSearchbarReset.emit(); }
       });
     } else if(this.location.isCurrentPathEqualTo("/series")) {
       this.seriesService.createSeries(id).subscribe(() => {
-        this.searchbarReset.emit();
+        this.addSearchbarReset.emit();
         Signals.MovieIndexUpdated.emit();
       });
     }
+  }
+
+  protected search(query: string | null): void {
+    Globals.SearchQuery = query;
+    Signals.Search.emit();
+  }
+
+  protected resetSearchbar(): void {
+    this.searchbarReset.emit();
+    Globals.SearchQuery = null;
   }
 }

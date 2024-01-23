@@ -19,6 +19,10 @@ export class SeriesService implements IMediaService {
     return this.httpService.getArr(MediaIndex, '/series');
   }
 
+  public search(query: string): Observable<MediaIndex[]> {
+    return this.httpService.getArr(MediaIndex, '/series/search', { query: query });
+  }
+
   public getDetails(id: number): Observable<SeriesDetails> {
     return this.httpService.getObj(SeriesDetails, `/series/${id}`);
   }

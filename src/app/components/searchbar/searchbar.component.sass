@@ -1,0 +1,22 @@
+@use '@angular/material' as mat
+@import "@angular/material/theming"
+
+$searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
+
+.container
+  display: flex
+  height: 3rem
+  background-color: $searchbar-background
+  width: 60%
+
+.searchbar
+  font-size: 1rem
+  background-color: transparent
+  border: none
+  outline: none
+  color: mat.get-color-from-palette(mat.$pink-palette, 50)
+  padding: 0 1rem
+  flex-grow: 1
+
+.search-icon
+  padding: 12px

@@ -41,6 +41,7 @@ import { MediaDetailsComponent } from './components/media-details/media-details.
 import { LogsComponent } from './components/logs/logs.component';
 import { LogEditComponent } from './dialogs/log-edit/log-edit.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -66,7 +67,8 @@ export function initialize(appConfig: AppConfig) {
     SourceEditComponent,
     MediaDetailsComponent,
     LogsComponent,
-    LogEditComponent
+    LogEditComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
