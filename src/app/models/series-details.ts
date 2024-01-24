@@ -21,6 +21,7 @@ export class SeriesDetails implements Deserializable, IMediaDetails {
   public type!: string | null;
   public overview!: string | null;
   public tmdb_vote_average!: number | null;
+  public on_watchlist!: boolean;
   public original_language!: Language | null;
   public genres!: Genre[];
   public tags!: Tag[];

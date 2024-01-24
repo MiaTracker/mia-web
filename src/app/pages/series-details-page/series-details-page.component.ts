@@ -5,6 +5,7 @@ import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/con
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {SeriesMetadataEditComponent} from "../../dialogs/series-metadata-edit/series-metadata-edit.component";
+import {WatchlistService} from "../../services/watchlist.service";
 
 @Component({
   selector: 'app-series-movie-details-page',
@@ -23,12 +24,12 @@ export class SeriesDetailsPageComponent {
     return this._series_id;
   }
 
-  set id(series_id: number) {
-    this._series_id = series_id;
+  set id(series_id: string) {
+    this._series_id = parseInt(series_id);
     this.getSeries();
   }
 
-  constructor(protected seriesService: SeriesService, private location: Location, private dialog: MatDialog) {
+  constructor(protected seriesService: SeriesService, private watchlistService: WatchlistService, private location: Location, private dialog: MatDialog) {
   }
 
   protected getSeries() {
@@ -67,31 +68,11 @@ export class SeriesDetailsPageComponent {
     });
   }
 
-  protected createTag(event: any): void {
-    this.seriesService.createTag(event.name, this._series_id ?? 0).subscribe(_ => this.getSeries());
+  protected addToWatchlist(): void {
+    this.watchlistService.add(this.id ?? 0).subscribe(() => this.getSeries());
   }
 
-  protected deleteTag(event: any): void {
-    this.seriesService.deleteTag(event.tag.id, this._series_id ?? 0).subscribe(_ => this.getSeries());
-  }
-
-  protected createGenre(event: any): void {
-    this.seriesService.createGenre(event.name, this._series_id ?? 0).subscribe(_ => this.getSeries());
-  }
-
-  protected deleteGenre(event: any): void {
-    this.seriesService.deleteGenre(event.tag.id, this._series_id ?? 0).subscribe(_ => this.getSeries());
-  }
-
-  protected createTitle(event: any): void {
-    this.seriesService.createTitle(event.name, this._series_id ?? 0).subscribe(_ => this.getSeries());
-  }
-
-  protected setPrimaryTitle(event: any): void {
-    this.seriesService.setPrimaryTitle(event.tag.id, this._series_id ?? 0).subscribe(_ => this.getSeries());
-  }
-
-  protected deleteTitle(event: any): void {
-    this.seriesService.deleteTitle(event.tag.id, this._series_id ?? 0).subscribe(_ => this.getSeries());
+  protected removeFromWatchlist(): void {
+    this.watchlistService.remove(this.id ?? 0).subscribe(() => this.getSeries());
   }
 }

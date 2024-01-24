@@ -4,6 +4,14 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="addToWatchlist()" *ngIf="!movie?.on_watchlist">
+        <mat-icon>add</mat-icon>
+        <span>Add to watchlist</span>
+      </button>
+      <button mat-menu-item (click)="removeFromWatchlist()" *ngIf="movie?.on_watchlist">
+        <mat-icon>remove</mat-icon>
+        <span>Remove from watchlist</span>
+      </button>
       <button mat-menu-item (click)="editMetadata()">
         <mat-icon>edit</mat-icon>
         <span>Edit metadata</span>

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'media', component: IndexPageComponent },
   { path: 'movies', component: IndexPageComponent },
   { path: 'series', component: IndexPageComponent },
+  { path: 'watchlist', component: IndexPageComponent },
   { path: 'movie/:id', component: MovieDetailsPageComponent },
   { path: 'series/:id', component: SeriesDetailsPageComponent },
   { path: 'login', component: LoginPageComponent },

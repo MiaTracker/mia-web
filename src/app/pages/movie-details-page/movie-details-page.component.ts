@@ -5,6 +5,7 @@ import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/confirmation-dialog.component";
 import {MovieMetadataEditComponent} from "../../dialogs/movie-metadata-edit/movie-metadata-edit.component";
+import {WatchlistService} from "../../services/watchlist.service";
 
 @Component({
   selector: 'app-movie-details-page',
@@ -23,12 +24,12 @@ export class MovieDetailsPageComponent {
     return this._movie_id;
   }
 
-  set id(movie_id: number) {
-    this._movie_id = movie_id;
+  set id(movie_id: string) {
+    this._movie_id = parseInt(movie_id);
     this.getMovie();
   }
 
-  constructor(protected moviesService: MoviesService, private location: Location, private dialog: MatDialog) {
+  constructor(protected moviesService: MoviesService, private watchlistService: WatchlistService, private location: Location, private dialog: MatDialog) {
   }
 
   protected getMovie() {
@@ -65,5 +66,13 @@ export class MovieDetailsPageComponent {
         })
       }
     });
+  }
+
+  protected addToWatchlist(): void {
+    this.watchlistService.add(this.id ?? 0).subscribe(() => this.getMovie());
+  }
+
+  protected removeFromWatchlist(): void {
+    this.watchlistService.remove(this.id ?? 0).subscribe(() => this.getMovie());
   }
 }

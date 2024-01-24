@@ -31,7 +31,8 @@ export class AppComponent {
   setLocationBasedState(): void {
     this.isBaseMediaPath = this.location.isCurrentPathEqualTo("/media")
       || this.location.isCurrentPathEqualTo("/movies")
-      || this.location.isCurrentPathEqualTo("/series");
+      || this.location.isCurrentPathEqualTo("/series")
+      || this.location.isCurrentPathEqualTo("/watchlist");
     this.isBasePath = this.isBaseMediaPath || this.location.isCurrentPathEqualTo("/settings");
     this.isSettingsPath = this.location.path().startsWith("/settings/");
     this.isLoginPage = this.location.isCurrentPathEqualTo("/login")

@@ -10,6 +10,7 @@ import {MediaService} from "../../services/media.service";
 import {ExternalIndex} from "../../models/external-index";
 import {MediaType} from "../../enums/media-type.enum";
 import {Router} from "@angular/router";
+import {WatchlistService} from "../../services/watchlist.service";
 
 @Component({
   selector: 'app-index-page',
@@ -23,11 +24,11 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   protected isMixed: boolean = false;
   private searchSubscription: Subscription | undefined;
 
-  constructor(private mediaService: MediaService, private moviesService: MoviesService, private seriesService: SeriesService, private location: Location, private router: Router) {
+  constructor(private mediaService: MediaService, private moviesService: MoviesService, private seriesService: SeriesService, private watchlistService: WatchlistService, private location: Location, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.isMixed = this.location.isCurrentPathEqualTo("/media");
+    this.isMixed = this.location.isCurrentPathEqualTo("/media") || this.location.isCurrentPathEqualTo("/watchlist");
     this.searchSubscription = Signals.Search.subscribe(() => this.getMedia());
     this.getMedia();
   }
@@ -45,6 +46,8 @@ export class IndexPageComponent implements OnInit, OnDestroy {
         this.moviesService.search(Globals.SearchQuery).subscribe(x => this.setMedia(x.indexes, x.external));
       else if(this.location.isCurrentPathEqualTo("/series"))
         this.seriesService.search(Globals.SearchQuery).subscribe(x => this.setMedia(x.indexes, x.external));
+      else if(this.location.isCurrentPathEqualTo("/watchlist"))
+        this.watchlistService.search(Globals.SearchQuery).subscribe(x => this.setMedia(x, null));
     } else {
       if(this.location.isCurrentPathEqualTo("/media"))
         this.mediaService.getMedia().subscribe(media => this.setMedia(media, null));
@@ -52,6 +55,8 @@ export class IndexPageComponent implements OnInit, OnDestroy {
         this.moviesService.getMovies().subscribe(media => this.setMedia(media, null));
       else if(this.location.isCurrentPathEqualTo("/series"))
         this.seriesService.getSeries().subscribe(media => this.setMedia(media, null));
+      else if(this.location.isCurrentPathEqualTo("/watchlist"))
+        this.watchlistService.index().subscribe(media => this.setMedia(media, null));
     }
   }
 
