@@ -17,4 +17,10 @@ export class AppRuntime {
     }
     return runtime;
   }
+
+  public clearToken() {
+    localStorage.removeItem('token');
+    this.token = undefined;
+    this.token_expiry = undefined;
+  }
 }

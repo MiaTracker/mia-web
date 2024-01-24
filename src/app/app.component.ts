@@ -1,7 +1,9 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter, ViewChild} from '@angular/core';
 import {Location} from "@angular/common";
 import {Signals} from "./infrastructure/signals";
 import {Globals} from "./infrastructure/globals";
+import {AppConfig} from "./config/app.config";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ export class AppComponent {
   isLoginPage: boolean = true;
   searchbarReset = new EventEmitter<void>();
 
-  constructor(private location: Location) {
+  @ViewChild('drawer') drawer!: ElementRef;
+
+  constructor(private location: Location, private router: Router) {
     this.setLocationBasedState();
     location.onUrlChange(() => this.setLocationBasedState());
   }
@@ -41,5 +45,11 @@ export class AppComponent {
   protected resetSearchbar(): void {
     this.searchbarReset.emit();
     Globals.SearchQuery = null;
+  }
+
+  protected logOut(): void {
+    this.resetSearchbar();
+    AppConfig.run.clearToken();
+    this.router.navigateByUrl("/login").then(this.drawer.nativeElement.close());
   }
 }

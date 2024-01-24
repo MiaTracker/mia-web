@@ -65,9 +65,9 @@ export class IndexPageComponent implements OnInit, OnDestroy {
 
   protected createExternal(idx: ExternalIndex): void {
     if(idx.type == MediaType.Movie) {
-      this.moviesService.createMovie(idx.external_id).subscribe(id => this.router.navigateByUrl(`movies/${id}`));
+      this.moviesService.createMovie(idx.external_id).subscribe(id => this.router.navigateByUrl(`/movies/${id}`));
     } else {
-      this.seriesService.createSeries(idx.external_id).subscribe(id => this.router.navigateByUrl(`series/${id}`));
+      this.seriesService.createSeries(idx.external_id).subscribe(id => this.router.navigateByUrl(`/series/${id}`));
     }
   }
 
