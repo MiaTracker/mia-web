@@ -6,7 +6,7 @@
     <button mat-icon-button (click)="drawer.toggle()" *ngIf="isBasePath || isSettingsPath" class="back-btn">
       <mat-icon>menu</mat-icon>
     </button>
-    <app-searchbar class="searchbar" [class.hidden]="!isBaseMediaPath" (search)="search($event)" [reset]="searchbarReset"></app-searchbar>
+    <app-searchbar class="searchbar" [class.hidden]="!isBaseMediaPath" (search)="search($event)" (committed)="commitSearch()" [reset]="searchbarReset"></app-searchbar>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" mode="over" [autoFocus]="false">

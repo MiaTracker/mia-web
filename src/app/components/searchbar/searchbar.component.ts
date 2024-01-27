@@ -19,10 +19,17 @@ export class SearchbarComponent {
   @Output()
   public search = new EventEmitter<string | null>();
 
+  @Output()
+  public committed = new EventEmitter<void>();
+
   protected control = new FormControl<string>("", { updateOn: "change" });
 
   protected onInput() {
     this.search.emit(this.control.value);
+  }
+
+  protected onReturn() {
+    this.committed.emit();
   }
 
   protected execReset(): void {

@@ -39,7 +39,13 @@ export class AppComponent {
   }
 
   protected search(query: string | null): void {
+    Globals.SearchCommitted = false;
     Globals.SearchQuery = query;
+    Signals.Search.emit();
+  }
+
+  protected commitSearch(): void {
+    Globals.SearchCommitted = true;
     Signals.Search.emit();
   }
 

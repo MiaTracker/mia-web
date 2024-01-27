@@ -15,7 +15,7 @@ export class MediaService {
     return this.httpService.getArr(MediaIndex,'/media');
   }
 
-  public search(query: string): Observable<SearchResults> {
-    return this.httpService.getObj(SearchResults, '/media/search', { query: query });
+  public search(query: string, committed: boolean): Observable<SearchResults> {
+    return this.httpService.getObj(SearchResults, '/media/search', { query: query, committed: committed });
   }
 }
