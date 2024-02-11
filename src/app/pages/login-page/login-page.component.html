@@ -13,6 +13,7 @@
                 <mat-error *ngIf="passwordFormControl.hasError('required')">Password is required</mat-error>
             </mat-form-field>
             <button mat-raised-button [disabled]="!passwordFormControl.value || !usernameFormControl.value" color="primary" type="submit">Login</button>
+            <button mat-button color="primary" (click)="changeInstance()" *ngIf="AppConfig.env.env.desktop">Change instance</button>
         </form>
     </div>
 </div>

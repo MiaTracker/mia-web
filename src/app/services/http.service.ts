@@ -14,7 +14,7 @@ export class HttpService {
   constructor(private client: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   public getArr<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null) {
-    return this.client.get<T[]>(AppConfig.env.api.url + url +this.paramsString(params), { headers: this.headers() })
+    return this.client.get<T[]>(this.buildUrl(url, params), { headers: this.headers() })
         .pipe(map(data => data.map(data => new type().deserialize(data))), catchError((err, _) => {
           this.handleErrors(err);
           throw err;
@@ -22,7 +22,7 @@ export class HttpService {
   }
 
   public getObj<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null) {
-    return this.client.get<T>(AppConfig.env.api.url + url + this.paramsString(params), { headers: this.headers() })
+    return this.client.get<T>(this.buildUrl(url, params), { headers: this.headers() })
       .pipe(map(data => new type().deserialize(data)), catchError((err, _) => {
         this.handleErrors(err);
         throw err;
@@ -30,14 +30,14 @@ export class HttpService {
   }
 
   public post(url: string, params: Object | null = null, body: any = null): Observable<Object> {
-    return this.client.post(AppConfig.env.api.url + url + this.paramsString(params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
+    return this.client.post(this.buildUrl(url, params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
       this.handleErrors(err);
       throw err;
     }));
   }
 
   public postObj<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null, body: any = null, isLogin: boolean = false) : Observable<T> {
-    return this.client.post<T>(AppConfig.env.api.url + url + this.paramsString(params), body, { headers: this.headers() })
+    return this.client.post<T>(this.buildUrl(url, params), body, { headers: this.headers() })
       .pipe(map(data => new type().deserialize(data)), catchError((err, _) => {
         this.handleErrors(err, isLogin);
         throw err;
@@ -45,17 +45,21 @@ export class HttpService {
   }
 
   public patch(url: string, params: Object | null = null, body: any = null): Observable<Object> {
-    return this.client.patch(AppConfig.env.api.url + url + this.paramsString(params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
+    return this.client.patch(this.buildUrl(url, params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
       this.handleErrors(err);
       throw err;
     }))
   }
 
   public delete(url: string): Observable<Object> {
-    return this.client.delete(AppConfig.env.api.url + url, { headers: this.headers() }).pipe(catchError((err, _) => {
+    return this.client.delete(this.buildUrl(url), { headers: this.headers() }).pipe(catchError((err, _) => {
       this.handleErrors(err);
       throw err;
     }));
+  }
+
+  public ping(base_url: string): Observable<Object> {
+    return this.client.get(base_url + "/ping");
   }
 
   private paramsString(params: any | null): string {
@@ -66,6 +70,16 @@ export class HttpService {
     }
     if(str.length == 1) return "";
     return str.slice(0, -1);
+  }
+
+  private buildUrl(url: string, params: any | null | undefined = undefined): string {
+    if(AppConfig.env.env.desktop) {
+      if(AppConfig.run.instance_url == undefined) {
+        this.router.navigateByUrl("/instance");
+        throw new Error("Instance url not set. Redirecting to instance selection page.");
+      }
+      return AppConfig.run.instance_url + url + this.paramsString(params);
+    } else return AppConfig.env.api.url + url + this.paramsString(params);
   }
 
   private headers() {

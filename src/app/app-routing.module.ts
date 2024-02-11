@@ -7,6 +7,7 @@ import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-det
 import {SettingsComponent} from "./pages/settings/settings.component";
 import {UsersComponent} from "./pages/settings/users/users.component";
 import {ProfileComponent} from "./pages/settings/profile/profile.component";
+import {InstancePageComponent} from "./pages/instance-page/instance-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'media', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'watchlist', component: IndexPageComponent },
   { path: 'movie/:id', component: MovieDetailsPageComponent },
   { path: 'series/:id', component: SeriesDetailsPageComponent },
+  { path: 'instance', component: InstancePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'settings', redirectTo: 'settings/profile' },
   {

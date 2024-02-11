@@ -1,6 +1,7 @@
 export interface IAppConfig {
   env: {
-    name: string
+    name: string,
+    desktop: boolean
   };
   api: {
     url: string

@@ -3,6 +3,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {UsersService} from "../../services/users.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AppConfig} from "../../config/app.config";
 
 @Component({
   selector: 'app-login-page',
@@ -30,4 +31,12 @@ export class LoginPageComponent {
       }
     })
   }
+
+  changeInstance() {
+    if(!AppConfig.env.env.desktop) return;
+    AppConfig.run.clearInstance();
+    this.router.navigateByUrl("/instance");
+  }
+
+  protected readonly AppConfig = AppConfig;
 }

@@ -14,7 +14,7 @@ export class AppComponent {
   isBasePath: boolean = false;
   isBaseMediaPath: boolean = false;
   isSettingsPath: boolean = false;
-  isLoginPage: boolean = true;
+  hideNavbar: boolean = true;
   searchbarReset = new EventEmitter<void>();
 
   @ViewChild('drawer') drawer!: ElementRef;
@@ -22,6 +22,8 @@ export class AppComponent {
   constructor(private location: Location, private router: Router) {
     this.setLocationBasedState();
     location.onUrlChange(() => this.setLocationBasedState());
+    if(AppConfig.env.env.desktop && !AppConfig.run.instance_url)
+      this.router.navigateByUrl("/instance");
   }
 
   back(): void {
@@ -35,7 +37,7 @@ export class AppComponent {
       || this.location.isCurrentPathEqualTo("/watchlist");
     this.isBasePath = this.isBaseMediaPath || this.location.isCurrentPathEqualTo("/settings");
     this.isSettingsPath = this.location.path().startsWith("/settings/");
-    this.isLoginPage = this.location.isCurrentPathEqualTo("/login")
+    this.hideNavbar = this.location.isCurrentPathEqualTo("/login") || this.location.isCurrentPathEqualTo("/instance")
   }
 
   protected search(query: string | null): void {

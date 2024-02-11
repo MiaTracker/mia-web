@@ -1,0 +1,14 @@
+<div class="content-positioner">
+  <div class="content">
+    <h1>Instance</h1>
+    <form class="form" (ngSubmit)="setInstance()">
+      <mat-form-field>
+        <mat-label>Instance url</mat-label>
+        <input type="text" matInput [formControl]="instanceFormControl">
+        <mat-error *ngIf="instanceFormControl.hasError('required')">Instance url is required</mat-error>
+        <mat-error *ngIf="instanceFormControl.hasError('connectionFailed')">Failed to connect to the server with this url</mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="!instanceFormControl.value" color="primary" type="submit">Connect</button>
+    </form>
+  </div>
+</div>

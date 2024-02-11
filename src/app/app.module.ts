@@ -46,6 +46,7 @@ import { UsersComponent } from './pages/settings/users/users.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
 import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
+import { InstancePageComponent } from './pages/instance-page/instance-page.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -75,7 +76,8 @@ export function initialize(appConfig: AppConfig) {
     SettingsComponent,
     UsersComponent,
     ProfileComponent,
-    UserEditComponent
+    UserEditComponent,
+    InstancePageComponent
   ],
   imports: [
     BrowserModule,
