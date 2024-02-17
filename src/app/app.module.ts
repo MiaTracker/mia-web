@@ -26,7 +26,7 @@ import { DetailsPosterComponent } from './components/details-poster/details-post
 import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-details-page.component";
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import {MatMenuModule} from "@angular/material/menu";
-import { ConfirmationDialogComponent } from './dialogs/delete-confirmation/confirmation-dialog.component';
+import { DeleteConfirmationComponent } from './dialogs/delete-confirmation/delete-confirmation.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
@@ -47,6 +47,10 @@ import { ProfileComponent } from './pages/settings/profile/profile.component';
 import {MatTableModule} from "@angular/material/table";
 import { UserEditComponent } from './dialogs/user-edit/user-edit.component';
 import { InstancePageComponent } from './pages/instance-page/instance-page.component';
+import { TokensComponent } from "./pages/settings/tokens/tokens.component";
+import { TokenGenerateComponent } from './dialogs/token-generate/token-generate.component';
+import { TokenShowComponent } from './dialogs/token-show/token-show.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -65,7 +69,7 @@ export function initialize(appConfig: AppConfig) {
     BackdropComponent,
     DetailsPosterComponent,
     TagListComponent,
-    ConfirmationDialogComponent,
+    DeleteConfirmationComponent,
     MovieMetadataEditComponent,
     SeriesMetadataEditComponent,
     SourceEditComponent,
@@ -77,7 +81,10 @@ export function initialize(appConfig: AppConfig) {
     UsersComponent,
     ProfileComponent,
     UserEditComponent,
-    InstancePageComponent
+    InstancePageComponent,
+    TokensComponent,
+    TokenGenerateComponent,
+    TokenShowComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +109,8 @@ export function initialize(appConfig: AppConfig) {
     MatLuxonDateModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [
     AppConfig,

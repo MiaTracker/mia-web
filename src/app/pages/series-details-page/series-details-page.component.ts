@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {SeriesDetails} from "../../models/series-details";
 import {SeriesService} from "../../services/series.service";
-import {ConfirmationDialogComponent} from "../../dialogs/delete-confirmation/confirmation-dialog.component";
+import {DeleteConfirmationComponent} from "../../dialogs/delete-confirmation/delete-confirmation.component";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {SeriesMetadataEditComponent} from "../../dialogs/series-metadata-edit/series-metadata-edit.component";
@@ -58,7 +58,7 @@ export class SeriesDetailsPageComponent {
   }
 
   protected deleteSeries(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: { prompt: `Do you really want do delete "${this.series?.title}"?` }, restoreFocus: false });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete "${this.series?.title}"?` }, restoreFocus: false });
     dialogRef.afterClosed().subscribe(result => {
       if(result && this.id) {
         this.seriesService.deleteSeries(this.id).subscribe(_ => {

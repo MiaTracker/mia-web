@@ -4,7 +4,7 @@ export class UserProfile implements Deserializable {
   public uuid!: string;
   public username!: string;
   public email!: string;
-  public admin!: boolean
+  public admin!: boolean;
 
   deserialize(input: any): this {
     return Object.assign(this, input);

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {UsersService} from "../../../services/users.service";
-import {UserProfile} from "../../../models/user-profile";
 import {MatDialog} from "@angular/material/dialog";
 import {UserEditComponent} from "../../../dialogs/user-edit/user-edit.component";
+import {UserIndex} from "../../../models/user-index";
 
 @Component({
   selector: 'app-users',
@@ -10,7 +10,7 @@ import {UserEditComponent} from "../../../dialogs/user-edit/user-edit.component"
   styleUrls: ['./users.component.sass']
 })
 export class UsersComponent {
-  protected users: UserProfile[] = [];
+  protected users: UserIndex[] = [];
 
   protected displayedColumns = ['username', 'email', 'admin']
 

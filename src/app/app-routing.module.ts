@@ -8,6 +8,7 @@ import {SettingsComponent} from "./pages/settings/settings.component";
 import {UsersComponent} from "./pages/settings/users/users.component";
 import {ProfileComponent} from "./pages/settings/profile/profile.component";
 import {InstancePageComponent} from "./pages/instance-page/instance-page.component";
+import {TokensComponent} from "./pages/settings/tokens/tokens.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'media', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
     component: SettingsComponent,
     children: [
       { path: 'profile', component: ProfileComponent },
+      { path: 'tokens', component: TokensComponent },
       { path: 'users', component: UsersComponent }
     ]
   }

@@ -6,6 +6,7 @@ import {HttpService} from "./http.service";
 import {UserToken} from "../models/user-token";
 import {UserProfile} from "../models/user-profile";
 import {UserRegistration} from "../models/user-registration";
+import {UserIndex} from "../models/user-index";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class UsersService {
     return this.httpService.getObj(UserProfile, '/users/profile');
   }
 
-  public index(): Observable<UserProfile[]> {
+  public index(): Observable<UserIndex[]> {
     return this.httpService.getArr(UserProfile, '/users');
   }
 

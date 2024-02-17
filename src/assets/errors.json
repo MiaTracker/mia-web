@@ -1,0 +1,30 @@
+{
+  "InternalServerError": "Server encountered an error while processing request. This should not happen. Please submit an issue on GitHub.",
+  "NoAuthenticationTokenProvided": "No authentication token was provided with the request. This error should not happen. Please submit an issue on GitHub.",
+  "InvalidAuthenticationToken": "Authentication token provided with the request was invalid. This error should have been handled by frontend. Please submit an issue on GitHub.",
+  "MasterdataOutdated": "Server masterdata is outdated. Please go into settings and refresh.",
+  "InsufficientPermissions": "You do not have permissions to this endpoint. This error should have been handled by frontend. Please submit an issue on GitHub.",
+  "InternalClientError": "An error occurred in frontend. Please submit an issue on GitHub.",
+
+  "SignUpEmailEmpty": "Registration email cannot be empty!",
+  "SignUpUsernameEmpty": "Registration username cannot be empty!",
+  "SignUpPasswordEmpty": "Registration password cannot be empty!",
+  "SignUpPasswordRepeatEmpty": "Registration password repeat cannot be empty!",
+  "SignUpEmailInvalid": "Registration email is not a valid email!",
+  "SignUpAccountWithThisEmailAlreadyExists": "A user with this email already exists!",
+  "SignUpUsernameAlreadyTaken": "This username is already taken. Please chose another username.",
+  "SignUpPasswordsDoNotMatch": "Registration passwords do not match!",
+  "SignUpPasswordRequirementsNotMet": "Password does not meet requirements!",
+
+  "LoginUsernameEmpty": "Username cannot be empty!",
+  "LoginPasswordEmpty": "Password cannot be empty!",
+
+  "MediaInvalidOriginalLanguage": "Original language selected is not a valid original language!",
+  "MediaTmdbVoteAverageOutOfBounds": "TMDB vote average inputted is outside range 0 - 10.",
+
+  "MovieNegativeRuntime": "Movie runtime cannot be negative!",
+
+  "LogRatingOutOfBounds": "Log rating inputted is outside range 0 - 10.",
+
+  "AppTokenNameAlreadyExists": "An app token with this name already exists! Please chose a different name."
+}
