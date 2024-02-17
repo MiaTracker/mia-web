@@ -12,12 +12,15 @@
         <span>App tokens</span>
       </span>
     </a>
-    <a mat-list-item routerLink="/settings/users" routerLinkActive="nav-list-link-active">
-      <span class="nav-list-item">
-        <mat-icon class="nav-list-icon">group</mat-icon>
-        <span>Users</span>
-      </span>
-    </a>
+    <div class="administration-endpoints" *ngIf="AppConfig.run.is_admin">
+      <h2>Administration</h2>
+      <a mat-list-item routerLink="/settings/users" routerLinkActive="nav-list-link-active">
+        <span class="nav-list-item">
+          <mat-icon class="nav-list-icon">group</mat-icon>
+          <span>Users</span>
+        </span>
+      </a>
+    </div>
   </mat-nav-list>
   <mat-divider vertical></mat-divider>
   <div class="content">

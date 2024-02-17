@@ -3,6 +3,7 @@ import {UserToken} from "../models/user-token";
 export class AppRuntime {
   public token: string | undefined;
   public token_expiry: Date | undefined;
+  public is_admin: boolean = false;
   public instance_url: string | undefined;
 
   private constructor() {
@@ -15,6 +16,7 @@ export class AppRuntime {
       let model = new UserToken().deserialize(JSON.parse(tokenJson));
       runtime.token = model.token;
       runtime.token_expiry = model.expiry_date;
+      runtime.is_admin = model.admin;
     }
 
     let instance = localStorage.getItem('instance_url');
@@ -33,5 +35,12 @@ export class AppRuntime {
   public clearInstance() {
     localStorage.removeItem('instance_url');
     this.instance_url = undefined;
+  }
+
+  public setToken(userToken: UserToken) {
+    localStorage.setItem('token', JSON.stringify(userToken));
+    this.token = userToken.token;
+    this.token_expiry = userToken.expiry_date;
+    this.is_admin = userToken.admin;
   }
 }

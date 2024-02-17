@@ -17,9 +17,7 @@ export class UsersService {
 
   public login(login: IUserLogin): Observable<void> {
     return this.httpService.postObj(UserToken, '/users/login', null, login, true).pipe(map(data => {
-      localStorage.setItem('token', JSON.stringify(data));
-      AppConfig.run.token = data.token;
-      AppConfig.run.token_expiry = data.expiry_date;
+      AppConfig.run.setToken(data);
     }));
   }
 
