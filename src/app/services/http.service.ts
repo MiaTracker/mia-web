@@ -91,7 +91,17 @@ export class HttpService {
   private handleErrors(err: any, isLogin: boolean = false) {
     if(err.status == 401 && !isLogin) this.router.navigateByUrl('/login');
     else {
-      this.snackBar.open("An error occurred while talking to the server!", undefined, { duration: 3000 })
+      try {
+        if(Array.isArray(err.error)) {
+          for (const error of err.error) {
+            this.snackBar.open(AppConfig.errors.message(error.key), undefined, { duration: 3000 })
+          }
+        } else {
+          this.snackBar.open(AppConfig.const.defaultError, undefined, { duration: 3000 })
+        }
+      } catch(_) {
+        this.snackBar.open(AppConfig.const.defaultError, undefined, { duration: 3000 })
+      }
     }
   }
 }

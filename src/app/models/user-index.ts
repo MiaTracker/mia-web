@@ -1,6 +1,6 @@
 import {Deserializable} from "../interfaces/deserializable.interface";
 
-export class UserProfile implements Deserializable {
+export class UserIndex implements Deserializable {
   public uuid!: string;
   public username!: string;
   public email!: string;
@@ -10,7 +10,7 @@ export class UserProfile implements Deserializable {
     return Object.assign(this, input);
   }
 
-  public static deserialize(input: any): UserProfile {
-    return new UserProfile().deserialize(input);
+  public static deserialize(input: any): UserIndex {
+    return new UserIndex().deserialize(input);
   }
 }

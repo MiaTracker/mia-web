@@ -1,0 +1,20 @@
+@use 'sass:map'
+@use '@angular/material' as mat
+
+.token-field
+  display: flex
+  flex-direction: row
+  gap: 0.5rem
+  padding: 0.2rem
+  margin: 0.5rem 0
+  background-color: mat.get-color-from-palette(mat.$gray-palette, 700)
+  border-radius: 0.5rem
+
+  .token
+    flex-grow: 1
+    word-wrap: anywhere
+
+  .button-container
+    display: flex
+    flex-direction: column
+    justify-content: center

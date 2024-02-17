@@ -3,6 +3,7 @@ import {HttpHeaders} from "@angular/common/http";
 
 export class AppConstants {
   public readonly configFile = 'assets/config.json';
+  public readonly errorsFile = 'assets/errors.json';
   public readonly apiHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
   });
@@ -33,4 +34,5 @@ export class AppConstants {
       "original"
     ]
   );
+  public readonly defaultError = 'An error occurred while talking to the server!';
 }

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Warning</h1>
+<div mat-dialog-content>
+  <span>Token generated with name '{{token.name}}' at {{token.generated.toLocaleString(DateTime.DATETIME_SHORT)}} is</span>
+  <div class="token-field">
+    <span class="token">{{token.token}}</span>
+    <div class="button-container">
+      <button mat-icon-button (click)="copy()">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </div>
+  </div>
+  <span>Copy it now, since it will not be accessible again after the popup is closed!</span>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</div>

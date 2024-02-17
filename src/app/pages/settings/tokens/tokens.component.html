@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h2>App tokens:</h2>
+    <button mat-raised-button color="primary" (click)="createToken()">
+      <mat-icon>add</mat-icon>
+      <span>New</span>
+    </button>
+  </div>
+  <table mat-table [dataSource]="tokens" class="table">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="generated">
+      <th mat-header-cell *matHeaderCellDef>Generated</th>
+      <td mat-cell *matCellDef="let element">{{element.generated.toLocaleString(DateTime.DATETIME_SHORT)}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="warn" (click)="revokeToken(element.name)">Revoke</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

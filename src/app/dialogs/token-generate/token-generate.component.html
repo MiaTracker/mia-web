@@ -1,0 +1,9 @@
+<div class="container">
+  <mat-form-field subscriptSizing="dynamic" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="nameField" (keyup.enter)="generate()">
+  </mat-form-field>
+  <div class="btn-container">
+    <button mat-flat-button color="primary" [disabled]="nameField.invalid" (click)="generate()">Generate</button>
+  </div>
+</div>
