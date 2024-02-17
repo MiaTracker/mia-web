@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {UsersService} from "../../../services/users.service";
 import {UserProfile} from "../../../models/user-profile";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {PasswordChangeComponent} from "../../../dialogs/password-change/password-change.component";
 
 @Component({
   selector: 'app-profile',
@@ -13,13 +15,17 @@ export class ProfileComponent {
 
   protected form: FormGroup;
 
-  public constructor(private service: UsersService) {
+  public constructor(private service: UsersService, private dialog: MatDialog) {
     this.form = new FormGroup({
       username: new FormControl<string>(""),
       email: new FormControl<string>(""),
       admin: new FormControl<boolean>(false)
     });
     this.getProfile();
+  }
+
+  protected changePassword(): void {
+    this.dialog.open(PasswordChangeComponent);
   }
 
   private getProfile(): void {

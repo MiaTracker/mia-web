@@ -26,5 +26,12 @@
 
   "LogRatingOutOfBounds": "Log rating inputted is outside range 0 - 10.",
 
-  "AppTokenNameAlreadyExists": "An app token with this name already exists! Please chose a different name."
+  "AppTokenNameAlreadyExists": "An app token with this name already exists! Please chose a different name.",
+
+  "PasswordChangeOldPasswordEmpty": "Old password cannot be empty!",
+  "PasswordChangeNewPasswordEmpty": "New password cannot be empty!",
+  "PasswordChangePasswordRepeatEmpty": "Repeated password cannot be empty!",
+  "PasswordChangeOldPasswordIncorrect": "Old password is incorrect!",
+  "PasswordChangePasswordsDoNotMatch": "Passwords do not match!",
+  "PasswordChangePasswordRequirementsNotMet": "Password does not meet requirements!"
 }

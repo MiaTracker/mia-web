@@ -7,6 +7,7 @@ import {UserToken} from "../models/user-token";
 import {UserProfile} from "../models/user-profile";
 import {UserRegistration} from "../models/user-registration";
 import {UserIndex} from "../models/user-index";
+import {PasswordChange} from "../models/password-change";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class UsersService {
 
   public register(registration: UserRegistration): Observable<Object> {
     return this.httpService.post('/users/register', null, registration);
+  }
+
+  public changePassword(obj: PasswordChange): Observable<Object> {
+    return this.httpService.patch('/users/password', null, obj);
   }
 
   public delete(uuid: string): Observable<Object> {
