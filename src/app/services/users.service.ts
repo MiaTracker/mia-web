@@ -34,4 +34,8 @@ export class UsersService {
   public register(registration: UserRegistration): Observable<Object> {
     return this.httpService.post('/users/register', null, registration);
   }
+
+  public delete(uuid: string): Observable<Object> {
+    return this.httpService.delete(`/users/${uuid}`);
+  }
 }
