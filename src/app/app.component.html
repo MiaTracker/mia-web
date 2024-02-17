@@ -1,9 +1,9 @@
-<div class="container">
-  <mat-toolbar color="primary" class="navbar" *ngIf="!hideNavbar">
+<div class="container" *ngIf="!hideNavbar">
+  <mat-toolbar color="primary" class="navbar">
     <button mat-icon-button (click)="back()" *ngIf="!isBasePath && !isSettingsPath" class="back-btn">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-icon-button (click)="drawer.toggle()" *ngIf="isBasePath || isSettingsPath" class="back-btn">
+    <button mat-icon-button (click)="drawer.toggle()" class="back-btn">
       <mat-icon>menu</mat-icon>
     </button>
     <app-searchbar class="searchbar" [class.hidden]="!isBaseMediaPath" (search)="search($event)" (committed)="commitSearch()" [reset]="searchbarReset"></app-searchbar>
@@ -58,3 +58,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<router-outlet *ngIf="hideNavbar"></router-outlet>

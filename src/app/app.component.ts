@@ -17,7 +17,7 @@ export class AppComponent {
   hideNavbar: boolean = true;
   searchbarReset = new EventEmitter<void>();
 
-  @ViewChild('drawer') drawer!: ElementRef;
+  @ViewChild('drawer') drawerElm: ElementRef | undefined;
 
   constructor(private location: Location, private router: Router) {
     this.setLocationBasedState();
@@ -59,6 +59,6 @@ export class AppComponent {
   protected logOut(): void {
     this.resetSearchbar();
     AppConfig.run.clearToken();
-    this.router.navigateByUrl("/login").then(this.drawer.nativeElement.close());
+    this.router.navigateByUrl("/login");
   }
 }
