@@ -52,6 +52,7 @@ import { TokenGenerateComponent } from './dialogs/token-generate/token-generate.
 import { TokenShowComponent } from './dialogs/token-show/token-show.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { PasswordChangeComponent } from './dialogs/password-change/password-change.component';
+import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -86,7 +87,8 @@ export function initialize(appConfig: AppConfig) {
     TokensComponent,
     TokenGenerateComponent,
     TokenShowComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    StatsPageComponent
   ],
   imports: [
     BrowserModule,

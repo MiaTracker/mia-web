@@ -36,6 +36,12 @@
               <span>Watchlist</span>
             </span>
           </a>
+          <a mat-list-item routerLink="/statistics" routerLinkActive="nav-list-link-active" (click)="resetSearchbar()">
+            <span class="nav-list-item">
+              <mat-icon class="nav-list-icon">bar_chart</mat-icon>
+              <span>Statistics</span>
+            </span>
+          </a>
         </mat-nav-list>
         <mat-nav-list class="settings-nav-list">
           <a mat-list-item routerLink="/settings" routerLinkActive="nav-list-link-active" (click)="resetSearchbar()">

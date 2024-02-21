@@ -9,6 +9,7 @@ import {UsersComponent} from "./pages/settings/users/users.component";
 import {ProfileComponent} from "./pages/settings/profile/profile.component";
 import {InstancePageComponent} from "./pages/instance-page/instance-page.component";
 import {TokensComponent} from "./pages/settings/tokens/tokens.component";
+import {StatsPageComponent} from "./pages/stats-page/stats-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'media', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'movies', component: IndexPageComponent },
   { path: 'series', component: IndexPageComponent },
   { path: 'watchlist', component: IndexPageComponent },
+  { path: 'statistics', component: StatsPageComponent },
   { path: 'movie/:id', component: MovieDetailsPageComponent },
   { path: 'series/:id', component: SeriesDetailsPageComponent },
   { path: 'instance', component: InstancePageComponent },

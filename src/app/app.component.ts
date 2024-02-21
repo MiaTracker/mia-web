@@ -35,7 +35,7 @@ export class AppComponent {
       || this.location.isCurrentPathEqualTo("/movies")
       || this.location.isCurrentPathEqualTo("/series")
       || this.location.isCurrentPathEqualTo("/watchlist");
-    this.isBasePath = this.isBaseMediaPath || this.location.isCurrentPathEqualTo("/settings");
+    this.isBasePath = this.isBaseMediaPath || this.location.isCurrentPathEqualTo("/settings") || this.location.isCurrentPathEqualTo("/statistics");
     this.isSettingsPath = this.location.path().startsWith("/settings/");
     this.hideNavbar = this.location.isCurrentPathEqualTo("/login") || this.location.isCurrentPathEqualTo("/instance")
   }

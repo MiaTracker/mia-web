@@ -30,7 +30,7 @@ export class MovieDetails implements Deserializable, IMediaDetails {
     Object.assign(this, input);
     this.release_date = new Date(input.release_date);
     this.alternative_titles = input.alternative_titles.map((x: any) => AlternativeTitle.deserialize(x));
-    this.original_language = Language.deserialize(input.original_language);
+    this.original_language = input.original_language ? Language.deserialize(input.original_language) : null;
     this.genres = input.genres.map((x: any) => Genre.deserialize(x));
     this.tags = input.tags.map((x: any) => Tag.deserialize(x));
     this.sources = input.sources.map((x: any) => Source.deserialize(x));

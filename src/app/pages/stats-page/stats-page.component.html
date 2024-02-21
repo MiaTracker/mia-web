@@ -1,0 +1,21 @@
+<div class="container">
+  <canvas #mediaChart class="doughnut"></canvas>
+
+  <canvas #logChart class="doughnut"></canvas>
+
+  <div class="wrap">
+    <h2 class="title">Most watched</h2>
+    <div class="most-watched-container" *ngIf="stats?.most_watched?.movie != undefined">
+      <h3>Movie</h3>
+      <a routerLink="/movie/{{stats!.most_watched.movie!.id}}">
+        <app-index-poster [index]="stats!.most_watched.movie!" [showType]="false" class="poster"></app-index-poster>
+      </a>
+    </div>
+    <div class="most-watched-container" *ngIf="stats?.most_watched?.series != undefined">
+      <h3>Series</h3>
+      <a routerLink="/series/{{stats!.most_watched.series!.id}}">
+        <app-index-poster [index]="stats!.most_watched.series!" [showType]="false" class="poster"></app-index-poster>
+      </a>
+    </div>
+  </div>
+</div>
