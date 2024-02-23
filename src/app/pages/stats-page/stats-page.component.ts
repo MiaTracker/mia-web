@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewRef} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Stats} from "../../models/stats";
 import {StatisticsService} from "../../services/statistics.service";
 import { Chart } from "chart.js/auto"
@@ -34,7 +34,6 @@ export class StatsPageComponent implements OnInit{
       id: 'sumPlugin',
       beforeDraw: function(chart: Chart, args: any, options: any) {
         const width = chart.chartArea.width, height = chart.chartArea.height, ctx = chart.ctx;
-        console.log(chart)
         ctx.restore();
         const fontSize = (height / 160).toFixed(2);
         ctx.font = fontSize + "em sans-serif";

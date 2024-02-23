@@ -1,8 +1,9 @@
 import {Deserializable} from "../interfaces/deserializable.interface";
+import {DateTime} from "luxon";
 
 export class Log implements Deserializable {
   public id!: number;
-  public date!: Date;
+  public date!: DateTime;
   public source!: string;
   public stars!: number | null;
   public completed!: boolean;
@@ -10,7 +11,7 @@ export class Log implements Deserializable {
 
   deserialize(input: any): this {
     Object.assign(this, input);
-    this.date = new Date(input.date)
+    this.date = DateTime.fromISO(input.date)
     return this;
   }
 

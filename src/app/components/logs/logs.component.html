@@ -22,7 +22,7 @@
       <td>{{log.source}}</td>
       <td>{{log.completed}}</td>
       <td class="comment-column">{{log.comment}}</td>
-      <td>{{log.date.toLocaleDateString()}}</td>
+      <td>{{log.date.toLocaleString(DateTime.DATE_SHORT)}}</td>
       <td class="actions">
         <mat-icon fontIcon="edit" class="action" (click)="editLog(log)"></mat-icon>
         <mat-icon fontIcon="close" class="action" (click)="deleteLog(log)"></mat-icon>

@@ -6,6 +6,6 @@
     <p>{{log.completed}}</p>
     <p>{{log.comment}}</p>
   </div>
-  <p>{{formatDate(log.date, 'M/d/yyyy', 'en-US')}}</p>
+  <p>{{log.date.toFormat('M/d/yyyy')}}</p>
   <mat-icon fontIcon="close" class="log-x" [class.log-x-editable]="editable"></mat-icon>
 </div>

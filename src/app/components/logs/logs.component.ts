@@ -4,6 +4,7 @@ import {IMediaService} from "../../interfaces/imedia-service";
 import {LogEditComponent} from "../../dialogs/log-edit/log-edit.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Source} from "../../models/source";
+import {DateTime} from "luxon";
 
 @Component({
   selector: 'app-logs',
@@ -54,4 +55,6 @@ export class LogsComponent {
   protected deleteLog(log: Log): void {
     this.service.deleteLog(log.id, this.media_id).subscribe(_ => this.refresh.emit());
   }
+
+  protected readonly DateTime = DateTime;
 }
