@@ -51,9 +51,12 @@ export class AppComponent {
     Signals.Search.emit();
   }
 
-  protected resetSearchbar(): void {
+  protected resetSearchbar(link: string | null = null): void {
     this.searchbarReset.emit();
     Globals.SearchQuery = null;
+    Globals.SearchQueryValid = true;
+    if(link != null && this.location.isCurrentPathEqualTo(link))
+      Signals.Search.emit(null);
   }
 
   protected logOut(): void {

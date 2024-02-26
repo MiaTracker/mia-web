@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Subscription} from "rxjs";
+import {Globals} from "../../infrastructure/globals";
 
 @Component({
   selector: 'app-searchbar',
@@ -40,4 +41,6 @@ export class SearchbarComponent {
   private onReset(): void {
     this.control.reset();
   }
+
+  protected readonly Globals = Globals;
 }

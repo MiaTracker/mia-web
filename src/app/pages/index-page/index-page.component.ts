@@ -41,13 +41,25 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   getMedia() {
     if(Globals.SearchQuery) {
       if(this.location.isCurrentPathEqualTo("/media"))
-        this.mediaService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => this.setMedia(x.indexes, x.external));
+        this.mediaService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
+          this.setMedia(x.indexes, x.external);
+          Globals.SearchQueryValid = x.query_valid;
+        });
       else if(this.location.isCurrentPathEqualTo("/movies"))
-        this.moviesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => this.setMedia(x.indexes, x.external));
+        this.moviesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
+          this.setMedia(x.indexes, x.external);
+          Globals.SearchQueryValid = x.query_valid;
+        });
       else if(this.location.isCurrentPathEqualTo("/series"))
-        this.seriesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => this.setMedia(x.indexes, x.external));
+        this.seriesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
+          this.setMedia(x.indexes, x.external);
+          Globals.SearchQueryValid = x.query_valid;
+        });
       else if(this.location.isCurrentPathEqualTo("/watchlist"))
-        this.watchlistService.search(Globals.SearchQuery).subscribe(x => this.setMedia(x, null));
+        this.watchlistService.search(Globals.SearchQuery).subscribe(x => {
+          this.setMedia(x.indexes, null);
+          Globals.SearchQueryValid = x.query_valid;
+        });
     } else {
       if(this.location.isCurrentPathEqualTo("/media"))
         this.mediaService.getMedia().subscribe(media => this.setMedia(media, null));

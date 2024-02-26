@@ -5,6 +5,7 @@ $searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
 
 .container
   display: flex
+  position: relative
   height: 3rem
   background-color: $searchbar-background
   width: 60%
@@ -20,3 +21,9 @@ $searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
 
 .search-icon
   padding: 12px
+
+.error
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  right: -30px

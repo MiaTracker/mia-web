@@ -4,4 +4,5 @@
   <button mat-icon-button aria-label="Clear" (click)="execReset()" *ngIf="control.value">
     <mat-icon>close</mat-icon>
   </button>
+  <mat-icon class="error" matTooltip="Query is invalid" *ngIf="!Globals.SearchQueryValid">error</mat-icon>
 </div>
