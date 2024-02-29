@@ -1,4 +1,5 @@
 import {Deserializable} from "../interfaces/deserializable.interface";
+import {DateTime} from "luxon";
 
 export class MovieMetadata implements Deserializable {
   public id!: number;
@@ -11,13 +12,13 @@ export class MovieMetadata implements Deserializable {
   public poster_path!: string | null;
   public tmdb_vote_average!: number | null;
   public original_language!: string | null;
-  public release_date!: Date | null;
+  public release_date!: DateTime | null;
   public runtime!: number | null;
   public status!: string | null;
 
   deserialize(input: any): this {
     Object.assign(this, input);
-    this.release_date = new Date(input.release_date);
+    this.release_date = DateTime.fromISO(input.release_date);
     return this;
   }
 }

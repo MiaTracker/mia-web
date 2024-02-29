@@ -3,11 +3,11 @@ import {HttpService} from "./http.service";
 import {map, Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {SeriesDetails} from "../models/series-details";
-import {MovieMetadata} from "../models/movie-metadata";
 import {IMediaService} from "../interfaces/imedia-service";
 import {Source, SourceCreate} from "../models/source";
 import {Log, LogCreate} from "../models/log";
 import {SearchResults} from "../models/search-results";
+import {SeriesMetadata} from "../models/series-metadata";
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +32,11 @@ export class SeriesService implements IMediaService {
     return this.httpService.post('/series', { tmdb_id: id }, null).pipe(map(x => x as number));
   }
 
-  public getMetadata(id: number): Observable<MovieMetadata> {
-    return this.httpService.getObj(MovieMetadata, `/series/${id}/metadata`);
+  public getMetadata(id: number): Observable<SeriesMetadata> {
+    return this.httpService.getObj(SeriesMetadata, `/series/${id}/metadata`);
   }
 
-  public updateMetadata(metadata: MovieMetadata): Observable<Object> {
+  public updateMetadata(metadata: SeriesMetadata): Observable<Object> {
     return this.httpService.patch(`/series/${metadata.id}/metadata`, null, metadata);
   }
 

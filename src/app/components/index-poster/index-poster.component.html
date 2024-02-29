@@ -2,7 +2,7 @@
   <img src="{{AppConfig.env.undefinedImageUrl}}" alt="{{index.title}}" class="poster-img" srcset="{{posterSrcset}}"><!-- TODO: fix image srcset sizing -->
   <p class="title">{{index.title}}</p>
   <mat-icon class="indicator type-ind" *ngIf="showType">{{index.type == MediaType.Movie ? 'movie' : 'tv'}}</mat-icon>
-  <div class="indicator stars" *ngIf="internal?.stars">
+  <div class="indicator stars" *ngIf="internal?.stars != undefined">
     <mat-icon class="star">star</mat-icon>
     <div>{{internal?.stars}}</div>
   </div>

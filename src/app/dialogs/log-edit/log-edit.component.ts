@@ -27,7 +27,6 @@ export class LogEditComponent {
     if(this.form.invalid) return;
     let log = this.data?.log ?? new LogCreate();
     Object.assign(log, this.form.value);
-    console.log(this.form.get("date")?.value instanceof DateTime)
     log.date = this.form.get("date")?.value.toFormat('yyyy-MM-dd');
     this.dialogRef.close(log);
   }
