@@ -3,6 +3,7 @@ import {HttpService} from "./http.service";
 import {Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {SearchResults} from "../models/search-results";
+import {SearchQuery} from "../models/search-query";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class MediaService {
     return this.httpService.getArr(MediaIndex,'/media');
   }
 
-  public search(query: string, committed: boolean): Observable<SearchResults> {
-    return this.httpService.getObj(SearchResults, '/media/search', { query: query, committed: committed });
+  public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
+    return this.httpService.postObj(SearchResults, '/media/search', { committed: committed }, query);
   }
 }

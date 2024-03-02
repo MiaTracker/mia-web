@@ -1,8 +1,11 @@
-<div class="container">
-  <input type="text" class="searchbar" [formControl]="control" (input)="onInput()" (keyup.enter)="onReturn()">
-  <mat-icon class="search-icon" *ngIf="!control.value">search</mat-icon>
-  <button mat-icon-button aria-label="Clear" (click)="execReset()" *ngIf="control.value">
-    <mat-icon>close</mat-icon>
-  </button>
-  <mat-icon class="error" matTooltip="Query is invalid" *ngIf="!Globals.SearchQueryValid">error</mat-icon>
+<div class="wrapper">
+  <div class="container">
+    <input type="text" class="searchbar" [formControl]="control" (input)="onInput()" (keyup.enter)="onReturn()">
+    <mat-icon class="search-icon" *ngIf="!control.value">search</mat-icon>
+    <mat-icon class="error" matTooltip="Query is invalid" *ngIf="!Globals.SearchQueryValid">error</mat-icon>
+    <button mat-icon-button aria-label="Clear" (click)="execReset()" *ngIf="control.value">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <ng-content></ng-content>
 </div>

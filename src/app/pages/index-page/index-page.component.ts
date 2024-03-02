@@ -39,7 +39,7 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   }
 
   getMedia() {
-    if(Globals.SearchQuery) {
+    if(Globals.SearchQuery.query || Globals.SearchQuery.only_watched || Globals.SearchQuery.genres || Globals.SearchQuery.min_stars) {
       if(this.location.isCurrentPathEqualTo("/media"))
         this.mediaService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
           this.setMedia(x.indexes, x.external);

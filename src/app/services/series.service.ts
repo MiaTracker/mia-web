@@ -8,6 +8,7 @@ import {Source, SourceCreate} from "../models/source";
 import {Log, LogCreate} from "../models/log";
 import {SearchResults} from "../models/search-results";
 import {SeriesMetadata} from "../models/series-metadata";
+import {SearchQuery} from "../models/search-query";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class SeriesService implements IMediaService {
     return this.httpService.getArr(MediaIndex, '/series');
   }
 
-  public search(query: string, committed: boolean): Observable<SearchResults> {
-    return this.httpService.getObj(SearchResults, '/series/search', { query: query, committed: committed });
+  public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
+    return this.httpService.postObj(SearchResults, '/series/search', { committed: committed }, query);
   }
 
   public getDetails(id: number): Observable<SeriesDetails> {

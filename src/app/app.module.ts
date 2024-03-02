@@ -53,6 +53,8 @@ import { TokenShowComponent } from './dialogs/token-show/token-show.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { PasswordChangeComponent } from './dialogs/password-change/password-change.component';
 import { StatsPageComponent } from './pages/stats-page/stats-page.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -114,7 +116,9 @@ export function initialize(appConfig: AppConfig) {
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule,
+    MatButtonToggleModule
   ],
   providers: [
     AppConfig,
