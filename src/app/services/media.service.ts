@@ -19,4 +19,8 @@ export class MediaService {
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
     return this.httpService.postObj(SearchResults, '/media/search', { committed: committed }, query);
   }
+
+  public genres(): Observable<string[]> {
+    return this.httpService.getStrArr('/media/genres');
+  }
 }

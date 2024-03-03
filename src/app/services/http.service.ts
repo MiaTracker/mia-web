@@ -21,6 +21,14 @@ export class HttpService {
         }));
   }
 
+  public getStrArr(url: string, params: Object | null = null) {
+    return this.client.get<string[]>(this.buildUrl(url, params), { headers: this.headers() })
+      .pipe(catchError((err, _) => {
+        this.handleErrors(err);
+        throw err;
+      }));
+  }
+
   public getObj<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null) {
     return this.client.get<T>(this.buildUrl(url, params), { headers: this.headers() })
       .pipe(map(data => new type().deserialize(data)), catchError((err, _) => {

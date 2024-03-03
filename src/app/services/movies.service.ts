@@ -25,6 +25,10 @@ export class MoviesService implements IMediaService{
     return this.httpService.postObj(SearchResults, '/movies/search', { committed: committed }, query);
   }
 
+  public genres(): Observable<string[]> {
+    return this.httpService.getStrArr('/movies/genres');
+  }
+
   public getDetails(id: number): Observable<MovieDetails> {
     return this.httpService.getObj(MovieDetails, `/movies/${id}`);
   }

@@ -7,6 +7,11 @@ import {Router} from "@angular/router";
 import {FormControl, ValidationErrors} from "@angular/forms";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {SearchQuery} from "./models/search-query";
+import {MediaService} from "./services/media.service";
+import {MoviesService} from "./services/movies.service";
+import {SeriesService} from "./services/series.service";
+import {COMMA, ENTER, SEMICOLON} from "@angular/cdk/keycodes";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 
 @Component({
   selector: 'app-root',
@@ -19,7 +24,22 @@ export class AppComponent {
   isSettingsPath: boolean = false;
   hideNavbar: boolean = true;
   searchbarReset = new EventEmitter<void>();
-  naiveFilterVisible = false;
+  validGenres: string[] = [];
+  filteredGenres: string[] = [];
+  genreFilterControl = new FormControl<string | null>('', { updateOn: "change" });
+
+  private service: MediaService | MoviesService | SeriesService | null = null;
+
+  private _naiveFilterVisible = false;
+  get naiveFilterVisible(): boolean { return this._naiveFilterVisible; }
+  set naiveFilterVisible(v: boolean) {
+    if(v) {
+      this.service?.genres().subscribe({
+        next: genres => this.validGenres = genres
+      });
+    }
+    this._naiveFilterVisible = v;
+  }
 
   minStarsControl = new FormControl<number | null>(Globals.SearchQuery.min_stars, {
     updateOn: "change",
@@ -31,8 +51,10 @@ export class AppComponent {
 
 
   @ViewChild('drawer') drawerElm: ElementRef | undefined;
+  @ViewChild('genreFilter') genreFilter!: ElementRef<HTMLInputElement>;
 
-  constructor(private location: Location, private router: Router) {
+  constructor(private location: Location, private router: Router, private mediaService: MediaService,
+              private moviesService: MoviesService, private seriesService: SeriesService) {
     this.setLocationBasedState();
     location.onUrlChange(() => this.setLocationBasedState());
     if(AppConfig.env.env.desktop && !AppConfig.run.instance_url)
@@ -51,6 +73,13 @@ export class AppComponent {
         Signals.Search.emit();
       }
     });
+    this.genreFilterControl.valueChanges.subscribe(
+      {
+        next: (v) => {
+          this.filteredGenres = (v ? this._filterValidGenres(v) : this.validGenres.slice())
+        }
+      }
+    )
   }
 
   back(): void {
@@ -58,6 +87,18 @@ export class AppComponent {
   }
 
   setLocationBasedState(): void {
+    if(this.location.isCurrentPathEqualTo("/media")) this.service = this.mediaService;
+    else if(this.location.isCurrentPathEqualTo("/movies")) this.service = this.moviesService;
+    else if(this.location.isCurrentPathEqualTo("/series")) this.service = this.seriesService;
+    if(this.naiveFilterVisible) {
+      this.service?.genres().subscribe({
+        next: genres => {
+          this.validGenres = genres;
+          // this.filteredGenres = (this.genreFilterControl.value ? this._filterValidGenres(this.genreFilterControl.value) : this.validGenres.slice())
+        }
+      });
+    }
+
     this.isBaseMediaPath = this.location.isCurrentPathEqualTo("/media")
       || this.location.isCurrentPathEqualTo("/movies")
       || this.location.isCurrentPathEqualTo("/series")
@@ -101,6 +142,8 @@ export class AppComponent {
       Signals.Search.emit();
     }
     event.chipInput.clear();
+    this.genreFilter.nativeElement.value = "";
+    this.genreFilterControl.setValue(null);
   }
 
   protected removeGenreFilter(genre: String): void {
@@ -111,9 +154,28 @@ export class AppComponent {
     }
   }
 
+  protected genreFilterSelected(event: MatAutocompleteSelectedEvent): void {
+    const value = event.option.viewValue.trim();
+
+    if(value && Globals.SearchQuery.genres.indexOf(value) == -1) {
+      Globals.SearchQuery.genres.push(value);
+      Signals.Search.emit();
+    }
+    this.genreFilter.nativeElement.value = "";
+    this.genreFilterControl.reset();
+  }
+
   protected toggleNaiveFilter() {
     this.naiveFilterVisible = !this.naiveFilterVisible;
   }
 
+  private _filterValidGenres(value: String): string[] {
+    const filterValue = value.toLowerCase();
+    return this.validGenres.filter(genre => genre.toLowerCase().includes(filterValue));
+  }
+
   protected readonly Globals = Globals;
+  protected readonly ENTER = ENTER;
+  protected readonly COMMA = COMMA;
+  protected readonly SEMICOLON = SEMICOLON;
 }
