@@ -12,6 +12,12 @@ import {MoviesService} from "./services/movies.service";
 import {SeriesService} from "./services/series.service";
 import {COMMA, ENTER, SEMICOLON} from "@angular/cdk/keycodes";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {SortTarget} from "./enums/sort-target";
+
+interface Type {
+  value: SortTarget,
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -27,6 +33,19 @@ export class AppComponent {
   validGenres: string[] = [];
   filteredGenres: string[] = [];
   genreFilterControl = new FormControl<string | null>('', { updateOn: "change" });
+  sortTargets: Type[] = [
+    { value: SortTarget.Title, viewValue: "Title" },
+    { value: SortTarget.Stars, viewValue: "Stars" },
+    { value: SortTarget.TimesWatched, viewValue: "Times watched" }
+  ];
+  get selectedSortTarget(): SortTarget {
+    return Globals.SearchQuery.sort_by;
+  }
+  set selectedSortTarget(target: SortTarget) {
+    Globals.SearchQuery.sort_by = target;
+    Signals.Search.emit();
+  }
+
 
   private service: MediaService | MoviesService | SeriesService | null = null;
 
@@ -94,7 +113,6 @@ export class AppComponent {
       this.service?.genres().subscribe({
         next: genres => {
           this.validGenres = genres;
-          // this.filteredGenres = (this.genreFilterControl.value ? this._filterValidGenres(this.genreFilterControl.value) : this.validGenres.slice())
         }
       });
     }
@@ -121,7 +139,7 @@ export class AppComponent {
 
   protected resetSearchbar(link: string | null = null): void {
     this.searchbarReset.emit();
-    Globals.SearchQuery = new SearchQuery("", [], false, null);
+    Globals.SearchQuery = new SearchQuery("", [], false, null, SortTarget.Title);
     this.minStarsControl.reset();
     Globals.SearchQueryValid = true;
     if(link != null && this.location.isCurrentPathEqualTo(link))

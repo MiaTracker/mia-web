@@ -87,6 +87,12 @@
           <input matInput type="number" step="0.1" [formControl]="minStarsControl">
         </mat-form-field>
         <mat-checkbox color="primary" [formControl]="onlyWatchedControl">Only watched</mat-checkbox>
+        <mat-form-field subscriptSizing="dynamic">
+          <mat-label>Sort by</mat-label>
+          <mat-select [(value)]="selectedSortTarget">
+            <mat-option [value]="target.value" *ngFor="let target of sortTargets">{{target.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
