@@ -1,8 +1,3 @@
-@use '@angular/material' as mat
-@import "@angular/material/theming"
-
-$searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
-
 .wrapper
   width: 60%
   height: 3rem
@@ -11,7 +6,6 @@ $searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
 
 .container
   position: relative
-  background-color: $searchbar-background
   width: 100%
   display: flex
 
@@ -21,7 +15,6 @@ $searchbar-background: mat.get-color-from-palette(mat.$pink-palette, 600)
   background-color: transparent
   border: none
   outline: none
-  color: mat.get-color-from-palette(mat.$pink-palette, 50)
   padding: 0 1rem
   flex-grow: 1
 

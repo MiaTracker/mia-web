@@ -1,0 +1,11 @@
+@use 'sass:map'
+@use '@angular/material' as mat
+
+@mixin color($theme)
+  .tag
+    background-color: mat.get-theme-color($theme, background, tooltip)
+    border-radius: 0.5rem
+
+@mixin theme($theme)
+  @if(mat.theme-has($theme, color))
+    @include color($theme)

@@ -6,7 +6,7 @@
   <div class="sources">
     <div class="title">
       <h3>Sources:</h3>
-      <button mat-raised-button color="primary" (click)="addSource()">
+      <button mat-flat-button color="primary" (click)="addSource()">
         <mat-icon>add</mat-icon>
         <span>Add</span>
       </button>
@@ -17,7 +17,7 @@
         <th>Type</th>
         <th>Url</th>
       </tr>
-      <tr class="source" *ngFor="let source of media?.sources ?? []">
+      <tr class="details-list-tag source" *ngFor="let source of media?.sources ?? []">
         <td>{{source.name}}</td>
         <td>{{SourceType.toDisplay(source.type)}}</td>
         <td class="url-column">{{source.url}}</td>

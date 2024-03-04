@@ -1,0 +1,13 @@
+@use 'sass:map'
+@use '@angular/material' as mat
+
+@mixin color($theme)
+  .naive-filter
+    background-color: mat.get-theme-color($theme, background, card)
+
+  .nav-list-link-active .nav-list-item
+    color: mat.get-theme-color($theme, accent, default)
+
+@mixin theme($theme)
+  @if(mat.theme-has($theme, color))
+    @include color($theme)

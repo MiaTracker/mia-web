@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="container">
+  <div class="container searchbar-container">
     <input type="text" class="searchbar" [formControl]="control" (input)="onInput()" (keyup.enter)="onReturn()">
     <mat-icon class="search-icon" *ngIf="!control.value">search</mat-icon>
     <mat-icon class="error" matTooltip="Query is invalid" *ngIf="!Globals.SearchQueryValid">error</mat-icon>

@@ -1,0 +1,32 @@
+@use 'sass:map'
+@use '@angular/material' as mat
+
+@use './app/components/searchbar/searchbar-theme' as searchbar
+@use './app/components/media-details/media-details-theme' as media-details
+@use './app/components/tag/tag-theme' as tag
+@use './app/components/tag-list/tag-list-theme' as tag-list
+@use './app/app-theme' as app
+
+@include mat.core()
+
+$primary: mat.define-palette(mat.$pink-palette, 700, 500, 900)
+$accent:  mat.define-palette(mat.$green-palette, A200, A100, A400)
+
+//$theme: mat.define-dark-theme((
+//  color: (
+//    primary: $primary,
+//    accent: $accent
+//  ),
+//  typography: mat.define-typography-config(),
+//  density: 0,
+//));
+
+$theme: mat.define-dark-theme((color: (primary: $primary, accent: $accent), typography: mat.define-typography-config(), density: 0))
+
+@include mat.all-component-themes($theme)
+@include mat.typography-hierarchy($theme)
+@include searchbar.theme($theme)
+@include media-details.theme($theme)
+@include tag.theme($theme)
+@include tag-list.theme($theme)
+@include app.theme($theme)

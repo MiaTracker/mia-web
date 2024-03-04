@@ -1,7 +1,7 @@
 <div class="logs">
   <div class="title">
     <h3>Logs:</h3>
-    <button mat-raised-button color="primary" (click)="addLog()">
+    <button mat-flat-button color="primary" (click)="addLog()">
       <mat-icon>add</mat-icon>
       <span>Add</span>
     </button>
@@ -14,7 +14,7 @@
       <th class="comment-column">Comment</th>
       <th>Date</th>
     </tr>
-    <tr class="log" *ngFor="let log of logs">
+    <tr class="details-list-tag log" *ngFor="let log of logs">
       <td class="stars">
         <mat-icon class="star">star</mat-icon>
         <div>{{log.stars}}</div>
