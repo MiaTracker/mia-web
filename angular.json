@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mia-ui:build:production"
+              "buildTarget": "mia-ui:build:production"
             },
             "development": {
-              "browserTarget": "mia-ui:build:development"
+              "buildTarget": "mia-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mia-ui:build"
+            "buildTarget": "mia-ui:build"
           }
         },
         "test": {
