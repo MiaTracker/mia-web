@@ -12,15 +12,6 @@
 $primary: mat.define-palette(mat.$pink-palette, 700, 500, 900)
 $accent:  mat.define-palette(mat.$green-palette, A200, A100, A400)
 
-//$theme: mat.define-dark-theme((
-//  color: (
-//    primary: $primary,
-//    accent: $accent
-//  ),
-//  typography: mat.define-typography-config(),
-//  density: 0,
-//));
-
 $theme: mat.define-dark-theme((color: (primary: $primary, accent: $accent), typography: mat.define-typography-config(), density: 0))
 
 @include mat.all-component-themes($theme)
