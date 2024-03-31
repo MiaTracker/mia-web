@@ -35,7 +35,7 @@ export class UsersService {
   }
 
   public changePassword(obj: PasswordChange): Observable<Object> {
-    return this.httpService.patch('/users/password', null, obj);
+    return this.httpService.patch('/users/password', null, obj, true);
   }
 
   public delete(uuid: string): Observable<Object> {

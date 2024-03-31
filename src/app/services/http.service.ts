@@ -52,9 +52,9 @@ export class HttpService {
       }));
   }
 
-  public patch(url: string, params: Object | null = null, body: any = null): Observable<Object> {
+  public patch(url: string, params: Object | null = null, body: any = null, isUnauthorizedExpected = false): Observable<Object> {
     return this.client.patch(this.buildUrl(url, params), body, { headers: this.headers() }).pipe(catchError((err, _) => {
-      this.handleErrors(err);
+      this.handleErrors(err, isUnauthorizedExpected);
       throw err;
     }))
   }
@@ -96,8 +96,8 @@ export class HttpService {
     return headers;
   }
 
-  private handleErrors(err: any, isLogin: boolean = false) {
-    if(err.status == 401 && !isLogin) this.router.navigateByUrl('/login');
+  private handleErrors(err: any, isUnauthorizedExpected: boolean = false) {
+    if(err.status == 401 && !isUnauthorizedExpected) this.router.navigateByUrl('/login');
     else {
       try {
         if(Array.isArray(err.error)) {

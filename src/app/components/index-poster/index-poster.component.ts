@@ -30,6 +30,10 @@ export class IndexPosterComponent implements OnInit{
   protected internal: MediaIndex | null = null;
 
   ngOnInit(): void {
+    if(this.index.poster_path == null) {
+      this.posterSrcset.push(AppConfig.env.undefinedImageUrl);
+      return;
+    }
     for (const size of AppConfig.const.imagesConfiguration.poster_sizes) {
       if (!size.startsWith("w")) continue;
       this.posterSrcset.push(`${AppConfig.const.imagesConfiguration.secure_base_url + size + this.index.poster_path} ${size.substring(1)}w`);
