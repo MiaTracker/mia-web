@@ -78,7 +78,7 @@
           </mat-chip-grid>
           <input placeholder="Filter genre" #genreFilter [matChipInputFor]="genresChipGrid" [matAutocomplete]="genreAuto" [formControl]="genreFilterControl"
                  [matChipInputSeparatorKeyCodes]="[COMMA, SEMICOLON]" (matChipInputTokenEnd)="addGenreFilter($event)">
-          <mat-autocomplete #genreAuto="matAutocomplete" (optionSelected)="genreFilterSelected($event)">
+          <mat-autocomplete #genreAuto="matAutocomplete" (optionSelected)="genreFilterSelected($event)" autoActiveFirstOption>
             <mat-option [value]="genre" *ngFor="let genre of filteredGenres">{{genre}}</mat-option>
           </mat-autocomplete>
         </mat-form-field>

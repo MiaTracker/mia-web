@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {SearchResults} from "../models/search-results";
 import {SearchQuery} from "../models/search-query";
+import {LanguageIndex} from "../models/language-index";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class MediaService {
   }
 
   public genres(): Observable<string[]> {
-    return this.httpService.getStrArr('/media/genres');
+    return this.httpService.getStrArr('/genres');
+  }
+
+  public languages(): Observable<LanguageIndex[]> {
+    return this.httpService.getArr(LanguageIndex, '/languages');
   }
 }

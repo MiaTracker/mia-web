@@ -10,7 +10,7 @@ import {SearchQuery} from "./models/search-query";
 import {MediaService} from "./services/media.service";
 import {MoviesService} from "./services/movies.service";
 import {SeriesService} from "./services/series.service";
-import {COMMA, ENTER, SEMICOLON} from "@angular/cdk/keycodes";
+import {COMMA, SEMICOLON} from "@angular/cdk/keycodes";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {SortTarget} from "./enums/sort-target";
 
@@ -193,7 +193,6 @@ export class AppComponent {
   }
 
   protected readonly Globals = Globals;
-  protected readonly ENTER = ENTER;
   protected readonly COMMA = COMMA;
   protected readonly SEMICOLON = SEMICOLON;
 }

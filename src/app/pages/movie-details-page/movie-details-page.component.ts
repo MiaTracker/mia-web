@@ -45,12 +45,8 @@ export class MovieDetailsPageComponent {
       this.moviesService.getMetadata(this.id).subscribe({
         next: (data) => {
           let dialogRef = this.dialog.open(MovieMetadataEditComponent, { data: data, restoreFocus: false, autoFocus: "false" });
-          dialogRef.afterClosed().subscribe(result => {
-            if(result && this.id) {
-              this.moviesService.updateMetadata(result).subscribe({
-                complete: () => { this.getMovie() }
-              });
-            }
+          dialogRef.afterClosed().subscribe(_ => {
+            this.getMovie()
           });
         }
       })

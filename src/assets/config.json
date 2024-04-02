@@ -4,7 +4,7 @@
     "desktop": false
   },
   "api": {
-    "url": "https://mia.ntinf.int.eu.org/api"
+    "url": "http://localhost:3000"
   },
   "undefinedImageUrl": "assets/no-image-placeholder.png"
 }

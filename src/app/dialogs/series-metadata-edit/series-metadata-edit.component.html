@@ -27,33 +27,19 @@
     </div>
     <mat-form-field>
       <mat-label>Original language</mat-label>
-      <input matInput formControlName="original_language">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Poster path</mat-label>
-      <input matInput formControlName="poster_path">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Backdrop path</mat-label>
-      <input matInput formControlName="backdrop_path">
+      <input matInput formControlName="original_language" [matAutocomplete]="originalLanguageAutoGroup">
+      <mat-autocomplete #originalLanguageAutoGroup="matAutocomplete" autoActiveFirstOption>
+        <mat-option [value]="lang" *ngFor="let lang of filteredLanguages | async">{{lang}}</mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.controls['original_language'].hasError('notValid')">Not a valid language</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Homepage</mat-label>
       <input matInput formControlName="homepage">
     </mat-form-field>
-    <div class="row">
-      <mat-form-field>
-        <mat-label>TMDB id</mat-label>
-        <input matInput formControlName="tmdb_id">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>IMDB id</mat-label>
-        <input matInput formControlName="imdb_id">
-      </mat-form-field>
-    </div>
     <mat-form-field>
-      <mat-label>TMDB vote average</mat-label>
-      <input matInput formControlName="tmdb_vote_average">
+      <mat-label>IMDB id</mat-label>
+      <input matInput formControlName="imdb_id">
     </mat-form-field>
     <div mat-dialog-actions align="end">
       <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>

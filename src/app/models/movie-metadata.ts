@@ -3,14 +3,10 @@ import {DateTime} from "luxon";
 
 export class MovieMetadata implements Deserializable {
   public id!: number;
-  public backdrop_path!: string | null;
   public homepage!: string | null;
-  public tmdb_id!: number | null;
   public imdb_id!: string | null;
   public title!: string | null;
   public overview!: string | null;
-  public poster_path!: string | null;
-  public tmdb_vote_average!: number | null;
   public original_language!: string | null;
   public release_date!: DateTime | null;
   public runtime!: number | null;

@@ -1,8 +1,12 @@
 import {Component, Inject} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SeriesMetadata} from "../../models/series-metadata";
 import {DateTime} from "luxon";
+import {LanguageIndex} from "../../models/language-index";
+import {map, Observable, startWith} from "rxjs";
+import {MediaService} from "../../services/media.service";
+import {SeriesService} from "../../services/series.service";
 
 @Component({
   selector: 'app-series-metadata-edit',
@@ -12,23 +16,46 @@ import {DateTime} from "luxon";
 export class SeriesMetadataEditComponent {
   protected form: FormGroup;
 
-  constructor(private dialogRef: MatDialogRef<SeriesMetadataEditComponent>, @Inject(MAT_DIALOG_DATA) protected metadata: SeriesMetadata) {
+  protected validLanguages: LanguageIndex[] = [];
+  protected filteredLanguages: Observable<string[]>;
+
+  constructor(private dialogRef: MatDialogRef<SeriesMetadataEditComponent>, @Inject(MAT_DIALOG_DATA) protected metadata: SeriesMetadata, private seriesService: SeriesService, private mediaService: MediaService) {
     this.form = new FormGroup({
-      backdrop_path: new FormControl<string | null>(metadata.backdrop_path),
       homepage: new FormControl<string | null>(metadata.homepage),
-      tmdb_id: new FormControl<number | null>(metadata.tmdb_id),
       imdb_id: new FormControl<string | null>(metadata.imdb_id),
       title: new FormControl<string | null>(metadata.title),
       overview: new FormControl<string | null>(metadata.overview),
-      poster_path: new FormControl<string | null>(metadata.poster_path),
-      tmdb_vote_average: new FormControl<number | null>(metadata.tmdb_vote_average),
-      original_language: new FormControl<string | null>(metadata.original_language),
+      original_language: new FormControl<string | null>(null, [(x): ValidationErrors | null => {
+        if(!x.pristine && !this.validLanguages.find(y => y.english_name == x.value)) {
+          return { notValid: true };
+        }
+        return null;
+      }]),
       first_air_date: new FormControl<DateTime | null>(metadata.first_air_date),
       number_of_episodes: new FormControl<number | null>(metadata.number_of_episodes),
       number_of_seasons: new FormControl<number | null>(metadata.number_of_seasons),
       status: new FormControl<string | null>(metadata.status),
       type: new FormControl<string | null>(metadata.type)
     });
+
+    mediaService.languages().subscribe({
+      next: (languages) => {
+        this.validLanguages = languages;
+        this.form.get("original_language")!.setValue(this.validLanguages.find((x) => x.iso_639_1 == metadata.original_language)?.english_name || console.log("Not found"));
+      }
+    });
+
+    mediaService.languages().subscribe({
+      next: (languages) => {
+        this.validLanguages = languages;
+        this.form.get("original_language")!.setValue(this.validLanguages.find((x) => x.iso_639_1 == metadata.original_language)?.english_name || console.log("Not found"));
+      }
+    });
+
+    this.filteredLanguages = this.form.get("original_language")!.valueChanges.pipe(
+      startWith(null),
+      map(value => this.filterLanguages(value))
+    )
   }
 
   protected save(): void {
@@ -41,6 +68,21 @@ export class SeriesMetadataEditComponent {
     x.tmdb_vote_average =  this.form.get("tmdb_vote_average")?.value != null ? parseFloat(this.form.get("tmdb_vote_average")?.value) : null;
     x.number_of_episodes =  this.form.get("number_of_episodes")?.value != null ? parseInt(this.form.get("number_of_episodes")?.value) : null;
     x.number_of_seasons =  this.form.get("number_of_seasons")?.value != null ? parseInt(this.form.get("number_of_seasons")?.value) : null;
-    this.dialogRef.close(x);
+    x.original_language = this.form.get('original_language')?.value != null ? this.validLanguages.find(x => x.english_name == this.form.get('original_language')?.value)?.iso_639_1 : null;
+
+    this.seriesService.updateMetadata(x).subscribe({
+      error: (err) => {
+        console.log(err)
+      },
+      complete: () => {
+        this.dialogRef.close(x);
+      }
+    });
+  }
+
+  private filterLanguages(value: string | null): string[] {
+    const val = value?.toLowerCase() || '';
+    return this.validLanguages.filter(o => o.english_name.toLowerCase().includes(val) || o.iso_639_1.toLowerCase().includes(val))
+      .map(x => x.english_name);
   }
 }

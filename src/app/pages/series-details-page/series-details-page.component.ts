@@ -45,12 +45,8 @@ export class SeriesDetailsPageComponent {
       this.seriesService.getMetadata(this.id).subscribe({
         next: (data) => {
           let dialogRef = this.dialog.open(SeriesMetadataEditComponent, { data: data, restoreFocus: false, autoFocus: "false" });
-          dialogRef.afterClosed().subscribe(result => {
-            if(result && this.id) {
-              this.seriesService.updateMetadata(result).subscribe({
-                complete: () => { this.getSeries() }
-              });
-            }
+          dialogRef.afterClosed().subscribe(_ => {
+            this.getSeries()
           });
         }
       })
