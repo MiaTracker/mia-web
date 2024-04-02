@@ -25,6 +25,7 @@
   <app-backdrop [title]="series?.title" [backdrop_path]="series?.backdrop_path">
     <div class="status">{{series?.status}}</div>
     <div class="release-year">{{series?.first_air_date?.getFullYear()}}&ZeroWidthSpace;</div>
+    <div class="language">{{series?.original_language?.english_name}}&ZeroWidthSpace;</div>
     <div class="number_of_seasons">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
     <div class="number_of_episodes">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
   </app-backdrop>

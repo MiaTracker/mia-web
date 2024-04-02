@@ -71,4 +71,9 @@ export class MovieDetailsPageComponent {
   protected removeFromWatchlist(): void {
     this.watchlistService.remove(this.id ?? 0).subscribe(() => this.getMovie());
   }
+
+  protected displayRuntime(runtime: number | null | undefined): string {
+    if(!runtime) return "";
+    return `${Math.floor(runtime / 60)}h ${runtime % 60}min`;
+  }
 }
