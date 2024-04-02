@@ -2,6 +2,8 @@
   <mat-form-field subscriptSizing="dynamic" appearance="outline">
     <mat-label>Name</mat-label>
     <input matInput [formControl]="nameField" (keyup.enter)="generate()">
+    <mat-error *ngIf="nameField.hasError('required')">Required</mat-error>
+    <mat-error *ngIf="nameField.hasError('alreadyExists')">The name is already taken</mat-error>
   </mat-form-field>
   <div class="btn-container">
     <button mat-flat-button color="primary" [disabled]="nameField.invalid" (click)="generate()">Generate</button>

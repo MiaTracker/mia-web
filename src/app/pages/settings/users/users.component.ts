@@ -25,12 +25,8 @@ export class UsersComponent {
 
   protected createUser(): void {
     let dialogRef = this.dialog.open(UserEditComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.service.register(result).subscribe({
-          complete: () => { this.getUsers() }
-        });
-      }
+    dialogRef.afterClosed().subscribe(_ => {
+      this.getUsers()
     });
   }
 

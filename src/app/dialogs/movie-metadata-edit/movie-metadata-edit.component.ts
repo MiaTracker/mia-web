@@ -67,7 +67,7 @@ export class MovieMetadataEditComponent {
         console.log(err)
       },
       complete: () => {
-        this.dialogRef.close(x);
+        this.dialogRef.close();
       }
     });
   }

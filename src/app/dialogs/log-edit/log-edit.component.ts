@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Source} from "../../models/source";
 import {Log, LogCreate} from "../../models/log";
 import {DateTime} from "luxon";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-log-edit',
@@ -13,7 +14,7 @@ import {DateTime} from "luxon";
 export class LogEditComponent {
   protected form: FormGroup;
 
-  constructor(private dialogRef: MatDialogRef<LogEditComponent>, @Inject(MAT_DIALOG_DATA) protected data: { log: Log | undefined, sources: Source[] }) {
+  constructor(private dialogRef: MatDialogRef<LogEditComponent>, @Inject(MAT_DIALOG_DATA) protected data: { log: Log | undefined, sources: Source[], saveFn: (x: Log | LogCreate) => Observable<Object> }) {
     this.form = new FormGroup({
       date: new FormControl<DateTime | null>(data.log?.date ?? null, Validators.required),
       source: new FormControl<string | null>(data.sources.find((x) => x.name == data.log?.source)?.name ?? null, Validators.required),
@@ -28,6 +29,13 @@ export class LogEditComponent {
     let log = this.data?.log ?? new LogCreate();
     Object.assign(log, this.form.value);
     log.date = this.form.get("date")?.value.toFormat('yyyy-MM-dd');
-    this.dialogRef.close(log);
+    this.data.saveFn(log).subscribe({
+      error: err => {
+        console.log(err);
+      },
+      complete: () => {
+        this.dialogRef.close();
+      }
+    })
   }
 }

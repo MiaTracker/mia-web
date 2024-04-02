@@ -72,10 +72,10 @@ export class SeriesMetadataEditComponent {
 
     this.seriesService.updateMetadata(x).subscribe({
       error: (err) => {
-        console.log(err)
+        console.log(err);
       },
       complete: () => {
-        this.dialogRef.close(x);
+        this.dialogRef.close();
       }
     });
   }

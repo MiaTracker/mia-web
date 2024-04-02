@@ -5,17 +5,21 @@
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
+        <mat-error *ngIf="form.controls['name'].hasError('required')">Required</mat-error>
+        <mat-error *ngIf="form.controls['name'].hasError('alreadyExists')">A source with this name already exists</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Type</mat-label>
         <mat-select formControlName="type">
           <mat-option *ngFor="let type of types" [value]="type">{{type.viewValue}}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.controls['type'].hasError('required')">Required</mat-error>
       </mat-form-field>
     </div>
     <mat-form-field>
       <mat-label>Url</mat-label>
       <input matInput formControlName="url">
+      <mat-error *ngIf="form.controls['url'].hasError('required')">Required</mat-error>
     </mat-form-field>
     <div mat-dialog-actions align="end">
       <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>

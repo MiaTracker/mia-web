@@ -4,18 +4,27 @@
     <mat-form-field>
       <mat-label>Username</mat-label>
       <input matInput formControlName="username">
+      <mat-error *ngIf="form.controls['username'].hasError('required')">Required</mat-error>
+      <mat-error *ngIf="form.controls['username'].hasError('alreadyTaken')">An account with this username already exists</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="form.controls['email'].hasError('required')">Required</mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('pattern')">Not a valid email</mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('alreadyExists')">An account with this email address already exists</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="form.controls['password'].hasError('required')">Required</mat-error>
+      <mat-error *ngIf="form.controls['password'].hasError('pattern')">The password must be at least 7 characters of length and contain at least one digit, one upper case, one lowercase letter</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Repeat password</mat-label>
       <input matInput type="password" formControlName="password_repeat">
+      <mat-error *ngIf="form.controls['password_repeat'].hasError('required')">Required</mat-error>
+      <mat-error *ngIf="form.controls['password_repeat'].hasError('notMatching')">The passwords do not match</mat-error>
     </mat-form-field>
     <div mat-dialog-actions align="end">
       <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Log} from "../../models/log";
+import {Log, LogCreate} from "../../models/log";
 import {IMediaService} from "../../interfaces/imedia-service";
 import {LogEditComponent} from "../../dialogs/log-edit/log-edit.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -31,24 +31,30 @@ export class LogsComponent {
   }
 
   protected addLog(): void {
-    let dialogRef = this.dialog.open(LogEditComponent, { data: { sources: this.sources } });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.service.createLog(result, this.media_id).subscribe({
-          complete: () => { this.refresh.emit() }
-        });
+    let dialogRef = this.dialog.open(LogEditComponent, {
+      data: {
+        sources: this.sources,
+        saveFn: (result: LogCreate) => {
+          return this.service.createLog(result, this.media_id);
+        }
       }
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      this.refresh.emit()
     });
   }
 
   protected editLog(log: Log): void {
-    let dialogRef = this.dialog.open(LogEditComponent, { data: { log: log, sources: this.sources }, autoFocus: "false" });
+    let dialogRef = this.dialog.open(LogEditComponent, {
+      data: {
+        log: log,
+        sources: this.sources,
+        saveFn: (result: Log) => {
+          this.service.updateLog(result, this.media_id);
+        }
+      }, autoFocus: "false" });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.service.updateLog(result, this.media_id).subscribe({
-          complete: () => { this.refresh.emit() }
-        });
-      }
+      return this.service.updateLog(result, this.media_id);
     });
   }
 

@@ -20,7 +20,6 @@ export class PasswordChangeComponent {
       newPassword: new FormControl("", [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\w\\W]{7,}$")]),
       repeatPassword: new FormControl("", [
         Validators.required,
-        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\w\\W]{7,}$"),
         (x): ValidationErrors | null => {
           if(!x.pristine && this.form.value.newPassword != x.value) {
             return {notMatching: true};

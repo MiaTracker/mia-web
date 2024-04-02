@@ -60,25 +60,28 @@ export class MediaDetailsComponent {
   }
 
   protected addSource(): void {
-    let dialogRef = this.dialog.open(SourceEditComponent, { data: undefined });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && this.media) {
-        this.service.createSource(result, this.media?.id ?? 0).subscribe({
-          complete: () => { this.refresh.emit() }
-        });
+    const dialogRef = this.dialog.open(SourceEditComponent, {
+      data: {
+        source: undefined,
+        saveFn: (x: Source) => {
+          return this.service.createSource(x, this.media?.id ?? 0);
+        }
       }
     });
+    dialogRef.afterClosed().subscribe(() => this.refresh.emit());
   }
 
   protected editSource(source: Source): void {
-    let dialogRef = this.dialog.open(SourceEditComponent, { data: source, autoFocus: "false" });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result && this.media) {
-        this.service.updateSource(result, this.media?.id ?? 0).subscribe({
-          complete: () => { this.refresh.emit() }
-        })
-      }
+    const dialogRef = this.dialog.open(SourceEditComponent, {
+      data: {
+        source: source,
+        saveFn: (x: Source) => {
+          return this.service.updateSource(x, this.media?.id ?? 0)
+        },
+      },
+      autoFocus: "false"
     });
+    dialogRef.afterClosed().subscribe(() => this.refresh.emit());
   }
 
   protected deleteSource(source: Source): void {

@@ -28,14 +28,8 @@ export class TokensComponent {
   protected createToken(): void {
     let dialogRef = this.dialog.open(TokenGenerateComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.service.generate(result).subscribe({
-          next: x => {
-            this.dialog.open(TokenShowComponent, { data: x, restoreFocus: false });
-          },
-          complete: () => { this.getTokens() }
-        })
-      }
+      this.dialog.open(TokenShowComponent, { data: result, restoreFocus: false });
+      this.getTokens()
     });
   }
 

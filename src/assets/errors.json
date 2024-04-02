@@ -24,8 +24,11 @@
 
   "MovieNegativeRuntime": "Movie runtime cannot be negative!",
 
+  "SourceNameAlreadyExists": "A source with this name already exists.",
+
   "LogRatingOutOfBounds": "Log rating inputted is outside range 0 - 10.",
 
+  "AppTokenNameEmpty": "App token name cannot be empty!",
   "AppTokenNameAlreadyExists": "An app token with this name already exists! Please chose a different name.",
 
   "PasswordChangeOldPasswordEmpty": "Old password cannot be empty!",
