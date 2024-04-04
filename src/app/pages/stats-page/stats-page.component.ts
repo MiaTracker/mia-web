@@ -70,7 +70,14 @@ export class StatsPageComponent implements OnInit{
             text: this.stats?.media.count
           },
           legend: {
-            position: "right"
+            position: "right",
+            align: "center",
+            labels: {
+              color: "white",
+              font: {
+                size: 14
+              }
+            }
           },
           title: {
             display: true,
@@ -103,7 +110,14 @@ export class StatsPageComponent implements OnInit{
             text: this.stats?.logs.logs
           },
           legend: {
-            position: "right"
+            position: "right",
+            align: "center",
+            labels: {
+              color: "white",
+              font: {
+                size: 14
+              }
+            }
           },
           title: {
             display: true,
@@ -131,7 +145,14 @@ export class StatsPageComponent implements OnInit{
       options: {
         plugins: {
           legend: {
-            position: "right"
+            position: "right",
+            align: "center",
+            labels: {
+              color: "white",
+              font: {
+                size: 14
+              }
+            }
           },
           title: {
             display: true,
@@ -159,7 +180,14 @@ export class StatsPageComponent implements OnInit{
       options: {
         plugins: {
           legend: {
-            position: "right"
+            position: "right",
+            align: "center",
+            labels: {
+              color: "white",
+              font: {
+                size: 14
+              }
+            }
           },
           title: {
             display: true,
