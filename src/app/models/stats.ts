@@ -4,12 +4,20 @@ import {MediaIndex} from "./media-index.model";
 export class Stats implements Deserializable {
   public media!: MediaStats;
   public logs!: LogStats;
-  public most_watched!: MostWatchedStats;
+  public genres!: ComparativeStats[];
+  public languages!: ComparativeStats[];
+  public most_watched!: CategoryStats;
+  public highest_rated!: CategoryStats;
+  public average_rating!: AvgRatingStats;
 
   deserialize(input: any): this {
     this.media = MediaStats.deserialize(input.media);
     this.logs = LogStats.deserialize(input.logs);
-    this.most_watched = MostWatchedStats.deserialize(input.most_watched);
+    this.genres = input.genres.map((x: any) => ComparativeStats.deserialize(x));
+    this.languages = input.languages.map((x: any) => ComparativeStats.deserialize(x));
+    this.most_watched = CategoryStats.deserialize(input.most_watched);
+    this.highest_rated = CategoryStats.deserialize(input.highest_rated);
+    this.average_rating = AvgRatingStats.deserialize(input.average_rating);
     return this;
   }
 
@@ -47,7 +55,7 @@ export class LogStats implements Deserializable {
   }
 }
 
-export class MostWatchedStats implements Deserializable {
+export class CategoryStats implements Deserializable {
   public movie!: MediaIndex | undefined;
   public series!: MediaIndex | undefined;
 
@@ -57,7 +65,36 @@ export class MostWatchedStats implements Deserializable {
     return this;
   }
 
-  public static deserialize(input: any): MostWatchedStats {
-    return new MostWatchedStats().deserialize(input);
+  public static deserialize(input: any): CategoryStats {
+    return new CategoryStats().deserialize(input);
+  }
+}
+
+export class ComparativeStats implements Deserializable {
+  public name!: string;
+  public count!: number;
+
+
+  deserialize(input: any): this {
+    return Object.assign(this, input);
+  }
+
+  public static deserialize(input: any): ComparativeStats {
+    return new ComparativeStats().deserialize(input);
+  }
+}
+
+export class AvgRatingStats implements Deserializable {
+  public overall!: number | null;
+  public movies!: number | null;
+  public series!: number | null;
+
+
+  deserialize(input: any): this {
+    return Object.assign(this, input);
+  }
+
+  public static deserialize(input: any): AvgRatingStats {
+    return new AvgRatingStats().deserialize(input);
   }
 }

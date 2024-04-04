@@ -3,19 +3,51 @@
 
   <canvas #logChart class="doughnut"></canvas>
 
-  <div class="wrap">
-    <h2 class="title">Most watched</h2>
-    <div class="most-watched-container" *ngIf="stats?.most_watched?.movie != undefined">
-      <h3>Movie</h3>
-      <a routerLink="/movie/{{stats!.most_watched.movie!.id}}">
-        <app-index-poster [index]="stats!.most_watched.movie!" [showType]="false" class="poster"></app-index-poster>
-      </a>
+  <canvas #genresChart class="doughnut"></canvas>
+
+  <canvas #languagesChart class="doughnut"></canvas>
+
+  <div class="row">
+    <div class="wrap">
+      <h2 class="title">Most watched</h2>
+      <div class="most-watched-container" *ngIf="stats?.most_watched?.movie != undefined">
+        <h3>Movie</h3>
+        <a routerLink="/movie/{{stats!.most_watched.movie!.id}}">
+          <app-index-poster [index]="stats!.most_watched.movie!" [showType]="false" class="poster"></app-index-poster>
+        </a>
+      </div>
+      <div class="most-watched-container" *ngIf="stats?.most_watched?.series != undefined">
+        <h3>Series</h3>
+        <a routerLink="/series/{{stats!.most_watched.series!.id}}">
+          <app-index-poster [index]="stats!.most_watched.series!" [showType]="false" class="poster"></app-index-poster>
+        </a>
+      </div>
     </div>
-    <div class="most-watched-container" *ngIf="stats?.most_watched?.series != undefined">
-      <h3>Series</h3>
-      <a routerLink="/series/{{stats!.most_watched.series!.id}}">
-        <app-index-poster [index]="stats!.most_watched.series!" [showType]="false" class="poster"></app-index-poster>
-      </a>
+    <div class="wrap">
+      <h2 class="title">Highest rated</h2>
+      <div class="most-watched-container" *ngIf="stats?.highest_rated?.movie != undefined">
+        <h3>Movie</h3>
+        <a routerLink="/movie/{{stats!.highest_rated.movie!.id}}">
+          <app-index-poster [index]="stats!.highest_rated.movie!" [showType]="false" class="poster"></app-index-poster>
+        </a>
+      </div>
+      <div class="most-watched-container" *ngIf="stats?.highest_rated?.series != undefined">
+        <h3>Series</h3>
+        <a routerLink="/series/{{stats!.highest_rated.series!.id}}">
+          <app-index-poster [index]="stats!.highest_rated.series!" [showType]="false" class="poster"></app-index-poster>
+        </a>
+      </div>
     </div>
+    <mat-card *ngIf="stats?.average_rating?.overall" class="card">
+      <mat-card-title>Average ratings</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <ul role="tree">
+          <li class="card-content"><div>Overall:</div><div>{{Math.floor((stats?.average_rating?.overall ?? 0) * 100) / 100}}</div></li>
+          <li class="card-content" *ngIf="stats?.average_rating?.movies"><div>Movies:</div><div>{{Math.floor((stats?.average_rating?.movies ?? 0) * 100) / 100}}</div></li>
+          <li class="card-content" *ngIf="stats?.average_rating?.series"><div>Series:</div><div>{{Math.floor((stats?.average_rating?.series ?? 0) * 100) / 100}}</div></li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

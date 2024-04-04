@@ -56,6 +56,7 @@ import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 
 export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
@@ -93,35 +94,38 @@ export function initialize(appConfig: AppConfig) {
     PasswordChangeComponent,
     StatsPageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgOptimizedImage,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSnackBarModule,
-        MatMenuModule,
-        MatDialogModule,
-        MatSidenavModule,
-        MatListModule,
-        MatDatepickerModule,
-        MatLuxonDateModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatTableModule,
-        MatTooltipModule,
-        MatChipsModule,
-        MatButtonToggleModule,
-        MatAutocompleteModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgOptimizedImage,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatLuxonDateModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatChipsModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule,
+    MatCard,
+    MatCardTitle,
+    MatCardContent
+  ],
   providers: [
     AppConfig,
     {

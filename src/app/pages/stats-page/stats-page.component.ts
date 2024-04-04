@@ -17,6 +17,12 @@ export class StatsPageComponent implements OnInit{
   @ViewChild("logChart")
   protected logChartCtx!: ElementRef
 
+  @ViewChild("genresChart")
+  protected genresChartCtx!: ElementRef
+
+  @ViewChild("languagesChart")
+  protected languagesChartCtx!: ElementRef
+
 
   constructor(private service: StatisticsService) {
   }
@@ -112,5 +118,63 @@ export class StatsPageComponent implements OnInit{
         responsive: true,
       }
     });
+
+    new Chart(this.genresChartCtx.nativeElement, {
+      type: 'doughnut',
+      data: {
+        labels: this.stats?.genres.map((x) => x.name),
+        datasets: [{
+          data: this.stats?.genres.map((x) => x.count),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: "right"
+          },
+          title: {
+            display: true,
+            text: "Genres",
+            color: "white",
+            font: {
+              size: 20
+            },
+            padding: 20
+          }
+        },
+        responsive: true,
+      }
+    });
+
+    new Chart(this.languagesChartCtx.nativeElement, {
+      type: 'doughnut',
+      data: {
+        labels: this.stats?.languages.map((x) => x.name),
+        datasets: [{
+          data: this.stats?.languages.map((x) => x.count),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: "right"
+          },
+          title: {
+            display: true,
+            text: "Languages",
+            color: "white",
+            font: {
+              size: 20
+            },
+            padding: 20
+          }
+        },
+        responsive: true,
+      }
+    });
   }
+
+  protected readonly Math = Math;
 }
