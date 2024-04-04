@@ -76,4 +76,6 @@ export class MovieDetailsPageComponent {
     if(!runtime) return "";
     return `${Math.floor(runtime / 60)}h ${runtime % 60}min`;
   }
+
+  protected readonly Math = Math;
 }

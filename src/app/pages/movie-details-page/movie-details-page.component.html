@@ -23,10 +23,22 @@
     </mat-menu>
   </div>
   <app-backdrop [title]="movie?.title" [backdrop_path]="movie?.backdrop_path">
-    <div class="status">{{movie?.status}}</div>
-    <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
-    <div class="language">{{movie?.original_language?.english_name}}&ZeroWidthSpace;</div>
-    <div class="runtime">{{displayRuntime(movie?.runtime)}}&ZeroWidthSpace;</div>
+    <div class="details-section">
+      <div class="status">{{movie?.status}}</div>
+      <div class="release-year">{{movie?.release_date?.getFullYear()}}&ZeroWidthSpace;</div>
+      <div class="language">{{movie?.original_language?.english_name}}&ZeroWidthSpace;</div>
+      <div class="runtime">{{displayRuntime(movie?.runtime)}}&ZeroWidthSpace;</div>
+    </div>
+    <div class="details-section">
+      <div class="stars" *ngIf="movie?.stars != undefined">
+        <mat-icon class="star">star</mat-icon>
+        <div>{{Math.floor((movie?.stars ?? 0) * 100) / 100}}</div>
+      </div>
+      <div class="stars" *ngIf="movie?.tmdb_vote_average != undefined">
+        <mat-icon class="star">stars</mat-icon>
+        <div>{{Math.floor((movie?.tmdb_vote_average ?? 0) * 100) / 100}}</div>
+      </div>
+    </div>
   </app-backdrop>
   <app-details-poster [poster_path]="movie?.poster_path"></app-details-poster>
   <app-media-details [service]="moviesService" [media]="movie" [editable]="editable" (refresh)="getMovie()"></app-media-details>

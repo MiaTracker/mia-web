@@ -23,11 +23,23 @@
     </mat-menu>
   </div>
   <app-backdrop [title]="series?.title" [backdrop_path]="series?.backdrop_path">
-    <div class="status">{{series?.status}}</div>
-    <div class="release-year">{{series?.first_air_date?.getFullYear()}}&ZeroWidthSpace;</div>
-    <div class="language">{{series?.original_language?.english_name}}&ZeroWidthSpace;</div>
-    <div class="number_of_seasons">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
-    <div class="number_of_episodes">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
+    <div class="details-section">
+      <div class="status">{{series?.status}}</div>
+      <div class="release-year">{{series?.first_air_date?.getFullYear()}}&ZeroWidthSpace;</div>
+      <div class="language">{{series?.original_language?.english_name}}&ZeroWidthSpace;</div>
+      <div class="number_of_seasons">{{series?.number_of_seasons}} seasons&ZeroWidthSpace;</div>
+      <div class="number_of_episodes">{{series?.number_of_episodes}} episodes&ZeroWidthSpace;</div>
+    </div>
+    <div class="details-section">
+      <div class="stars" *ngIf="series?.stars != undefined">
+        <mat-icon class="star">star</mat-icon>
+        <div>{{Math.floor((series?.stars ?? 0) * 100) / 100}}</div>
+      </div>
+      <div class="stars" *ngIf="series?.tmdb_vote_average != undefined">
+        <mat-icon class="star">stars</mat-icon>
+        <div>{{Math.floor((series?.tmdb_vote_average ?? 0) * 100) / 100}}</div>
+      </div>
+    </div>
   </app-backdrop>
   <app-details-poster [poster_path]="series?.poster_path"></app-details-poster>
   <app-media-details [service]="seriesService" [media]="series" [editable]="editable" (refresh)="getSeries()"></app-media-details>

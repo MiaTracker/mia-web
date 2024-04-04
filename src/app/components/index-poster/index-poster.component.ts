@@ -47,4 +47,6 @@ export class IndexPosterComponent implements OnInit{
     if(this.index instanceof ExternalIndex)
       this.createExternal.emit(this.index);
   }
+
+    protected readonly Math = Math;
 }

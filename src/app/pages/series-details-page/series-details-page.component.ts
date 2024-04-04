@@ -71,4 +71,6 @@ export class SeriesDetailsPageComponent {
   protected removeFromWatchlist(): void {
     this.watchlistService.remove(this.id ?? 0).subscribe(() => this.getSeries());
   }
+
+    protected readonly Math = Math;
 }
