@@ -6,6 +6,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {DeleteConfirmationComponent} from "../../dialogs/delete-confirmation/delete-confirmation.component";
 import {MovieMetadataEditComponent} from "../../dialogs/movie-metadata-edit/movie-metadata-edit.component";
 import {WatchlistService} from "../../services/watchlist.service";
+import {ImagesSelectComponent} from "../../dialogs/images-select/images-select.component";
+import {ImagesUpdate} from "../../models/images-update";
 
 @Component({
   selector: 'app-movie-details-page',
@@ -70,6 +72,18 @@ export class MovieDetailsPageComponent {
 
   protected removeFromWatchlist(): void {
     this.watchlistService.remove(this.id ?? 0).subscribe(() => this.getMovie());
+  }
+
+  protected selectImages(): void {
+    if(this.id != null) {
+      this.moviesService.images(this.id).subscribe(imgs => {
+        const dialogRef = this.dialog.open(ImagesSelectComponent, {
+          data: { images: imgs, saveFn: (x: ImagesUpdate) => { return this.moviesService.updateImages(this.id ?? 0, x) }},
+          restoreFocus: false
+        });
+        dialogRef.afterClosed().subscribe(() => this.getMovie());
+      })
+    }
   }
 
   protected displayRuntime(runtime: number | null | undefined): string {

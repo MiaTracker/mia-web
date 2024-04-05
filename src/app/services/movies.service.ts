@@ -9,6 +9,8 @@ import {IMediaService} from "../interfaces/imedia-service";
 import {Log, LogCreate} from "../models/log";
 import {SearchResults} from "../models/search-results";
 import {SearchQuery} from "../models/search-query";
+import {Images} from "../models/images";
+import {ImagesUpdate} from "../models/images-update";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,14 @@ export class MoviesService implements IMediaService{
 
   public updateMetadata(metadata: MovieMetadata): Observable<Object> {
     return this.httpService.patch(`/movies/${metadata.id}/metadata`, null, metadata);
+  }
+
+  public images(id: number): Observable<Object> {
+    return this.httpService.getObj(Images, `/movies/${id}/images`);
+  }
+
+  public updateImages(id: number, images: ImagesUpdate): Observable<Object> {
+    return this.httpService.patch(`/movies/${id}/images`, null, images);
   }
 
   public deleteMovie(id: number): Observable<Object> {

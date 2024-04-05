@@ -9,6 +9,8 @@ import {Log, LogCreate} from "../models/log";
 import {SearchResults} from "../models/search-results";
 import {SeriesMetadata} from "../models/series-metadata";
 import {SearchQuery} from "../models/search-query";
+import {Images} from "../models/images";
+import {ImagesUpdate} from "../models/images-update";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,14 @@ export class SeriesService implements IMediaService {
 
   public updateMetadata(metadata: SeriesMetadata): Observable<Object> {
     return this.httpService.patch(`/series/${metadata.id}/metadata`, null, metadata);
+  }
+
+  public images(id: number): Observable<Object> {
+    return this.httpService.getObj(Images, `/series/${id}/images`);
+  }
+
+  public updateImages(id: number, images: ImagesUpdate): Observable<Object> {
+    return this.httpService.patch(`/series/${id}/images`, null, images);
   }
 
   public deleteSeries(id: number): Observable<Object> {

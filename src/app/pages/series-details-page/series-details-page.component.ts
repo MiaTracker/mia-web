@@ -6,6 +6,8 @@ import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {SeriesMetadataEditComponent} from "../../dialogs/series-metadata-edit/series-metadata-edit.component";
 import {WatchlistService} from "../../services/watchlist.service";
+import {ImagesSelectComponent} from "../../dialogs/images-select/images-select.component";
+import {ImagesUpdate} from "../../models/images-update";
 
 @Component({
   selector: 'app-series-movie-details-page',
@@ -49,6 +51,18 @@ export class SeriesDetailsPageComponent {
             this.getSeries()
           });
         }
+      })
+    }
+  }
+
+  protected selectImages(): void {
+    if(this.id != null) {
+      this.seriesService.images(this.id).subscribe(imgs => {
+        const dialogRef = this.dialog.open(ImagesSelectComponent, {
+          data: { images: imgs, saveFn: (x: ImagesUpdate) => { return this.seriesService.updateImages(this.id ?? 0, x) }},
+          restoreFocus: false
+        });
+        dialogRef.afterClosed().subscribe(() => this.getSeries());
       })
     }
   }

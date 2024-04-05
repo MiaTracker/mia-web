@@ -1,0 +1,34 @@
+<div class="container">
+  <div mat-dialog-content class="content">
+    <div class="section">
+      <h1>Posters</h1>
+      <div class="images-line">
+        <div class="img-wrapper" *ngFor="let img of data.images?.posters" (click)="selectedPoster = img">
+          <div class="poster" [class.selected]="selectedPoster == img">
+            <img alt="" class="poster-img" srcset="{{posterSrcSet(img.file_path)}}">
+          </div>
+          <div>{{img.width}}x{{img.height}}</div>
+          <div *ngIf="img.language">{{img.language}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h1>Backdrops</h1>
+      <div class="images-line">
+        <div class="img-wrapper" *ngFor="let img of data.images?.backdrops" (click)="selectedBackdrop = img">
+          <div class="backdrop" [class.selected]="selectedBackdrop == img">
+            <img alt="" class="backdrop-img" srcset="{{backdropSrcSet(img.file_path)}}">
+          </div>
+          <div class="row">
+            <div>{{img.width}}x{{img.height}}</div>
+            <div *ngIf="img.language">{{img.language}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-flat-button color="primary" (click)="save()">Save</button>
+  </div>
+</div>

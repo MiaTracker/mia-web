@@ -5,6 +5,7 @@
 @use './app/components/media-details/media-details-theme' as media-details
 @use './app/components/tag/tag-theme' as tag
 @use './app/components/tag-list/tag-list-theme' as tag-list
+@use './app/dialogs/images-select/images-select-theme' as images-select
 @use './app/app-theme' as app
 
 @include mat.core()
@@ -20,4 +21,5 @@ $theme: mat.define-dark-theme((color: (primary: $primary, accent: $accent), typo
 @include media-details.theme($theme)
 @include tag.theme($theme)
 @include tag-list.theme($theme)
+@include images-select.theme($theme)
 @include app.theme($theme)
