@@ -327,16 +327,11 @@
          id="rect3523"
          style="fill:#0a0912;stroke-width:4"
          d="M 698.03084,794.01651 H 1620.961 L 1447.7602,1039.0972 H 524.83012 Z" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:192px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-         x="1063.8716"
-         y="992.97284"
-         id="text6328"><tspan
-           id="tspan6326"
-           x="1063.8716"
-           y="992.97284"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:'a Atmospheric';-inkscape-font-specification:'a Atmospheric';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">MIA</tspan></text>
+      <path
+         style="font-size:192px;line-height:1.25;font-family:'a Atmospheric';-inkscape-font-specification:'a Atmospheric';text-align:center;text-anchor:middle;fill:#ffffff"
+         d="m 1002.9341,843.91034 h 35.4375 v 149.0625 h -35.4375 v -85.6875 l -45.37502,80.8125 h -23.8125 l -45.375,-77.4375 v 82.3125 h -35.4375 v -143.25 l 35.4375,-9.5625 57.5625,105.375 z m 64.125,0 h 35.4375 v 149.0625 h -35.4375 z m 110.0625,129.1875 12.9375,-30.375 h 41.625 l -29.0625,-61.875 -51.9375,112.125 h -37.3125 l 70.6875,-143.25 35.625,-9.5625 73.3125,152.8125 h -37.5 l -9.375,-19.875 z"
+         id="text6328"
+         aria-label="MIA" />
     </g>
   </g>
   <g
