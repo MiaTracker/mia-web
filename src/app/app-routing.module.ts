@@ -10,6 +10,7 @@ import {ProfileComponent} from "./pages/settings/profile/profile.component";
 import {InstancePageComponent} from "./pages/instance-page/instance-page.component";
 import {TokensComponent} from "./pages/settings/tokens/tokens.component";
 import {StatsPageComponent} from "./pages/stats-page/stats-page.component";
+import {AboutComponent} from "./pages/settings/about/about.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'media', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'tokens', component: TokensComponent },
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'about', component: AboutComponent }
     ]
   }
 ];
