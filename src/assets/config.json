@@ -1,7 +1,7 @@
 {
   "env": {
     "name": "dev",
-    "desktop": false
+    "desktop": true
   },
   "api": {
     "url": "http://localhost:3000",
