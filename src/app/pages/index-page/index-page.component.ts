@@ -11,6 +11,8 @@ import {ExternalIndex} from "../../models/external-index";
 import {MediaType} from "../../enums/media-type.enum";
 import {Router} from "@angular/router";
 import {WatchlistService} from "../../services/watchlist.service";
+import {AppComponent} from "../../app.component";
+import {AppConfig} from "../../config/app.config";
 
 @Component({
   selector: 'app-index-page',
@@ -23,52 +25,74 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   public refreshConnection: Subscription | undefined;
   protected isMixed: boolean = false;
   private searchSubscription: Subscription | undefined;
+  private nextPageSubscription: Subscription | undefined;
+  private pageCurrentlyLoading: number = -1;
 
   constructor(private mediaService: MediaService, private moviesService: MoviesService, private seriesService: SeriesService, private watchlistService: WatchlistService, private location: Location, private router: Router) {
   }
 
   ngOnInit(): void {
     this.isMixed = this.location.isCurrentPathEqualTo("/media") || this.location.isCurrentPathEqualTo("/watchlist");
-    this.searchSubscription = Signals.Search.subscribe(() => this.getMedia());
-    this.getMedia();
+    this.searchSubscription = Signals.Search.subscribe(() => {
+      Globals.SearchCurrentPage = 0;
+      Globals.SearchLastPageLoaded = false;
+      this.pageCurrentlyLoading = -1;
+      this.getMedia(Globals.SearchCurrentPage);
+    });
+    this.nextPageSubscription = Signals.SearchNextPage.subscribe((p) => this.getMedia(p));
+    Globals.SearchCurrentPage = 0;
+    Globals.SearchLastPageLoaded = false;
+    this.pageCurrentlyLoading = -1;
+    this.getMedia(Globals.SearchCurrentPage);
   }
 
   ngOnDestroy() {
     this.refreshConnection?.unsubscribe();
     this.searchSubscription?.unsubscribe();
+    this.nextPageSubscription?.unsubscribe();
   }
 
-  getMedia() {
-    if(Globals.SearchQuery.query || Globals.SearchQuery.only_watched || Globals.SearchQuery.genres || Globals.SearchQuery.min_stars) {
+  getMedia(page: number) {
+    if(this.pageCurrentlyLoading >= page) return;
+    this.pageCurrentlyLoading = page;
+    if(Globals.SearchQuery.query || Globals.SearchQuery.only_watched || Globals.SearchQuery.genres.length > 0 || Globals.SearchQuery.min_stars) {
       if(this.location.isCurrentPathEqualTo("/media"))
         this.mediaService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
-          this.setMedia(x.indexes, x.external);
+          this.pushMedia(x.indexes, x.external, page);
           Globals.SearchQueryValid = x.query_valid;
         });
       else if(this.location.isCurrentPathEqualTo("/movies"))
         this.moviesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
-          this.setMedia(x.indexes, x.external);
+          this.pushMedia(x.indexes, x.external, page);
           Globals.SearchQueryValid = x.query_valid;
         });
       else if(this.location.isCurrentPathEqualTo("/series"))
         this.seriesService.search(Globals.SearchQuery, Globals.SearchCommitted).subscribe(x => {
-          this.setMedia(x.indexes, x.external);
+          this.pushMedia(x.indexes, x.external, page);
           Globals.SearchQueryValid = x.query_valid;
         });
       else if(this.location.isCurrentPathEqualTo("/watchlist"))
         this.watchlistService.search(Globals.SearchQuery).subscribe(x => {
-          this.setMedia(x.indexes, null);
+          this.pushMedia(x.indexes, null, page);
           Globals.SearchQueryValid = x.query_valid;
         });
     } else {
       if(this.location.isCurrentPathEqualTo("/media"))
-        this.mediaService.getMedia().subscribe(media => this.setMedia(media, null));
+        this.mediaService.getMedia().subscribe(media => {
+          this.pushMedia(media, null, page)
+        });
       else if(this.location.isCurrentPathEqualTo("/movies"))
-        this.moviesService.getMovies().subscribe(media => this.setMedia(media, null));
+        this.moviesService.getMovies().subscribe(media => {
+          this.pushMedia(media, null, page)
+        });
       else if(this.location.isCurrentPathEqualTo("/series"))
-        this.seriesService.getSeries().subscribe(media => this.setMedia(media, null));
+        this.seriesService.getSeries().subscribe(media => {
+          this.pushMedia(media, null, page)
+        });
       else if(this.location.isCurrentPathEqualTo("/watchlist"))
-        this.watchlistService.index().subscribe(media => this.setMedia(media, null));
+        this.watchlistService.index().subscribe(media => {
+          this.pushMedia(media, null, page)
+        });
     }
   }
 
@@ -88,8 +112,17 @@ export class IndexPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setMedia(media: MediaIndex[], external: ExternalIndex[] | null): void {
-    this.index = media;
-    this.external = external ?? [];
+  private pushMedia(media: MediaIndex[], external: ExternalIndex[] | null, page: number): void {
+    if(media.length + (external?.length ?? 0) < AppConfig.env.api.pageSize)
+      Globals.SearchLastPageLoaded = true;
+    if(page == 0) {
+      this.index = media;
+      this.external = external ?? [];
+    } else {
+      this.index.push(...media);
+      if(external != null)
+        this.external.push(...external);
+    }
+    Globals.SearchCurrentPage = page;
   }
 }

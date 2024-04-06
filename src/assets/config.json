@@ -4,7 +4,8 @@
     "desktop": false
   },
   "api": {
-    "url": "http://localhost:3000"
+    "url": "http://localhost:3000",
+    "pageSize": 50
   },
   "undefinedImageUrl": "assets/no-image-placeholder.png"
 }

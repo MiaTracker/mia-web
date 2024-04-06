@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {MediaIndex} from "../models/media-index.model";
 import {SearchResults} from "../models/search-results";
 import {SearchQuery} from "../models/search-query";

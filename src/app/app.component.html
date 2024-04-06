@@ -64,7 +64,7 @@
         </mat-nav-list>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content (scroll)="onScroll($event)">
       <div class="naive-filter" *ngIf="naiveFilterVisible && isBasePath">
         <mat-form-field subscriptSizing="dynamic" class="grow">
           <mat-label>Genres</mat-label>

@@ -152,6 +152,16 @@ export class AppComponent {
     this.router.navigateByUrl("/login");
   }
 
+  protected onScroll(ev: Event) {
+    if(!this.isBaseMediaPath) return;
+    let h = ev.target as HTMLElement;
+    let b = document.body as HTMLElement;
+    let percent = (h.scrollTop||b.scrollTop) / ((h.scrollHeight||b.scrollHeight) - h.clientHeight) * 100;
+    if(percent > 80 && !Globals.SearchLastPageLoaded) {
+      Signals.SearchNextPage.emit(Globals.SearchCurrentPage + 1)
+    }
+  }
+
   protected addGenreFilter(event: MatChipInputEvent): void {
     const value = (event.value || "").trim();
 

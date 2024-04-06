@@ -5,6 +5,7 @@ import {Deserializable} from "../interfaces/deserializable.interface";
 import {catchError, map, Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Globals} from "../infrastructure/globals";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,12 @@ export class HttpService {
   constructor(private client: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   public getArr<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null) {
+    if(params == null) {
+      params = { offset: Globals.SearchCurrentPage * AppConfig.env.api.pageSize, limit: AppConfig.env.api.pageSize }
+    } else {
+      (params as any)['offset'] = Globals.SearchCurrentPage * AppConfig.env.api.pageSize;
+      (params as any)['limit'] = AppConfig.env.api.pageSize;
+    }
     return this.client.get<T[]>(this.buildUrl(url, params), { headers: this.headers() })
         .pipe(map(data => data.map(data => new type().deserialize(data))), catchError((err, _) => {
           this.handleErrors(err);
