@@ -156,8 +156,8 @@ export class AppComponent {
     if(!this.isBaseMediaPath) return;
     let h = ev.target as HTMLElement;
     let b = document.body as HTMLElement;
-    let percent = (h.scrollTop||b.scrollTop) / ((h.scrollHeight||b.scrollHeight) - h.clientHeight) * 100;
-    if(percent > 80 && !Globals.SearchLastPageLoaded) {
+    let fromBottom = (h.scrollHeight||b.scrollHeight) - ((h.scrollTop||b.scrollTop) + h.clientHeight);
+    if(fromBottom < 300 && !Globals.SearchLastPageLoaded) {
       Signals.SearchNextPage.emit(Globals.SearchCurrentPage + 1)
     }
   }
