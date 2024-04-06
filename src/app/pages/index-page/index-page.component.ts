@@ -114,7 +114,7 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   private pushMedia(media: MediaIndex[], external: ExternalIndex[] | null, page: number): void {
     if(media.length + (external?.length ?? 0) < AppConfig.env.api.pageSize)
       Globals.SearchLastPageLoaded = true;
-    if(page == 0) {
+    if(page == 1) {
       this.index = media;
       this.external = external ?? [];
     } else {
