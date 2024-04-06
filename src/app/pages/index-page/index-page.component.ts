@@ -11,7 +11,6 @@ import {ExternalIndex} from "../../models/external-index";
 import {MediaType} from "../../enums/media-type.enum";
 import {Router} from "@angular/router";
 import {WatchlistService} from "../../services/watchlist.service";
-import {AppComponent} from "../../app.component";
 import {AppConfig} from "../../config/app.config";
 
 @Component({
@@ -37,13 +36,13 @@ export class IndexPageComponent implements OnInit, OnDestroy {
       Globals.SearchCurrentPage = 0;
       Globals.SearchLastPageLoaded = false;
       this.pageCurrentlyLoading = -1;
-      this.getMedia(Globals.SearchCurrentPage);
+      this.getMedia(Globals.SearchCurrentPage + 1);
     });
     this.nextPageSubscription = Signals.SearchNextPage.subscribe((p) => this.getMedia(p));
     Globals.SearchCurrentPage = 0;
     Globals.SearchLastPageLoaded = false;
     this.pageCurrentlyLoading = -1;
-    this.getMedia(Globals.SearchCurrentPage);
+    this.getMedia(Globals.SearchCurrentPage + 1);
   }
 
   ngOnDestroy() {

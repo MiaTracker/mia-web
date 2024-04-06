@@ -1,10 +1,10 @@
 {
   "env": {
     "name": "dev",
-    "desktop": true
+    "desktop": false
   },
   "api": {
-    "url": "http://localhost:3000",
+    "url": "https://mia.ntinf.int.eu.org/api",
     "pageSize": 50
   },
   "undefinedImageUrl": "assets/no-image-placeholder.png"
