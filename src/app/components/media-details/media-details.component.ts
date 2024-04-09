@@ -5,6 +5,7 @@ import {SourceEditComponent} from "../../dialogs/source-edit/source-edit.compone
 import {Source} from "../../models/source";
 import {IMediaService} from "../../interfaces/imedia-service";
 import {MatDialog} from "@angular/material/dialog";
+import {AppConfig} from "../../config/app.config";
 
 @Component({
   selector: 'app-media-details',
@@ -12,6 +13,15 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./media-details.component.sass']
 })
 export class MediaDetailsComponent {
+
+  private urlRegEx = new RegExp(
+      '^(https?:\\/\\/)?'+ // validate protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+      '(\\#[-a-z\\d_]*)?$','i' // validate fragment locator
+  );
 
   protected readonly SourceType = SourceType;
 
@@ -89,8 +99,17 @@ export class MediaDetailsComponent {
   }
 
   protected openSourceLink(source: Source): void {
-    let prefix = "";
-    if(!source.url.startsWith('https://') && !source.url.startsWith('http://')) prefix = "https://"
-    window.open(prefix + source.url);
+    if(this.isUrlValid(source.url)) {
+      if(AppConfig.env.env.desktop) {
+        // @ts-ignore
+        window.__TAURI__.shell.open(source.url);
+      } else {
+        window.open(source.url);
+      }
+    }
+  }
+
+  protected isUrlValid(url: string): boolean {
+    return this.urlRegEx.test(url)
   }
 }
