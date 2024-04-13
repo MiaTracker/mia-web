@@ -88,7 +88,7 @@ export class MovieDetailsPageComponent {
 
   protected displayRuntime(runtime: number | null | undefined): string {
     if(!runtime) return "";
-    return `${Math.floor(runtime / 60)}h ${runtime % 60}min`;
+    return `${Math.floor(Math.fround(runtime / 60))}h ${runtime % 60}min`;
   }
 
   protected readonly Math = Math;

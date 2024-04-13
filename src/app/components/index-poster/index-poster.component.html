@@ -4,7 +4,7 @@
   <mat-icon class="indicator type-ind" *ngIf="showType">{{index.type == MediaType.Movie ? 'movie' : 'tv'}}</mat-icon>
   <div class="indicator stars" *ngIf="internal?.stars != undefined">
     <mat-icon class="star">star</mat-icon>
-    <div>{{Math.floor((internal?.stars ?? 0) * 100) / 100}}</div>
+    <div>{{Math.floor(Math.fround((internal?.stars ?? 0) * 100)) / 100}}</div>
   </div>
   <mat-icon class="indicator external" *ngIf="!internal">add_link</mat-icon>
   <button mat-fab class="add-external-btn" (click)="create()" *ngIf="!internal">
