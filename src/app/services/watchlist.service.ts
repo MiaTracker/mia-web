@@ -17,7 +17,7 @@ export class WatchlistService {
   }
 
   public index(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex, '/watchlist');
+    return this.httpService.getArr(MediaIndex, '/watchlist', null, true);
   }
 
   public search(query: SearchQuery): Observable<SearchResults> {

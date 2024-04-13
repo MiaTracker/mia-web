@@ -20,7 +20,7 @@ export class SeriesService implements IMediaService {
   }
 
   public getSeries(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex, '/series');
+    return this.httpService.getArr(MediaIndex, '/series', null, true);
   }
 
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {

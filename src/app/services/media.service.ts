@@ -14,7 +14,7 @@ export class MediaService {
   constructor(private httpService: HttpService) { }
 
   public getMedia(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex,'/media');
+    return this.httpService.getArr(MediaIndex,'/media', null, true);
   }
 
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {

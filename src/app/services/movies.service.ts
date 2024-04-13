@@ -20,7 +20,7 @@ export class MoviesService implements IMediaService{
   constructor(private httpService: HttpService) { }
 
   public getMovies(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex,'/movies');
+    return this.httpService.getArr(MediaIndex,'/movies', null, true);
   }
 
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
