@@ -50,7 +50,7 @@ export class LogsComponent {
         log: log,
         sources: this.sources,
         saveFn: (result: Log) => {
-          this.service.updateLog(result, this.media_id);
+          return this.service.updateLog(result, this.media_id);
         }
       }, autoFocus: "false" });
     dialogRef.afterClosed().subscribe(result => {

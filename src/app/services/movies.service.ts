@@ -24,7 +24,7 @@ export class MoviesService implements IMediaService{
   }
 
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
-    return this.httpService.postObj(SearchResults, '/movies/search', { committed: committed }, query);
+    return this.httpService.postObj(SearchResults, '/movies/search', { committed: committed }, query, true);
   }
 
   public genres(): Observable<string[]> {
