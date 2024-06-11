@@ -43,9 +43,9 @@
       <mat-divider></mat-divider>
       <mat-card-content>
         <ul role="tree">
-          <li class="card-content"><div>Overall:</div><div>{{Math.floor((stats?.average_rating?.overall ?? 0) * 100) / 100}}</div></li>
-          <li class="card-content" *ngIf="stats?.average_rating?.movies"><div>Movies:</div><div>{{Math.floor((stats?.average_rating?.movies ?? 0) * 100) / 100}}</div></li>
-          <li class="card-content" *ngIf="stats?.average_rating?.series"><div>Series:</div><div>{{Math.floor((stats?.average_rating?.series ?? 0) * 100) / 100}}</div></li>
+          <li class="card-content"><div>Overall:</div><div>{{Math.floor(Math.fround((stats?.average_rating?.overall ?? 0)) * 100) / 100}}</div></li>
+          <li class="card-content" *ngIf="stats?.average_rating?.movies"><div>Movies:</div><div>{{Math.floor(Math.fround((stats?.average_rating?.movies ?? 0)) * 100) / 100}}</div></li>
+          <li class="card-content" *ngIf="stats?.average_rating?.series"><div>Series:</div><div>{{Math.floor(Math.fround((stats?.average_rating?.series ?? 0)) * 100) / 100}}</div></li>
         </ul>
       </mat-card-content>
     </mat-card>

@@ -20,11 +20,11 @@ export class SeriesService implements IMediaService {
   }
 
   public getSeries(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex, '/series');
+    return this.httpService.getArr(MediaIndex, '/series', null, true);
   }
 
   public search(query: SearchQuery, committed: boolean): Observable<SearchResults> {
-    return this.httpService.postObj(SearchResults, '/series/search', { committed: committed }, query);
+    return this.httpService.postObj(SearchResults, '/series/search', { committed: committed }, query, true);
   }
 
   public genres(): Observable<string[]> {

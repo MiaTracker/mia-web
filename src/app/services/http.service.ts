@@ -14,14 +14,8 @@ export class HttpService {
 
   constructor(private client: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
-  public getArr<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null) {
-    if(params == null) {
-      params = { offset: Globals.SearchCurrentPage * AppConfig.env.api.pageSize, limit: AppConfig.env.api.pageSize }
-    } else {
-      (params as any)['offset'] = Globals.SearchCurrentPage * AppConfig.env.api.pageSize;
-      (params as any)['limit'] = AppConfig.env.api.pageSize;
-    }
-    return this.client.get<T[]>(this.buildUrl(url, params), { headers: this.headers() })
+  public getArr<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null, paginate: boolean = false) {
+    return this.client.get<T[]>(this.buildUrl(url, params, paginate), { headers: this.headers() })
         .pipe(map(data => data.map(data => new type().deserialize(data))), catchError((err, _) => {
           this.handleErrors(err);
           throw err;
@@ -51,8 +45,8 @@ export class HttpService {
     }));
   }
 
-  public postObj<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null, body: any = null, isLogin: boolean = false) : Observable<T> {
-    return this.client.post<T>(this.buildUrl(url, params), body, { headers: this.headers() })
+  public postObj<T extends Deserializable>(type: { new(): T ;}, url: string, params: Object | null = null, body: any = null, paginate: boolean = false, isLogin: boolean = false) : Observable<T> {
+    return this.client.post<T>(this.buildUrl(url, params, paginate), body, { headers: this.headers() })
       .pipe(map(data => new type().deserialize(data)), catchError((err, _) => {
         this.handleErrors(err, isLogin);
         throw err;
@@ -77,7 +71,15 @@ export class HttpService {
     return this.client.get(base_url + "/ping");
   }
 
-  private paramsString(params: any | null): string {
+  private paramsString(params: any | null, paginate: boolean = false): string {
+    if(paginate) {
+      if(params == null) {
+        params = { offset: Globals.SearchCurrentPage * AppConfig.env.api.pageSize, limit: AppConfig.env.api.pageSize }
+      } else {
+        (params as any)['offset'] = Globals.SearchCurrentPage * AppConfig.env.api.pageSize;
+        (params as any)['limit'] = AppConfig.env.api.pageSize;
+      }
+    }
     if(params == null) return "";
     let str = "?";
     for (const param in params) {
@@ -87,14 +89,14 @@ export class HttpService {
     return str.slice(0, -1);
   }
 
-  private buildUrl(url: string, params: any | null | undefined = undefined): string {
+  private buildUrl(url: string, params: any | null | undefined = undefined, paginate: boolean = false): string {
     if(AppConfig.env.env.desktop) {
       if(AppConfig.run.instance_url == undefined) {
         this.router.navigateByUrl("/instance");
         throw new Error("Instance url not set. Redirecting to instance selection page.");
       }
-      return AppConfig.run.instance_url + url + this.paramsString(params);
-    } else return AppConfig.env.api.url + url + this.paramsString(params);
+      return AppConfig.run.instance_url + url + this.paramsString(params, paginate);
+    } else return AppConfig.env.api.url + url + this.paramsString(params, paginate);
   }
 
   private headers() {

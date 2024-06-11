@@ -17,11 +17,11 @@ export class WatchlistService {
   }
 
   public index(): Observable<MediaIndex[]> {
-    return this.httpService.getArr(MediaIndex, '/watchlist');
+    return this.httpService.getArr(MediaIndex, '/watchlist', null, true);
   }
 
   public search(query: SearchQuery): Observable<SearchResults> {
-    return this.httpService.postObj(SearchResults, '/watchlist/search', null, query);
+    return this.httpService.postObj(SearchResults, '/watchlist/search', null, query, true);
   }
 
   public remove(media_id: number): Observable<Object> {

@@ -17,7 +17,7 @@ export class UsersService {
   constructor(private httpService: HttpService) { }
 
   public login(login: IUserLogin): Observable<void> {
-    return this.httpService.postObj(UserToken, '/users/login', null, login, true).pipe(map(data => {
+    return this.httpService.postObj(UserToken, '/users/login', null, login, false, true).pipe(map(data => {
       AppConfig.run.setToken(data);
     }));
   }
