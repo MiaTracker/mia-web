@@ -1,10 +1,12 @@
 <div class="logs">
   <div class="title">
     <h3>Logs:</h3>
-    <button mat-flat-button color="primary" (click)="addLog()">
-      <mat-icon>add</mat-icon>
-      <span>Add</span>
-    </button>
+    <div matTooltip="No source added" [matTooltipDisabled]="sources.length != 0">
+      <button mat-flat-button color="primary" (click)="addLog()" [disabled]="sources.length == 0">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+      </button>
+    </div>
   </div>
   <table class="logs-table">
     <tr *ngIf="logs.length > 0">
@@ -15,17 +17,26 @@
       <th>Date</th>
     </tr>
     <tr class="details-list-tag log" *ngFor="let log of logs">
-      <td class="stars">
-        <mat-icon class="star">star</mat-icon>
-        <div>{{log.stars}}</div>
+      <td>
+        <div class="icons stars">
+          <mat-icon class="star">star</mat-icon>
+          <div>{{log.stars}}</div>
+        </div>
       </td>
       <td>{{log.source}}</td>
-      <td>{{log.completed}}</td>
+      <td>
+        <div class="icons">
+          <mat-icon fontIcon="check circle" *ngIf="log.completed" ></mat-icon>
+          <mat-icon fontIcon="cancel" *ngIf="!log.completed"></mat-icon>
+        </div>
+      </td>
       <td class="comment-column">{{log.comment}}</td>
       <td>{{log.date.toLocaleString(DateTime.DATE_SHORT)}}</td>
-      <td class="actions">
-        <mat-icon fontIcon="edit" class="action" (click)="editLog(log)"></mat-icon>
-        <mat-icon fontIcon="close" class="action" (click)="deleteLog(log)"></mat-icon>
+      <td>
+        <div class="icons actions">
+          <mat-icon fontIcon="edit" class="action" (click)="editLog(log)"></mat-icon>
+          <mat-icon fontIcon="close" class="action" (click)="deleteLog(log)"></mat-icon>
+        </div>
       </td>
     </tr>
   </table>

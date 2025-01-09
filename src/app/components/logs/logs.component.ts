@@ -53,8 +53,8 @@ export class LogsComponent {
           return this.service.updateLog(result, this.media_id);
         }
       }, autoFocus: "false" });
-    dialogRef.afterClosed().subscribe(result => {
-      return this.service.updateLog(result, this.media_id);
+    dialogRef.afterClosed().subscribe(_ => {
+      this.refresh.emit()
     });
   }
 
