@@ -27,7 +27,7 @@ export class TokensComponent {
   }
 
   protected createToken(): void {
-    let dialogRef = this.dialog.open(TokenGenerateComponent);
+    let dialogRef = this.dialog.open(TokenGenerateComponent, {  minWidth: "20rem", width: "30vw" });
     dialogRef.afterClosed().subscribe(result => {
       this.dialog.open(TokenShowComponent, { data: result, restoreFocus: false });
       this.getTokens()

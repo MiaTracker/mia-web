@@ -27,7 +27,7 @@ import {SeriesDetailsPageComponent} from "./pages/series-details-page/series-det
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { DeleteConfirmationComponent } from './dialogs/delete-confirmation/delete-confirmation.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import { MovieMetadataEditComponent } from './dialogs/movie-metadata-edit/movie-metadata-edit.component';
@@ -121,12 +121,16 @@ export function initialize(appConfig: AppConfig) {
         MatAutocompleteModule,
         MatCard,
         MatCardTitle,
-        MatCardContent], providers: [
+        MatCardContent],
+    providers: [
         AppConfig,
         provideAppInitializer(() => {
         const initializerFn = (initialize)(inject(AppConfig));
         return initializerFn();
-      }),
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+        }),
+        provideHttpClient(withInterceptorsFromDi()),
+      {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { minWidth: "70rem", width: "70vw" }}
+    ]
+  },
+)
 export class AppModule { }

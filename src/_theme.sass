@@ -22,8 +22,6 @@ $theme: mat.define-theme((color: (theme-type: dark, primary: theme-colors.$prima
   @include mat.theme((color: (theme-type: dark, primary: theme-colors.$primary-palette, tertiary: theme-colors.$tertiary-palette), typography: Roboto, density: 0))
 
   @include mat.all-component-bases($theme)
-  @include mat.all-component-themes($theme)
-  @include mat.all-component-colors($theme)
   @include mat.all-component-densities($theme)
   @include mat.all-component-typographies($theme)
 

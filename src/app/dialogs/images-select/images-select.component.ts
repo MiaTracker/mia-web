@@ -38,7 +38,6 @@ export class ImagesSelectComponent {
     this.currentBackdrop = data.images.backdrops.find(x => x.current) ?? null;
     this.selectedPoster = this.currentPoster;
     this.selectedBackdrop = this.currentBackdrop;
-    console.log(data.images);
   }
 
   protected save(): void {

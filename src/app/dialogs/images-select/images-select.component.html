@@ -1,5 +1,5 @@
 <div class="container">
-  <div mat-dialog-content class="content">
+  <mat-dialog-content class="content">
     <div class="section">
       <h1>Posters</h1>
       <div class="images-line">
@@ -26,9 +26,9 @@
         </div>
       </div>
     </div>
-  </div>
-  <div mat-dialog-actions align="end">
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
     <button mat-stroked-button [mat-dialog-close]="false">Cancel</button>
     <button mat-flat-button color="primary" (click)="save()">Save</button>
-  </div>
+  </mat-dialog-actions>
 </div>
