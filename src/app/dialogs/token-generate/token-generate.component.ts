@@ -4,9 +4,10 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {AppTokensService} from "../../services/app-tokens.service";
 
 @Component({
-  selector: 'app-token-generate',
-  templateUrl: './token-generate.component.html',
-  styleUrls: ['./token-generate.component.sass']
+    selector: 'app-token-generate',
+    templateUrl: './token-generate.component.html',
+    styleUrls: ['./token-generate.component.sass'],
+    standalone: false
 })
 export class TokenGenerateComponent {
   protected nameField: FormControl = new FormControl<string|null>(null, Validators.required);

@@ -6,9 +6,10 @@ import {UserIndex} from "../../../models/user-index";
 import {DeleteConfirmationComponent} from "../../../dialogs/delete-confirmation/delete-confirmation.component";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.sass']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.sass'],
+    standalone: false
 })
 export class UsersComponent {
   protected users: UserIndex[] = [];

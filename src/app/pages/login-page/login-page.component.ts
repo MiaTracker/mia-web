@@ -6,9 +6,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AppConfig} from "../../config/app.config";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.sass']
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrls: ['./login-page.component.sass'],
+    standalone: false
 })
 export class LoginPageComponent {
   usernameFormControl = new FormControl('', { validators: [Validators.required]});

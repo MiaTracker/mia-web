@@ -7,9 +7,10 @@ import {AppConfig} from "../../config/app.config";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-password-change',
-  templateUrl: './password-change.component.html',
-  styleUrls: ['./password-change.component.sass']
+    selector: 'app-password-change',
+    templateUrl: './password-change.component.html',
+    styleUrls: ['./password-change.component.sass'],
+    standalone: false
 })
 export class PasswordChangeComponent {
   protected form: FormGroup;

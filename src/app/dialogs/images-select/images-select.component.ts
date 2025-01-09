@@ -4,7 +4,6 @@ import {
   MatDialogActions, MatDialogClose,
   MatDialogContent,
   MatDialogRef,
-  MatDialogTitle
 } from "@angular/material/dialog";
 import {Observable} from "rxjs";
 import {Image, Images} from "../../models/images";
@@ -14,19 +13,18 @@ import {MatButton} from "@angular/material/button";
 import {ImagesUpdate} from "../../models/images-update";
 
 @Component({
-  selector: 'app-images-select',
-  standalone: true,
-  imports: [
-    NgForOf,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatButton,
-    MatDialogClose,
-    NgIf
-  ],
-  templateUrl: './images-select.component.html',
-  styleUrl: './images-select.component.sass'
+    selector: 'app-images-select',
+    standalone: true,
+    imports: [
+        NgForOf,
+        MatDialogContent,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        NgIf
+    ],
+    templateUrl: './images-select.component.html',
+    styleUrl: './images-select.component.sass'
 })
 export class ImagesSelectComponent {
   private currentPoster: Image | null;

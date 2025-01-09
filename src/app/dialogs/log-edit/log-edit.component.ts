@@ -7,9 +7,10 @@ import {DateTime} from "luxon";
 import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-log-edit',
-  templateUrl: './log-edit.component.html',
-  styleUrls: ['./log-edit.component.sass']
+    selector: 'app-log-edit',
+    templateUrl: './log-edit.component.html',
+    styleUrls: ['./log-edit.component.sass'],
+    standalone: false
 })
 export class LogEditComponent {
   protected form: FormGroup;

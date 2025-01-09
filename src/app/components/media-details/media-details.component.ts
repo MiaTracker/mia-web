@@ -8,9 +8,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {AppConfig} from "../../config/app.config";
 
 @Component({
-  selector: 'app-media-details',
-  templateUrl: './media-details.component.html',
-  styleUrls: ['./media-details.component.sass']
+    selector: 'app-media-details',
+    templateUrl: './media-details.component.html',
+    styleUrls: ['./media-details.component.sass'],
+    standalone: false
 })
 export class MediaDetailsComponent {
 

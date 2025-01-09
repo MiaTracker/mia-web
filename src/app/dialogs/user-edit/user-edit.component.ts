@@ -5,9 +5,10 @@ import {UserRegistration} from "../../models/user-registration";
 import {UsersService} from "../../services/users.service";
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.sass']
+    selector: 'app-user-edit',
+    templateUrl: './user-edit.component.html',
+    styleUrls: ['./user-edit.component.sass'],
+    standalone: false
 })
 export class UserEditComponent {
   protected form: FormGroup;

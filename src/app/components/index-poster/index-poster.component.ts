@@ -5,9 +5,10 @@ import {MediaType} from "../../enums/media-type.enum";
 import {ExternalIndex} from "../../models/external-index";
 
 @Component({
-  selector: 'app-index-poster',
-  templateUrl: './index-poster.component.html',
-  styleUrls: ['./index-poster.component.sass']
+    selector: 'app-index-poster',
+    templateUrl: './index-poster.component.html',
+    styleUrls: ['./index-poster.component.sass'],
+    standalone: false
 })
 export class IndexPosterComponent implements OnInit{
   private _index!: MediaIndex | ExternalIndex;

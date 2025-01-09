@@ -4,9 +4,10 @@ import {StatisticsService} from "../../services/statistics.service";
 import { Chart } from "chart.js/auto"
 
 @Component({
-  selector: 'app-stats-page',
-  templateUrl: './stats-page.component.html',
-  styleUrls: ['./stats-page.component.sass']
+    selector: 'app-stats-page',
+    templateUrl: './stats-page.component.html',
+    styleUrls: ['./stats-page.component.sass'],
+    standalone: false
 })
 export class StatsPageComponent implements OnInit{
   protected stats: Stats | undefined;

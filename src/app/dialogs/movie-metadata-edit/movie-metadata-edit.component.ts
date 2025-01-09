@@ -9,9 +9,10 @@ import {LanguageIndex} from "../../models/language-index";
 import {map, Observable, startWith} from "rxjs";
 
 @Component({
-  selector: 'app-movie-metadata-edit',
-  templateUrl: './movie-metadata-edit.component.html',
-  styleUrls: ['./movie-metadata-edit.component.sass']
+    selector: 'app-movie-metadata-edit',
+    templateUrl: './movie-metadata-edit.component.html',
+    styleUrls: ['./movie-metadata-edit.component.sass'],
+    standalone: false
 })
 export class MovieMetadataEditComponent {
   protected form: FormGroup;

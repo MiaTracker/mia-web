@@ -3,9 +3,10 @@ import {Log} from "../../models/log";
 import {formatDate} from "@angular/common";
 
 @Component({
-  selector: 'app-log',
-  templateUrl: './log.component.html',
-  styleUrls: ['./log.component.sass']
+    selector: 'app-log',
+    templateUrl: './log.component.html',
+    styleUrls: ['./log.component.sass'],
+    standalone: false
 })
 export class LogComponent {
   @Input()

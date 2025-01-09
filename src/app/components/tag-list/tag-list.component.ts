@@ -1,9 +1,10 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-tag-list',
-  templateUrl: './tag-list.component.html',
-  styleUrls: ['./tag-list.component.sass']
+    selector: 'app-tag-list',
+    templateUrl: './tag-list.component.html',
+    styleUrls: ['./tag-list.component.sass'],
+    standalone: false
 })
 export class TagListComponent {
   private _editable: boolean = false;

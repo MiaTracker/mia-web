@@ -10,9 +10,10 @@ import {ImagesSelectComponent} from "../../dialogs/images-select/images-select.c
 import {ImagesUpdate} from "../../models/images-update";
 
 @Component({
-  selector: 'app-series-movie-details-page',
-  templateUrl: './series-details-page.component.html',
-  styleUrls: ['./series-details-page.component.sass']
+    selector: 'app-series-movie-details-page',
+    templateUrl: './series-details-page.component.html',
+    styleUrls: ['./series-details-page.component.sass'],
+    standalone: false
 })
 export class SeriesDetailsPageComponent {
   private _series_id: number | undefined;

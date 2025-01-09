@@ -5,9 +5,10 @@ import {AppConfig} from "../../config/app.config";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-instance-page',
-  templateUrl: './instance-page.component.html',
-  styleUrls: ['./instance-page.component.sass']
+    selector: 'app-instance-page',
+    templateUrl: './instance-page.component.html',
+    styleUrls: ['./instance-page.component.sass'],
+    standalone: false
 })
 export class InstancePageComponent {
   instanceFormControl = new FormControl('', { validators: [Validators.required]});

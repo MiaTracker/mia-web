@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { IndexPosterComponent } from "./components/index-poster/index-poster.component";
 import { IndexPageComponent } from "./pages/index-page/index-page.component";
 import {NgOptimizedImage} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { MovieDetailsPageComponent } from './pages/movie-details-page/movie-details-page.component';
 import { TagComponent } from './components/tag/tag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,79 +62,71 @@ export function initialize(appConfig: AppConfig) {
   return () => appConfig.load()
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    IndexPageComponent,
-    IndexPosterComponent,
-    MovieDetailsPageComponent,
-    SeriesDetailsPageComponent,
-    TagComponent,
-    LogComponent,
-    LoginPageComponent,
-    BackdropComponent,
-    DetailsPosterComponent,
-    TagListComponent,
-    DeleteConfirmationComponent,
-    MovieMetadataEditComponent,
-    SeriesMetadataEditComponent,
-    SourceEditComponent,
-    MediaDetailsComponent,
-    LogsComponent,
-    LogEditComponent,
-    SearchbarComponent,
-    SettingsComponent,
-    UsersComponent,
-    ProfileComponent,
-    UserEditComponent,
-    InstancePageComponent,
-    TokensComponent,
-    TokenGenerateComponent,
-    TokenShowComponent,
-    PasswordChangeComponent,
-    StatsPageComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgOptimizedImage,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatDialogModule,
-    MatSidenavModule,
-    MatListModule,
-    MatDatepickerModule,
-    MatLuxonDateModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatChipsModule,
-    MatButtonToggleModule,
-    MatAutocompleteModule,
-    MatCard,
-    MatCardTitle,
-    MatCardContent
-  ],
-  providers: [
-    AppConfig,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initialize,
-      deps: [AppConfig],
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        IndexPageComponent,
+        IndexPosterComponent,
+        MovieDetailsPageComponent,
+        SeriesDetailsPageComponent,
+        TagComponent,
+        LogComponent,
+        LoginPageComponent,
+        BackdropComponent,
+        DetailsPosterComponent,
+        TagListComponent,
+        DeleteConfirmationComponent,
+        MovieMetadataEditComponent,
+        SeriesMetadataEditComponent,
+        SourceEditComponent,
+        MediaDetailsComponent,
+        LogsComponent,
+        LogEditComponent,
+        SearchbarComponent,
+        SettingsComponent,
+        UsersComponent,
+        ProfileComponent,
+        UserEditComponent,
+        InstancePageComponent,
+        TokensComponent,
+        TokenGenerateComponent,
+        TokenShowComponent,
+        PasswordChangeComponent,
+        StatsPageComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        NgOptimizedImage,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatMenuModule,
+        MatDialogModule,
+        MatSidenavModule,
+        MatListModule,
+        MatDatepickerModule,
+        MatLuxonDateModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatChipsModule,
+        MatButtonToggleModule,
+        MatAutocompleteModule,
+        MatCard,
+        MatCardTitle,
+        MatCardContent], providers: [
+        AppConfig,
+        provideAppInitializer(() => {
+        const initializerFn = (initialize)(inject(AppConfig));
+        return initializerFn();
+      }),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

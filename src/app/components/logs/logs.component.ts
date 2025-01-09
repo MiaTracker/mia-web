@@ -7,9 +7,10 @@ import {Source} from "../../models/source";
 import {DateTime} from "luxon";
 
 @Component({
-  selector: 'app-logs',
-  templateUrl: './logs.component.html',
-  styleUrls: ['./logs.component.sass']
+    selector: 'app-logs',
+    templateUrl: './logs.component.html',
+    styleUrls: ['./logs.component.sass'],
+    standalone: false
 })
 export class LogsComponent {
   @Input({required: true})

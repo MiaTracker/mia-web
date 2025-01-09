@@ -4,9 +4,10 @@ import {Subscription} from "rxjs";
 import {Globals} from "../../infrastructure/globals";
 
 @Component({
-  selector: 'app-searchbar',
-  templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.sass']
+    selector: 'app-searchbar',
+    templateUrl: './searchbar.component.html',
+    styleUrls: ['./searchbar.component.sass'],
+    standalone: false
 })
 export class SearchbarComponent {
   private subscription: Subscription | undefined;

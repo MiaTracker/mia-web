@@ -4,9 +4,10 @@ import {AppToken} from "../../models/app-token";
 import {DateTime} from "luxon";
 
 @Component({
-  selector: 'app-token-show',
-  templateUrl: './token-show.component.html',
-  styleUrls: ['./token-show.component.sass']
+    selector: 'app-token-show',
+    templateUrl: './token-show.component.html',
+    styleUrls: ['./token-show.component.sass'],
+    standalone: false
 })
 export class TokenShowComponent {
   protected readonly DateTime = DateTime;

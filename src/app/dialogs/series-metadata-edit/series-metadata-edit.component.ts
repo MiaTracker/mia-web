@@ -9,9 +9,10 @@ import {MediaService} from "../../services/media.service";
 import {SeriesService} from "../../services/series.service";
 
 @Component({
-  selector: 'app-series-metadata-edit',
-  templateUrl: './series-metadata-edit.component.html',
-  styleUrls: ['./series-metadata-edit.component.sass']
+    selector: 'app-series-metadata-edit',
+    templateUrl: './series-metadata-edit.component.html',
+    styleUrls: ['./series-metadata-edit.component.sass'],
+    standalone: false
 })
 export class SeriesMetadataEditComponent {
   protected form: FormGroup;

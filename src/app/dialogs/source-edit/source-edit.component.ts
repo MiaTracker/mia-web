@@ -11,9 +11,10 @@ interface Type {
 }
 
 @Component({
-  selector: 'app-source-edit',
-  templateUrl: './source-edit.component.html',
-  styleUrls: ['./source-edit.component.sass']
+    selector: 'app-source-edit',
+    templateUrl: './source-edit.component.html',
+    styleUrls: ['./source-edit.component.sass'],
+    standalone: false
 })
 export class SourceEditComponent {
   protected form: FormGroup;

@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AppConfig} from "./app.config";
 
 export class AppErrors {

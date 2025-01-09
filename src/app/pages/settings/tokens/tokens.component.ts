@@ -8,9 +8,10 @@ import {DateTime} from "luxon";
 import {TokenShowComponent} from "../../../dialogs/token-show/token-show.component";
 
 @Component({
-  selector: 'app-tokens',
-  templateUrl: './tokens.component.html',
-  styleUrls: ['./tokens.component.sass']
+    selector: 'app-tokens',
+    templateUrl: './tokens.component.html',
+    styleUrls: ['./tokens.component.sass'],
+    standalone: false
 })
 export class TokensComponent {
   protected tokens: AppTokenIndex[] = [];

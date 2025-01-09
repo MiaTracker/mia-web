@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AppConfig} from "../config/app.config";
 import {Deserializable} from "../interfaces/deserializable.interface";
 import {catchError, map, Observable} from "rxjs";

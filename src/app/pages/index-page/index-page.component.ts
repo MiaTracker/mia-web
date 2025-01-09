@@ -14,9 +14,10 @@ import {WatchlistService} from "../../services/watchlist.service";
 import {AppConfig} from "../../config/app.config";
 
 @Component({
-  selector: 'app-index-page',
-  templateUrl: './index-page.component.html',
-  styleUrls: ['./index-page.component.sass']
+    selector: 'app-index-page',
+    templateUrl: './index-page.component.html',
+    styleUrls: ['./index-page.component.sass'],
+    standalone: false
 })
 export class IndexPageComponent implements OnInit, OnDestroy {
   public index: MediaIndex[] = [];

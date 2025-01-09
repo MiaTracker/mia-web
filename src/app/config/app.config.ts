@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {IAppConfig} from "../interfaces/iapp-config.interface";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AppConstants} from "./app.constants";
 import {AppRuntime} from "./app.runtime";
 import {AppErrors} from "./app.errors";

@@ -1,5 +1,5 @@
 import {ImagesConfiguration} from "../models/images-configuration.model";
-import {HttpHeaders} from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
 
 export class AppConstants {
   public readonly configFile = 'assets/config.json';

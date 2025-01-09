@@ -2,9 +2,10 @@ import {Component, Input} from '@angular/core';
 import {AppConfig} from "../../config/app.config";
 
 @Component({
-  selector: 'app-details-poster',
-  templateUrl: './details-poster.component.html',
-  styleUrls: ['./details-poster.component.sass']
+    selector: 'app-details-poster',
+    templateUrl: './details-poster.component.html',
+    styleUrls: ['./details-poster.component.sass'],
+    standalone: false
 })
 export class DetailsPosterComponent {
   private _poster_path: string | null = null;

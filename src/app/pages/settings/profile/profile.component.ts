@@ -6,9 +6,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {PasswordChangeComponent} from "../../../dialogs/password-change/password-change.component";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.sass']
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.sass'],
+    standalone: false
 })
 export class ProfileComponent {
   protected profile: UserProfile | undefined;

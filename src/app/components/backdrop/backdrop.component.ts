@@ -2,9 +2,10 @@ import {Component, Input, Output} from '@angular/core';
 import {AppConfig} from "../../config/app.config";
 
 @Component({
-  selector: 'app-backdrop',
-  templateUrl: './backdrop.component.html',
-  styleUrls: ['./backdrop.component.sass']
+    selector: 'app-backdrop',
+    templateUrl: './backdrop.component.html',
+    styleUrls: ['./backdrop.component.sass'],
+    standalone: false
 })
 export class BackdropComponent {
   private _backdrop_path: string | null = null;
