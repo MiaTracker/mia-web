@@ -69,7 +69,7 @@ export class SeriesDetailsPageComponent {
   }
 
   protected deleteSeries(): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete "${this.series?.title}"?` }, restoreFocus: false });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete "${this.series?.title}"?` }, restoreFocus: false, minWidth: undefined });
     dialogRef.afterClosed().subscribe(result => {
       if(result && this.id) {
         this.seriesService.deleteSeries(this.id).subscribe(_ => {

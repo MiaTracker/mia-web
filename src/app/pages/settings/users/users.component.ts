@@ -32,7 +32,7 @@ export class UsersComponent {
   }
 
   protected deleteUser(user: UserIndex): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete user '"${user.username}"'?` }, restoreFocus: false });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete user '"${user.username}"'?` }, restoreFocus: false, minWidth: undefined });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.service.delete(user.uuid).subscribe(_ => {

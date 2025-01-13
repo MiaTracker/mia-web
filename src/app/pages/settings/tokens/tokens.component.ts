@@ -35,7 +35,7 @@ export class TokensComponent {
   }
 
   protected revokeToken(token: string): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do revoke token '"${token}"'?` }, restoreFocus: false });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do revoke token '"${token}"'?` }, restoreFocus: false, minWidth: undefined });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.service.revoke(token).subscribe(_ => {

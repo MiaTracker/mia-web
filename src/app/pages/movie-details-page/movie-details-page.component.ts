@@ -57,7 +57,7 @@ export class MovieDetailsPageComponent {
   }
 
   protected deleteMovie(): void {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete "${this.movie?.title}"?` }, restoreFocus: false });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, { data: { prompt: `Do you really want do delete "${this.movie?.title}"?` }, restoreFocus: false, minWidth: undefined });
     dialogRef.afterClosed().subscribe(result => {
       if(result && this.id) {
         this.moviesService.deleteMovie(this.id).subscribe(_ => {
