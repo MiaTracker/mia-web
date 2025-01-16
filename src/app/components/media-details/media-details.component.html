@@ -17,7 +17,7 @@
         <th>Type</th>
         <th>Url</th>
       </tr>
-      <tr class="details-list-tag source" *ngFor="let source of media?.sources ?? []">
+      <tr class="source" *ngFor="let source of media?.sources ?? []">
         <td>{{source.name}}</td>
         <td>{{SourceType.toDisplay(source.type)}}</td>
         <td class="url-column">{{source.url}}</td>
